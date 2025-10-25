@@ -1,0 +1,4 @@
+site_name: Swift for Android
+site_url: https://docs.swifdroid.com
+theme:
+  name: material
