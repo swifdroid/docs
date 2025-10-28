@@ -2,6 +2,8 @@ site_name: Swift for Android
 site_url: https://docs.swifdroid.com
 repo_url: https://github.com/swifdroid/droid
 repo_name: swifdroid/droid
+# Copyright
+copyright: "SwifDroid Docs &copy; 2025 by Mikhail Isaev<br>Licensed under CC BY-NC-SA 4.0"
 theme:
   name: material
   icon:
