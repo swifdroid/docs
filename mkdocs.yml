@@ -1,5 +1,8 @@
+# Project information
 site_name: Swift for Android
 site_url: https://docs.swifdroid.com
+site_author: Mikhail Isaev
+site_description: SwifDroid documentation (Android framework for Swift).
 repo_url: https://github.com/swifdroid/droid
 repo_name: swifdroid/droid
 # Copyright
