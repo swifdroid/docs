@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MkDocs: Pull Material Docker Image",
+      "type": "shell",
+      "command": "docker pull squidfunk/mkdocs-material:9.6.20",
+      "problemMatcher": []
+    },
+    {
+      "label": "MkDocs: Run Material Server",
+      "type": "shell",
+      "command": "docker run --rm -it -p 8000:8000 -v ${workspaceFolder}:/docs squidfunk/mkdocs-material:9.6.20",
+      "problemMatcher": [],
+      "dependsOn": "Pull MkDocs Material Docker Image",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
