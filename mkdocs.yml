@@ -62,6 +62,15 @@ extra:
   font:
     text: Roboto Slab
     code: Source Code Pro
+  # Social
+  social:
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/+t9zXkfjoKNNlY2Ri
+    - icon: fontawesome/brands/discord
+      link: https://discord.com/invite/Wh3n86ttRB
+    - icon: fontawesome/brands/github
+      link: https://github.com/swifdroid
+  # GDPR
   consent:
     title: Cookie consent
     description: >- 
