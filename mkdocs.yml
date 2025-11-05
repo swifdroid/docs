@@ -34,28 +34,10 @@ theme:
   logo: assets/logo.png
   favicon: assets/favicon.ico
   palette:
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
-      primary: green
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
+    scheme: slate
+    primary: black
+    accent: green
 
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: green
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
-
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: green
-      toggle:
-        icon: material/weather-night
-        name: Switch to light mode
 # Customization
 extra:
   # Font
