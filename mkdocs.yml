@@ -13,6 +13,7 @@ edit_uri: https://github.com/swifdroid/docs/edit/master/docs/
 copyright: "SwifDroid Docs &copy; 2025 by Mikhail Isaev<br>Licensed under CC BY-NC-SA 4.0"
 theme:
   name: material
+  language: en
   font: false
   icon:
     repo: fontawesome/brands/github-alt
@@ -62,3 +63,11 @@ extra_css:
 
 extra_javascript:
   - assets/js/prism.js
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - footnotes
+  - attr_list
+  - toc:
+      permalink: false
