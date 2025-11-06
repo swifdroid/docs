@@ -11,8 +11,10 @@ edit_uri: https://github.com/swifdroid/docs/edit/master/docs/
 
 # Copyright
 copyright: "SwifDroid Docs &copy; 2025 by Mikhail Isaev<br>Licensed under CC BY-NC-SA 4.0"
+
 theme:
   name: material
+  custom_dir: theme/
   language: en
   font: false
   icon:
