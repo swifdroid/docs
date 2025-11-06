@@ -18,6 +18,8 @@ theme:
   icon:
     repo: fontawesome/brands/github-alt
   features:
+    - search.suggest
+    - search.highlight
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.tracking
