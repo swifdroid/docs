@@ -1,17 +1,11 @@
-# Welcome to MkDocs
+# Welcome to Swift for Android
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Swift for Android is an open-source project and part of the [Swift Stream](https://github.com/swiftstream) family.
 
-## Commands
+It’s built **by developers, for developers – with love**, to make creating Android apps in Swift simple and enjoyable.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+This project brings the power and expressiveness of Swift to Android, letting you build native applications with Swift’s modern syntax, safety, and performance – all while working directly with Android’s native UI components.
 
-## Project layout
+Powered by [JNIKit](jni-kit/index.md), [Droid](https://github.com/swifdroid/droid), and [Swift Stream IDE](https://swift.stream), it provides a smooth workflow for writing, compiling, and deploying Swift code to Android devices.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+If you’re new here, start with the [→ Setup Guide](setup/index.md), then explore the [→ Application](app/index.md) and [→ Library](lib/index.md) sections to begin building with Swift for Android.

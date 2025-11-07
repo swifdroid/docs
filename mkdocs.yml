@@ -75,3 +75,23 @@ markdown_extensions:
   - attr_list
   - toc:
       permalink: false
+
+nav:
+  - Welcome: index.md
+  - JNIKit:
+    - jni-kit/index.md
+    - Basics: jni-kit/basics.md
+    - Initialization: jni-kit/initialization.md
+    - Cache: jni-kit/cache.md
+    - Types: jni-kit/types.md
+    - Values: jni-kit/values.md
+    - Classes: jni-kit/classes.md
+    - Environment: jni-kit/env.md
+    - Signature: jni-kit/signature.md
+    - Objects: jni-kit/objects.md
+    - Methods: jni-kit/methods.md
+    - Fields: jni-kit/fields.md
+    - Casting: jni-kit/casting.md
+    - To String: jni-kit/to-string.md
+    - Optionals: jni-kit/optionals.md
+    - Examples: jni-kit/examples.md
