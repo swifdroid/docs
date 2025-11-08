@@ -83,6 +83,8 @@ nav:
     - on macOS: setup/macos.md
     - on Linux: setup/linux.md
     - on Windows: setup/windows.md
+  - Application:
+    - app/index.md
   - Library:
     - lib/index.md
     - Getting Started: lib/getting-started.md
