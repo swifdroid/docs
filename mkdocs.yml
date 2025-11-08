@@ -83,6 +83,28 @@ nav:
     - on macOS: setup/macos.md
     - on Linux: setup/linux.md
     - on Windows: setup/windows.md
+  - Library:
+    - lib/index.md
+    - Getting Started: lib/getting-started.md
+    - Structure: lib/structure.md
+    - Swift Project: lib/swift-project.md
+    - Kotlin Project: lib/kotlin-project.md
+    - Code:
+      - Development Loop: lib/code/development-loop.md
+      - Entry Point: lib/code/entry-point.md
+      - Class Loader: lib/code/class-loader.md
+      - Logging: lib/code/logging.md
+      - Sending an Int: lib/code/examples/sending-int.md
+      - Sending an Int Array: lib/code/examples/sending-int-array.md
+      - Sending a String: lib/code/examples/sending-string.md
+      - Sending a Date: lib/code/examples/sending-date.md
+      - Receiving a String: lib/code/examples/receiving-string.md
+      - Wrapping a Class: lib/code/examples/wrapping-class.md
+      - Async/Await: lib/code/examples/async-await.md
+    - Distribution:
+      - Library Import: lib/distribution/library-import.md
+      - Standalone AAR: lib/distribution/standalone-aar.md
+      - JitPack Repository: lib/distribution/jitpack.md
   - JNIKit:
     - jni-kit/index.md
     - Basics: jni-kit/basics.md
