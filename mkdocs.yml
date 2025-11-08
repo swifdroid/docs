@@ -78,6 +78,11 @@ markdown_extensions:
 
 nav:
   - Welcome: index.md
+  - Setup:
+    - setup/index.md
+    - on macOS: setup/macos.md
+    - on Linux: setup/linux.md
+    - on Windows: setup/windows.md
   - JNIKit:
     - jni-kit/index.md
     - Basics: jni-kit/basics.md
