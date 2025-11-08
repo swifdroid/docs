@@ -85,6 +85,7 @@ nav:
     - on Windows: setup/windows.md
   - Application:
     - app/index.md
+    - Structure: app/structure.md
   - Library:
     - lib/index.md
     - Getting Started: lib/getting-started.md
