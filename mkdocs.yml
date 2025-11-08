@@ -95,3 +95,4 @@ nav:
     - To String: jni-kit/to-string.md
     - Optionals: jni-kit/optionals.md
     - Examples: jni-kit/examples.md
+  - Contributing: contributing.md
