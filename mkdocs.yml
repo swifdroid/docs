@@ -85,6 +85,7 @@ nav:
     - on Windows: setup/windows.md
   - Application:
     - app/index.md
+    - Getting Started: app/getting-started.md
     - Structure: app/structure.md
     - Entry Point: app/entry-point.md
     - Manifest: app/manifest.md
