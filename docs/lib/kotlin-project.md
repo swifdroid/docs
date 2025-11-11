@@ -52,7 +52,7 @@ It works this way because `soMode` setting is set to `Packed` by default. Read
 
 If you need more control, you can take over manually, still without the hassle of manual file copying.
 
-Read more about [→ so-mode](swift-project.md#so-modes) and how to customize it.
+Read more about [→ so-mode](swift-project.md#so-mode) and how to customize it.
 
 ## Assemble with Gradle
 
