@@ -19,7 +19,7 @@ dependencyResolutionManagement {
 }
 ```
 !!! warning ""
-    You must add JitPack repository if you used `soMode` set to `Packed` [→ learn more](swift-project.md#packed)
+    You must add JitPack repository if you used `soMode` set to `Packed` [→ learn more](../swift-project.md#packed)
 
 Next, add the dependencies to your app module's `build.gradle.kts` file (`app/build.gradle.kts`). Ensure you include both the `.aar` file and all the required runtime libraries:
 ```kotlin
