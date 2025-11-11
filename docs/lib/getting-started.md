@@ -1,6 +1,6 @@
 # Getting started
 
-As you already [→ setup](setup/index.md) your development environment, it's time to create the project.
+As you already [→ setup](../setup/index.md) your development environment, it's time to create the project.
 
 On the left sidebar in VSCode, click the Swift Stream icon (the bird).
 
