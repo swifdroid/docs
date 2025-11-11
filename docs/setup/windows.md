@@ -24,4 +24,4 @@ Once installed, open VSCode and head to extensions tab (Ctrl+Shift+X) to install
 
 Aaaaaand... you are all set!
 
-Now check out our [→ Application](app/index.md) and [→ Library](lib/index.md) guides.
+Now check out our [→ Application](../app/index.md) and [→ Library](../lib/index.md) guides.
