@@ -1,6 +1,6 @@
 # Development Loop
 
-In order to test your coode in the real Android project please consider [→ importing](distribution/library-import.md) this Library project as a module into your Android app project.
+In order to test your coode in the real Android project please consider [→ importing](../distribution/library-import.md) this Library project as a module into your Android app project.
 
 **The Loop**
 
