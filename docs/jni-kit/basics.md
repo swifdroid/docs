@@ -93,4 +93,4 @@ The method can't be marked `async`, as it is not supported by **`@_cdecl`**. How
 
 First two arguments are required and passed into Swift automatically by JVM↔JNI mechanism, while third and subsequent arguments are actually arguments from your Java method.
 
-Continue to [→ initialization](beginning.md) to start coding.
+Continue to [→ initialization](initialization.md) to start coding.
