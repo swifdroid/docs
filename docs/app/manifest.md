@@ -426,10 +426,10 @@ Indicates whether this application is only for testing purposes [→ learn more]
 
 ### theme
 
-A reference to a style resource defining a default theme for all activities in the application. Individual activities can override the default by [→ setting their own](app/activity.md#theme) theme [→ learn more](https://developer.android.com/guide/topics/manifest/application-element#theme)
+A reference to a style resource defining a default theme for all activities in the application. Individual activities can override the default by [→ setting their own](activities.md#theme) theme [→ learn more](https://developer.android.com/guide/topics/manifest/application-element#theme)
 
 ```swift
-.theme(.Material3DayNightNoActionBar)
+.theme(.material3DayNightNoActionBar)
 ```
 
 ### uiOptions
