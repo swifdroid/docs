@@ -88,6 +88,7 @@ nav:
     - Getting Started: app/getting-started.md
     - Structure: app/structure.md
     - Entry Point: app/entry-point.md
+    - Logging: app/logging.md
     - Manifest: app/manifest.md
   - Library:
     - lib/index.md
