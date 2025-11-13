@@ -90,6 +90,7 @@ nav:
     - Entry Point: app/entry-point.md
     - Logging: app/logging.md
     - Manifest: app/manifest.md
+    - Colors: app/colors.md
   - Library:
     - lib/index.md
     - Getting Started: lib/getting-started.md
