@@ -93,6 +93,7 @@ nav:
     - Activities: app/activities.md
     - Colors: app/colors.md
     - Themes: app/themes.md
+    - State: app/state.md
   - Library:
     - lib/index.md
     - Getting Started: lib/getting-started.md
