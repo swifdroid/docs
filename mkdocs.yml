@@ -91,6 +91,7 @@ nav:
     - Logging: app/logging.md
     - Manifest: app/manifest.md
     - Activities: app/activities.md
+    - Views: app/views.md
     - Colors: app/colors.md
     - Themes: app/themes.md
     - State: app/state.md
