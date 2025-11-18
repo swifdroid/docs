@@ -7,7 +7,7 @@
 
 ## Starting an Activity
 
-In classic Android development, you are starting an Activity via intents. With Droid framework you can do it in a more Swifty way.
+In classic Android development, you are starting an Activity via intents. With Droid framework you can do it in a more Swiftly way.
 
 Simply initialize the activity class you want to start and call `startActivity` method with it:
 

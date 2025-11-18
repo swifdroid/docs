@@ -39,7 +39,7 @@ textView.backgroundColor(.lightGray)
 linearLayout.addSubview(textView)
 contentView(linearLayout)
 ```
-You may notice that property setters are without `set` prefix, this is intentional to make it more Swifty. Getters are also without `get` prefix.
+You may notice that property setters are without `set` prefix, this is intentional to make it more Swiftly. Getters are also without `get` prefix.
 
 ### Declaratively
 
