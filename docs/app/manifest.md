@@ -14,7 +14,7 @@ As described in [→ entry point](entry-point.md) **`App.swift`** is the main pl
 public final class App: DroidApp {
 	@AppBuilder public override var body: Content {
         Manifest
-			.usesPermission(.camera)
+			.usesPermissions(.camera)
 			.application {
 				.label("My app")
 				.activities(
@@ -597,19 +597,23 @@ The user-visible label for the shared user ID [→ learn more](https://developer
 
 ## usesPermission
 
-Declares a permission that the application must have in order to access a particular feature or API [→ learn more](https://developer.android.com/guide/topics/manifest/uses-permission-element)
+Declares permissions that the application must have in order to access a particular feature or API [→ learn more](https://developer.android.com/guide/topics/manifest/uses-permission-element)
 
 ```swift
-.usesPermission(.camera)
+.usesPermissions(.camera)
+.usesPermissions(.camera, .bluetooth)
 ```
 
 ## usesFeature
 
-Declares a hardware or software feature that the application requires or can use [→ learn more](https://developer.android.com/guide/topics/manifest/uses-feature-element)
+Declares a hardware or software features that the application requires or can use [→ learn more](https://developer.android.com/guide/topics/manifest/uses-feature-element)
 
 ```swift
-.usesFeature(.hardwareCamera)
+.usesFeatures(.hardwareCamera)
+.usesFeatures(.hardwareCamera, .hardwareBluetooth)
+.usesFeatures(.hardwareCamera, .hardwareBluetooth, required: false)
 ```
+**`required`** is **`true`** by default so can be omitted
 
 ## versionCode
 
