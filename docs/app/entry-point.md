@@ -24,8 +24,8 @@ public final class App: DroidApp {
 			Log.i("🚀 didFinishLaunching")
 		}
 		Manifest
-			.usesPermission(.camera)
-			.usesFeature(.hardwareCamera)
+			.usesPermissions(.camera)
+			.usesFeatures(.hardwareCamera)
 			.application {
 				.allowBackup()
 				.icon("@mipmap/ic_launcher")
