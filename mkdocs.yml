@@ -92,6 +92,7 @@ nav:
     - Manifest: app/manifest.md
     - Activities: app/activities.md
     - Views: app/views.md
+    - Assets: app/assets.md
     - Colors: app/colors.md
     - Themes: app/themes.md
     - State: app/state.md
