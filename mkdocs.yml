@@ -93,6 +93,7 @@ nav:
     - Activities: app/activities.md
     - Views: app/views.md
     - Assets: app/assets.md
+    - R: app/r.md
     - Colors: app/colors.md
     - Themes: app/themes.md
     - State: app/state.md
