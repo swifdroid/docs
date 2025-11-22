@@ -97,6 +97,7 @@ nav:
     - Colors: app/colors.md
     - Themes: app/themes.md
     - State: app/state.md
+    - Units: app/units.md
   - Library:
     - lib/index.md
     - Getting Started: lib/getting-started.md
