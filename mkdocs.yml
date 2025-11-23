@@ -96,6 +96,7 @@ nav:
     - R: app/r.md
     - Colors: app/colors.md
     - Themes: app/themes.md
+    - ForEach: app/for-each.md
     - State: app/state.md
     - Units: app/units.md
   - Library:
