@@ -99,6 +99,7 @@ nav:
     - ForEach: app/for-each.md
     - State: app/state.md
     - Units: app/units.md
+    - Permissions: app/permissions.md
     - Shared Preferences: app/shared-preferences.md
   - Library:
     - lib/index.md
