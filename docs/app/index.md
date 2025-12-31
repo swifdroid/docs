@@ -11,7 +11,7 @@ ConstraintLayout {
             .height(.wrapContent)
             .textColor(.green)
             .marginBottom(16)
-        MaterialButton("Tap Me", style: .tonal)
+        MaterialButton("Tap Me")
             .onClick {
                 print("Button tapped!")
             }
@@ -29,3 +29,6 @@ ConstraintLayout {
 It provides an extensive set of components, including AndroidX, Flexbox, and Material Design.
 
 Offering a **SwiftUI**-like declarative syntax for everything, **Droid framework** simplifies the process of developing Android applications in Swift by providing a high-level API that abstracts away many complexities of the Android platform and completely hides the underlying JNI layer.
+
+!!! warning ""
+    The application documentation is under active development. If you encounter any 404 pages or typos, please be patient – new content is being added every day.

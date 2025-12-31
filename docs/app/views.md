@@ -4,6 +4,9 @@ The **Droid** framework provides all the native Android views you need.
 
 The full list of available views is in the left sidebar, categorized into sections like **Classic**, **Android X**, and **Material Design**.
 
+!!! warning ""
+    The application documentation is under active development. If you encounter any 404 pages or typos, please be patient – new content is being added every day.
+
 For quick reference, here are some of the most commonly used views:  
 [→ LinearLayout](classic/linear-layout.md)  
 [→ RelativeLayout](classic/relative-layout.md)  
