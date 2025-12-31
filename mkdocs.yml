@@ -40,6 +40,10 @@ theme:
 
 # Customization
 extra:
+  # Analytics
+  analytics:
+    provider: google
+    property: GTM-KKVJQPKW
   # Font
   font:
     text: Roboto Slab
