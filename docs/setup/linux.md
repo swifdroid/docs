@@ -9,6 +9,8 @@ Install Docker Desktop for Linux by following the instructions from [here](https
 ## VSCode
 
 Download and install Visual Studio Code from [here](https://code.visualstudio.com/download) or via your package manager.
+> If your VSCode installation is sandboxed (i.e. via flatpak), you'll need to uninstall and download directly from the [official website](https://code.visualstudio.com/download).
+> Otherwise, Dev Containers won't have access to Docker.
 
 Once installed, open VSCode and head to extensions tab (Ctrl+Shift+X) to install the following extensions:
 
