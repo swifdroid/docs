@@ -368,6 +368,67 @@ override func onRequestPermissionsResult(
 
 Learn how to easily request [→ permissions](permissions.md)
 
+### onCreateOptionsMenu
+
+Called when the options menu is created.
+
+Override this to build your activity's options menu.
+
+```swift
+override func onCreateOptionsMenu(menu: Menu) -> Bool {
+    menu.add("One").showAsAction(.collapseActionView)
+    menu.add("Two").showAsAction(.collapseActionView)
+    menu.add("Three").showAsAction(.collapseActionView)
+    return true
+}
+```
+
+### onPrepareOptionsMenu
+
+Prepare the Screen's standard options menu to be displayed.
+
+This is called right before the menu is shown, every time it is shown.
+
+You can use this method to efficiently enable/disable items or otherwise dynamically modify the contents.
+
+```swift
+override func onPrepareOptionsMenu(menu: Menu) -> Bool {
+    menu.clear()
+    menu.add("Four").showAsAction(.collapseActionView)
+    menu.add("Five").showAsAction(.collapseActionView)
+    menu.add("Six").showAsAction(.collapseActionView)
+    let subMenu = menu.addSubMenu("Sub 1")!
+    subMenu.add("Seven").showAsAction(.always)
+    subMenu.add("Eight").showAsAction(.always)
+    subMenu.add("Nine").showAsAction(.always)
+    return true
+}
+```
+
+### onOptionsItemSelected
+
+This hook is called whenever an item in your options menu is selected.
+
+```swift
+override func onOptionsItemSelected(item: MenuItem) -> Bool {
+    if let title = item.title() {
+        Log.i("You clicked \(title)")
+        return true
+    }
+    return false
+}
+```
+
+### onOptionsMenuClosed
+
+This hook is called whenever the options menu is being closed.
+
+```swift
+override func onOptionsMenuClosed(menu: Menu) {
+    Log.i("Options menu closed")
+}
+```
+
 ## Finishing Activity
 
 ### finish
