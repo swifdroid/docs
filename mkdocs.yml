@@ -103,6 +103,10 @@ nav:
     - ForEach: app/for-each.md
     - State: app/state.md
     - Units: app/units.md
+    - Classic:
+      - Lists and Collections:
+        - HStack: app/classic/h-stack.md
+        - VStack: app/classic/v-stack.md
     - Android X:
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
