@@ -1,0 +1,5226 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="SwifDroid documentation (Android framework for Swift).">
+      
+      
+        <meta name="author" content="Mikhail Isaev">
+      
+      
+        <link rel="canonical" href="https://docs.swifdroid.com/jni-kit/env/">
+      
+      
+        <link rel="prev" href="../classes/">
+      
+      
+        <link rel="next" href="../signature/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Environment - Swift for Android</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/prism.css">
+    
+      <link rel="stylesheet" href="../../assets/css/fonts.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","GTM-KKVJQPKW"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","GTM-KKVJQPKW",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=GTM-KKVJQPKW",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#environment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Swift for Android" class="md-header__button md-logo" aria-label="Swift for Android" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Swift for Android
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Environment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/swifdroid/droid" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    swifdroid/droid
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../app/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Application
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lib/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Library
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JNIKit
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Swift for Android" class="md-nav__button md-logo" aria-label="Swift for Android" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Swift for Android
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/swifdroid/droid" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    swifdroid/droid
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../setup/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/macos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    on macOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    on Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    on Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../app/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/entry-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entry Point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/manifest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manifest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/activities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Activities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/r/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    R
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/colors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Colors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Themes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/for-each/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ForEach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/units/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Units
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_16" id="__nav_3_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_16_1" id="__nav_3_16_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lists and Collections
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_16_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lists and Collections
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/classic/h-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HSpace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/classic/h-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/classic/space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Space
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/classic/v-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VSpace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/classic/v-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_17" id="__nav_3_17_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android X
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Android X
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/x/recycler-view/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RecyclerView
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../app/shared-preferences/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared Preferences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../lib/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Library
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Library
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/swift-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swift Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/kotlin-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kotlin Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/development-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/entry-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entry Point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/class-loader/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Loader
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/examples/sending-int/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending an Int
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/examples/sending-int-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending an Int Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/examples/sending-string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending a String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/examples/sending-date/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending a Date
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/examples/receiving-string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Receiving a String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/examples/wrapping-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wrapping a Class
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/code/examples/async-await/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Async/Await
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distribution
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distribution
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/distribution/library-import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Library Import
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/distribution/standalone-aar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standalone AAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lib/distribution/jitpack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JitPack Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JNIKit
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JNIKit
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../initialization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Initialization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reflection Conversion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Frames
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Allocation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Creation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method Lookup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-method-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance Method Calls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance Method Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-virtual-method-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Virtual Method Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance Fields
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-method-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Method Lookup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-method-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Method Calls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Fields
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lookup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Strings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arrays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Arrays
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primitive-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primitive Arrays
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-getters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region Getters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-setters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region Setters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-method-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native Method Registration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitor-synchronized-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitor (synchronized) Helpers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jvm-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JVM Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-region-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Region Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-array-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Array Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-string-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical String Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weak-global-refs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Weak Global Refs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exception-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-bytebuffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct ByteBuffer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-type-inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Type Inspection
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fields/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fields
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../casting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../to-string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    To String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../optionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Definition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Class Hierarchy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reflection-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reflection Conversion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Frames
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Allocation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Creation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Info
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#method-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method Lookup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-method-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance Method Calls
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance Method Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-virtual-method-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Virtual Method Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance Fields
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-method-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Method Lookup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-method-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Method Calls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#static-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Fields
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Static Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lookup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#java-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Java Strings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arrays
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#object-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Arrays
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#primitive-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primitive Arrays
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-getters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region Getters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-setters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region Setters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#native-method-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native Method Registration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitor-synchronized-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitor (synchronized) Helpers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jvm-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JVM Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#string-region-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String Region Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-array-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Array Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-string-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical String Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weak-global-refs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Weak Global Refs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exception-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exception Check
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#direct-bytebuffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct ByteBuffer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-type-inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference Type Inspection
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    JNIKit
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="environment">Environment</h1>
+<p>Environment is the real bridge for any JNI call which in JNIKit's implementation is hidden under the hood but can also be used directly if needed.</p>
+<p>The environment pointer is wrapped into convenient <code>JEnv</code> object.</p>
+<p>Retrieve it this way:</p>
+<pre><code class="language-swift">let env = JEnv.current()
+</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Each instance works only in the thread where it was retrieved, so call <strong><code>JEnv.current()</code></strong> again if you switched thread or moved into <code>Task {}</code></p>
+</div>
+<p>The possibilities of <code>JEnv</code> are a huge topic to describe in detail. I would say if you know what you want from it you will get it.</p>
+<p>All its methods are ergonomically wrapped for easy use with Swift types and convenience types like <code>JClass</code>, <code>JClassName</code>, <code>JObject</code>, <code>JMethodId</code>, and <code>JFieldId</code>.</p>
+<h2 id="version">Version</h2>
+<pre><code class="language-swift">/// Returns the version of the JNI environment provided by the JVM
+///
+/// This is typically used to verify compatibility
+/// (e.g. `0x00010008` = JNI 1.8)
+getVersion() -&gt; Int32
+
+/// Returns the JNI version as a human-readable string (e.g. `&quot;1.8&quot;`)
+getVersionString() -&gt; String
+
+/// Returns the JNI version parsed into a `JNIVersion` struct
+getVersionStruct() -&gt; JNIVersion // { major: 1, minor: 8 }
+</code></pre>
+<h2 id="class-definition">Class Definition</h2>
+<pre><code class="language-swift">/// Defines a new Java class dynamically from raw bytecode
+///
+/// - Parameters:
+///   - name: The fully qualified class name (e.g., `&quot;com/example/MyClass&quot;`)
+///   - loader: A class loader object (or `nil` for bootstrap loader)
+///   - buf: Pointer to the `.class` bytecode
+///   - size: Size of the bytecode buffer
+/// - Returns: A newly defined Java class, or `nil` if failed
+defineClass(
+    name: JClassName,
+    loader: JObject?,
+    buf: UnsafePointer&lt;jbyte&gt;,
+    size: jint
+) -&gt; JClass?
+
+/// Finds a class by name using the current class loader
+///
+/// - Parameter name: JNI slash-separated class path (e.g. `&quot;java/lang/String&quot;`)
+/// - Returns: A wrapped class reference or `nil` if not found
+findClass(name: JClassName) -&gt; JClass?
+</code></pre>
+<h2 id="class-hierarchy">Class Hierarchy</h2>
+<pre><code class="language-swift">/// Gets the superclass of a Java class
+getSuperclass(of clazz: JClass) -&gt; JClass?
+
+/// Determines if `clazz2` is assignable to `clazz1`,
+/// equivalent to `clazz1.isAssignableFrom(clazz2)` in Java
+isAssignable(from clazz1: JClass, to clazz2: JClass) -&gt; Bool
+</code></pre>
+<p>Read more about <a href="../classes/">→ classes</a></p>
+<h2 id="reflection-conversion">Reflection Conversion</h2>
+<pre><code class="language-swift">/// Converts a Java `Method` object to a native method ID
+fromReflectedMethod(method: JObject) -&gt; JMethodId?
+
+/// Converts a Java `Field` object to a native field ID
+fromReflectedField(field: JObject) -&gt; JFieldId?
+
+/// Converts a native method ID into a Java `Method` or `Constructor` object
+///
+/// - Parameters:
+///   - clazz: The class that declares the method
+///   - methodId: The native method ID
+///   - isStatic: Whether the method is static
+toReflectedMethod(clazz: JClass, methodId: JMethodId, isStatic: Bool) -&gt; JObject?
+
+/// Converts a native field ID into a Java `Field` object
+///
+/// - Parameters:
+///   - clazz: The declaring class
+///   - fieldId: Native field ID
+///   - isStatic: Whether the field is static
+toReflectedField(clazz: JClass, fieldId: JFieldId, isStatic: Bool) -&gt; JObject?
+</code></pre>
+<h2 id="exceptions">Exceptions</h2>
+<pre><code class="language-swift">/// Throws an existing exception object in the JVM
+///
+/// - Parameter throwable: A `jthrowable` object
+/// - Returns: JNI status (`0` = OK, `-1` = error)
+throwException(throwable: jthrowable) -&gt; Int32
+
+/// Throws a new exception given a class and error message
+///
+/// - Parameters:
+///   - clazz: Exception class (e.g. `java/lang/IllegalArgumentException`)
+///   - message: Error message
+/// - Returns: JNI status
+throwNew(clazz: JClass, message: String) -&gt; Int32
+
+/// Checks whether a Java exception has been thrown in the current thread
+///
+/// - Returns: A throwable object if an exception is pending, or `nil`
+exceptionOccurred() -&gt; JThrowable?
+
+/// Describes the current exception (if any) to stderr (for debugging)
+exceptionDescribe()
+
+/// Clears the current exception from the JVM (if one is pending)
+exceptionClear()
+
+/// Triggers a fatal error in the JVM with a custom message
+/// This terminates the VM
+fatalError(message: String)
+
+/// Throws a Java exception object that is a subclass of `Throwable`
+throwObject(throwable: jobject) -&gt; Int32
+
+/// Throws a `JThrowable` instance and returns a typed JNI status
+throwObject(throwable: JThrowable) -&gt; JNIStatus
+</code></pre>
+<details>
+    <summary>Example: Detecting and Handling Java Exceptions</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+// Call a Java method that might throw an exception
+let result = env.callVoidMethod(...)
+
+// Check if an exception occurred
+if let exception = env.exceptionOccurred() {
+    // Describe the exception (prints details to stderr)
+    env.exceptionDescribe()
+
+    // Clear the exception to allow further JNI operations
+    env.exceptionClear()
+
+    // Optionally, rethrow the exception or handle it in Swift
+    print(&quot;Java exception: \(exception.getMessage())&quot;)
+}
+</code></pre>
+
+</details>
+<details>
+    <summary>Example: Throwing a New Java Exception</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+// Define the exception class and message
+if let exceptionClass = env.findClass(name: &quot;java/lang/IllegalArgumentException&quot;) {
+    let message = &quot;Invalid argument provided&quot;
+
+    // Throw the exception
+    let status = env.throwNew(clazz: exceptionClass, message: message)
+
+    if status != 0 {
+        print(&quot;Failed to throw Java exception&quot;)
+    }
+}
+</code></pre>
+
+</details>
+<details>
+    <summary>Example: Throwing an Existing Java Exception Object</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+// Create or retrieve a Java exception object
+let exceptionObject: JObject = ... // Obtain a `JThrowable` or `JObject`
+
+// Throw the exception
+let status = env.throwObject(throwable: exceptionObject)
+
+if status != 0 {
+    print(&quot;Failed to throw Java exception object&quot;)
+}
+</code></pre>
+
+</details>
+<details>
+    <summary>Example: Triggering a Fatal Error</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+// Terminate the JVM with a custom message
+env.fatalError(message: &quot;Critical error occurred in Swift&quot;)
+</code></pre>
+
+</details>
+
+<h2 id="reference-frames">Reference Frames</h2>
+<pre><code class="language-swift">/// Pushes a new local reference frame,
+/// allowing scoped object reference tracking
+///
+/// - Parameter capacity: Number of local refs to allocate.
+/// - Returns: JNI status code
+pushLocalFrame(capacity: jint) -&gt; Int32
+
+/// Pops the current local frame, returning a single retained reference
+///
+/// - Parameter result: Optional object to retain from the popped frame
+popLocalFrame(result: JObject?) -&gt; JObject?
+</code></pre>
+<h2 id="reference-management">Reference Management</h2>
+<pre><code class="language-swift">/// Promotes a local reference to a global one (GC-safe)
+newGlobalRef(obj: JObject) -&gt; JObject?
+
+/// Deletes a global reference previously promoted
+deleteGlobalRef(globalRef: JObject)
+
+/// Deletes a local reference to allow early GC
+deleteLocalRef(localRef: JObject)
+
+/// Returns whether two `jobject`s refer to the same underlying Java object
+isSameObject(obj1: JObject, obj2: JObject) -&gt; Bool
+
+/// Creates a new local reference to the given object
+newLocalRef(obj: JObject) -&gt; JObject?
+
+/// Ensures there's room for `capacity`
+/// more local references in the current frame
+///
+/// - Returns: JNI status
+ensureLocalCapacity(capacity: jint) -&gt; Int32
+</code></pre>
+<details>
+    <summary>Example: Promoting a Local Reference to a Global Reference</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+// `localRef` is a pointer to a Java object obtained from JNI
+// which now needs to be converted to a global reference
+if let globalRef = env.newGlobalRef(localRef) {
+    print(&quot;Successfully promoted to a global reference&quot;)
+    // Use `globalRef` safely across threads
+    // Use `env.deleteGlobalRef(globalRef)` when done
+} else {
+    print(&quot;Failed to promote to a global reference&quot;)
+}
+</code></pre>
+
+</details>
+<details>
+    <summary>Example: Deleting a Global Reference</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+env.deleteGlobalRef(globalRef)
+print(&quot;Global reference deleted&quot;)
+</code></pre>
+
+</details>
+<details>
+    <summary>Example: Deleting a Local Reference</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+env.deleteLocalRef(localRef)
+print(&quot;Local reference deleted&quot;)
+</code></pre>
+
+</details>
+<details>
+    <summary>Example: Checking if Two Java Objects are the Same</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+// Assume `obj1` and `obj2` are `JObject` instances
+if env.isSameObject(obj1, obj2) {
+    print(&quot;Both objects refer to the same Java object&quot;)
+} else {
+    print(&quot;Objects are different&quot;)
+}
+</code></pre>
+
+</details>
+<details>
+    <summary>Example: Ensuring Local Reference Capacity</summary>
+
+
+<pre><code class="language-swift">let env = JEnv.current()
+
+// Ensure there is room for 10 more local references
+let status = env.ensureLocalCapacity(10)
+if status == 0 {
+    print(&quot;Successfully ensured local reference capacity&quot;)
+} else {
+    print(&quot;Failed to ensure local reference capacity&quot;)
+}
+</code></pre>
+
+</details>
+
+<h2 id="object-allocation">Object Allocation</h2>
+<pre><code class="language-swift">/// Allocates an instance of a class without calling its constructor
+allocObject(clazz: JClass) -&gt; JObject?
+</code></pre>
+<h2 id="object-creation">Object Creation</h2>
+<pre><code class="language-swift">/// Creates a new Java object by calling its constructor
+/// using a `jvalue[]` argument list
+///
+/// - Parameters:
+///   - clazz: The class of the object to instantiate
+///   - constructor: A `JMethodId` representing the `&lt;init&gt;` constructor method
+///   - args: array of values for the constructor,
+///           or `nil` if none
+/// - Returns: A new `JObject` instance or `nil` if object creation failed
+newObject(
+    clazz: JClass,
+    constructor: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; JObject?
+</code></pre>
+<p>Constructor <code>methodID</code> can be looked up using <code>env.getMethodId(...)</code> with name <code>&lt;init&gt;</code> and appropriate signature <a href="./#method-lookup">→ read below</a></p>
+<p>Read more about <a href="../values/">→ JValuable</a></p>
+<h2 id="object-info">Object Info</h2>
+<pre><code class="language-swift">/// Checks whether a Java object is an instance of a given class
+///
+/// Equivalent to `clazz.isInstance(obj)` in Java
+///
+/// - Parameters:
+///   - object: The Java object to check
+///   - clazz: The class to compare against
+/// - Returns: `true` if `object` is an instance of `clazz`
+///             or its subclass; otherwise, `false`
+isInstanceOf(object: JObject, clazz: JClass) -&gt; Bool
+</code></pre>
+<h2 id="method-lookup">Method Lookup</h2>
+<pre><code class="language-swift">/// Finds an instance method ID for a method declared in the given class
+///
+/// This wraps the JNI `GetMethodID` call and converts it into a `JMethodId`
+///
+/// - Parameters:
+///   - clazz: The class in which the method is declared
+///   - name: The method name (e.g., `&quot;toString&quot;`)
+///   - sig: The method signature (e.g., `&quot;()Ljava/lang/String;&quot;`)
+/// - Returns: A `JMethodId` if found,
+///            or `nil` if the method doesn't exist or lookup fails
+getMethodId(
+    clazz: JClass,
+    name: String,
+    sig: JMethodSignature
+) -&gt; JMethodId?
+</code></pre>
+<p>Read more about <a href="../signature/#signing-methods">→ signatures</a></p>
+<h2 id="instance-method-calls">Instance Method Calls</h2>
+<p>JNI provides a variety of methods to call instance methods on Java objects, depending on the return type of the method being called.</p>
+<p>Supported return types include <code>void</code>, primitive types (like <code>int</code>, <code>float</code>, etc.), and object types.</p>
+<p>Depending on the return type, you should choose different JNI method name.</p>
+<p>If you want to call a method that returns an <code>int</code>, you would use <code>callIntMethod</code>. If the method returns an object, you would use <code>callObjectMethod</code>.</p>
+<p>Let's break down the object method call process:</p>
+<pre><code class="language-swift">callObjectMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil,
+    returningClass: JClass
+) -&gt; JObject?
+</code></pre>
+<ul>
+<li><code>object</code>: the Java object on which you want to call the method</li>
+<li><code>methodId</code>: the method identifier obtained either using <code>env.getMethodId(...)</code> or <code>clazz.methodId(...)</code> <a href="../methods/">→ read more</a></li>
+<li><code>args</code>: an optional array of arguments to pass to the method <a href="../methods/">→ read more</a></li>
+<li><code>returningClass</code>: the <code>JClass</code> of the object that the method returns <a href="../classes/">→ read more</a></li>
+</ul>
+<p>The method returns a <code>JObject?</code>, which is the result of the method call, or <code>nil</code> if the call failed.</p>
+<p>The same pattern applies to primitive return types (void, int, float, etc.), but hese methods donot require the <code>returningClass</code> parameter since primitive types are known.</p>
+<pre><code class="language-swift">callBooleanMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Bool
+</code></pre>
+<details>
+    <summary>Full List of Methods</summary>
+
+
+<pre><code class="language-swift">/// Call a Java method returning `byte`.
+callByteMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int8
+
+/// Call a Java method returning `char`.
+callCharMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; UInt16
+
+/// Call a Java method returning `short`.
+callShortMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int16
+
+/// Call a Java method returning `int`.
+callIntMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int32
+
+/// Call a Java method returning `long`.
+callLongMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int64
+
+/// Call a Java method returning `float`.
+callFloatMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Float
+
+/// Call a Java method returning `double`.
+callDoubleMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Double
+
+/// Call a Java method returning `void`.
+callVoidMethod(
+    object: JObject,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+)
+</code></pre>
+
+</details>
+
+<p>As you can see the principles are the same for all primitive types. Boolean method returns <code>Bool</code>, int method returns <code>Int32</code>, float method returns <code>Float</code>, void method returns nothing, and so on.</p>
+<h3 id="non-virtual-method-calls">Non-Virtual Method Calls</h3>
+<p>JNI also provides non-virtual method calls, which allow you to call a method as if it were a member of a specific class, bypassing any overridden implementations in subclasses.</p>
+<p>It is the same as above but with <code>NonVirtual</code> in the method name, for example <code>callNonvirtualObjectMethod</code> or <code>callNonvirtualBooleanMethod</code>, and so on.</p>
+<h2 id="instance-fields">Instance Fields</h2>
+<h3 id="lookup">Lookup</h3>
+<p>As well as methods you can access instance fields of Java objects.</p>
+<p>First you have to find the field ID using <code>getFieldId</code>:</p>
+<pre><code class="language-swift">getFieldId(
+    clazz: JClass,
+    name: String,
+    sig: JSignatureItem
+) -&gt; JFieldId?
+</code></pre>
+<p>And then you can get or set the field value using the appropriate JNI method based on the field type, same principles as with methods.</p>
+<h3 id="getters">Getters</h3>
+<pre><code class="language-swift">getObjectField(
+    object: JObject,
+    fieldId: JFieldId,
+    returningClass: JClass
+) -&gt; JObject?
+</code></pre>
+<p>With object fields you need to provide the <code>returningClass</code> parameter to specify the class of the object being retrieved.</p>
+<p>For primitive fields, you would use methods like <code>getBooleanField</code>, <code>getIntField</code>, etc., which do not require the <code>returningClass</code> parameter.</p>
+<pre><code class="language-swift">getBooleanField(object: JObject, fieldId: JFieldId) -&gt; Bool
+</code></pre>
+<details>
+    <summary>Full List of Methods</summary>
+
+
+<pre><code class="language-swift">/// Get a `byte` field from a Java instance
+getByteField(object: JObject, fieldId: JFieldId) -&gt; Int8
+
+/// Get a `char` field from a Java instance
+getCharField(object: JObject, fieldId: JFieldId) -&gt; UInt16
+
+/// Get a `short` field from a Java instance
+getShortField(object: JObject, fieldId: JFieldId) -&gt; Int16
+
+/// Get an `int` field from a Java instance
+getIntField(object: JObject, fieldId: JFieldId) -&gt; Int32
+
+/// Get a `long` field from a Java instance
+getLongField(object: JObject, fieldId: JFieldId) -&gt; Int64
+
+/// Get a `float` field from a Java instance
+getFloatField(object: JObject, fieldId: JFieldId) -&gt; Float
+
+/// Get a `double` field from a Java instance
+getDoubleField(object: JObject, fieldId: JFieldId) -&gt; Double
+</code></pre>
+
+</details>
+
+<h3 id="setters">Setters</h3>
+<p>For setting object fields, you would use:</p>
+<pre><code class="language-swift">setObjectField(
+    object: JObject,
+    fieldId: JFieldId,
+    value: JObject?
+)
+</code></pre>
+<p>Here, <code>value</code> is the new object to set for the field, and <code>object</code> is the instance containing the field.</p>
+<p>For primitive fields, you would use methods like <code>setBooleanField</code>, <code>setIntField</code>, etc.</p>
+<pre><code class="language-swift">setBooleanField(object: JObject, fieldId: JFieldId, value: jboolean)
+</code></pre>
+<details>
+    <summary>Full List of Methods</summary>
+
+
+<pre><code class="language-swift">/// Set a `byte` field on a Java instance.
+setByteField(object: JObject, fieldId: JFieldId, value: Int8)
+
+/// Set a `char` field on a Java instance.
+setCharField(object: JObject, fieldId: JFieldId, value: UInt16)
+
+/// Set a `short` field on a Java instance.
+setShortField(object: JObject, fieldId: JFieldId, value: Int16)
+
+/// Set an `int` field on a Java instance.
+setIntField(object: JObject, fieldId: JFieldId, value: Int32)
+
+/// Set a `long` field on a Java instance.
+setLongField(object: JObject, fieldId: JFieldId, value: Int64)
+
+/// Set a `float` field on a Java instance.
+setFloatField(object: JObject, fieldId: JFieldId, value: Float)
+
+/// Set a `double` field on a Java instance.
+setDoubleField(object: JObject, fieldId: JFieldId, value: Double)
+</code></pre>
+
+</details>
+
+<h2 id="static-method-lookup">Static Method Lookup</h2>
+<p>Static methods are looked up similarly to instance methods, but on the class level and its lookup is done using <code>getStaticMethodId</code>:</p>
+<pre><code class="language-swift">getStaticMethodId(
+    clazz: JClass,
+    name: String,
+    sig: JMethodSignature
+) -&gt; JMethodId?
+</code></pre>
+<h2 id="static-method-calls">Static Method Calls</h2>
+<p>Static methods are called similarly to instance methods, but you provide the class instead of an object.</p>
+<pre><code class="language-swift">callStaticObjectMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil,
+    returningClass: JClass
+) -&gt; JObject?
+</code></pre>
+<p>The same applies to primitive return types like <code>callStaticIntMethod</code>, <code>callStaticBooleanMethod</code>, etc.</p>
+<pre><code class="language-swift">callStaticBooleanMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Bool
+</code></pre>
+<details>
+    <summary>Full List of Methods</summary>
+
+
+<pre><code class="language-swift">/// Call a static method returning `byte`.
+callStaticByteMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int8
+
+/// Call a static method returning `char`.
+callStaticCharMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; UInt16
+
+/// Call a static method returning `short`.
+callStaticShortMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int16
+
+/// Call a static method returning `int`.
+callStaticIntMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int32
+
+/// Call a static method returning `long`.
+callStaticLongMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Int64
+
+/// Call a static method returning `float`.
+callStaticFloatMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Float
+
+/// Call a static method returning `double`.
+callStaticDoubleMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+) -&gt; Double
+
+/// Call a static method returning `void`.
+callStaticVoidMethod(
+    clazz: JClass,
+    methodId: JMethodId,
+    args: [any JValuable]? = nil
+)
+</code></pre>
+
+</details>
+
+<h2 id="static-fields">Static Fields</h2>
+<h3 id="lookup_1">Lookup</h3>
+<p>Static fields are looked up similarly to instance fields, but on the class level and its lookup is done using <code>getStaticFieldId</code>:</p>
+<pre><code class="language-swift">getStaticFieldId(
+    clazz: JClass,
+    name: String,
+    sig: JSignatureItem
+) -&gt; JFieldId?
+</code></pre>
+<h3 id="getters_1">Getters</h3>
+<pre><code class="language-swift">getStaticObjectField(
+    staticClazz: JClass,
+    fieldId: JFieldId,
+    clazz: JClass
+) -&gt; JObject?
+</code></pre>
+<p>With object fields you need to provide the <code>clazz</code> parameter to specify the class of the object being retrieved.</p>
+<p>For primitive fields, you would use methods like <code>getStaticBooleanField</code>, <code>getStaticIntField</code>, etc., which do not require the <code>clazz</code> parameter.</p>
+<pre><code class="language-swift">getStaticBooleanField(clazz: JClass, fieldId: JFieldId) -&gt; Bool
+</code></pre>
+<details>
+    <summary>Full List of Static Methods</summary>
+
+
+<pre><code class="language-swift">/// Get the value of a static field returning a `byte`.
+getStaticByteField(clazz: JClass, fieldId: JFieldId) -&gt; Int8
+
+/// Get the value of a static field returning a `char`.
+getStaticCharField(clazz: JClass, fieldId: JFieldId) -&gt; UInt16
+
+/// Get the value of a static field returning a `short`.
+getStaticShortField(clazz: JClass, fieldId: JFieldId) -&gt; Int16
+
+/// Get the value of a static field returning an `int`.
+getStaticIntField(clazz: JClass, fieldId: JFieldId) -&gt; Int32
+
+/// Get the value of a static field returning a `long`.
+getStaticLongField(clazz: JClass, fieldId: JFieldId) -&gt; Int64
+
+/// Get the value of a static field returning a `float`.
+getStaticFloatField(clazz: JClass, fieldId: JFieldId) -&gt; Float
+
+/// Get the value of a static field returning a `double`.
+getStaticDoubleField(clazz: JClass, fieldId: JFieldId) -&gt; Double
+</code></pre>
+
+</details>
+
+<h3 id="setters_1">Setters</h3>
+<p>For setting object fields, you would use:</p>
+<pre><code class="language-swift">setStaticObjectField(
+    clazz: JClass,
+    fieldId: JFieldId,
+    value: JObject?
+)
+</code></pre>
+<p>Here, <code>value</code> is the new object to set for the static field, and <code>clazz</code> is the class containing the static field.</p>
+<p>For primitive fields, you would use methods like <code>setStaticBooleanField</code>, <code>setStaticIntField</code>, etc.</p>
+<pre><code class="language-swift">setStaticBooleanField(clazz: JClass, fieldId: JFieldId, value: jboolean)
+</code></pre>
+<details>
+    <summary>Full List of Static Methods</summary>
+
+
+<pre><code class="language-swift">/// Set a static `byte` field.
+setStaticByteField(clazz: JClass, fieldId: JFieldId, value: Int8)
+
+/// Set a static `char` field.
+setStaticCharField(clazz: JClass, fieldId: JFieldId, value: UInt16)
+
+/// Set a static `short` field.
+setStaticShortField(clazz: JClass, fieldId: JFieldId, value: Int16)
+
+/// Set a static `int` field.
+setStaticIntField(clazz: JClass, fieldId: JFieldId, value: Int32)
+
+/// Set a static `long` field.
+setStaticLongField(clazz: JClass, fieldId: JFieldId, value: Int64)
+
+/// Set a static `float` field.
+setStaticFloatField(clazz: JClass, fieldId: JFieldId, value: Float)
+
+/// Set a static `double` field.
+setStaticDoubleField(clazz: JClass, fieldId: JFieldId, value: Double)
+</code></pre>
+
+</details>
+
+<h2 id="java-strings">Java Strings</h2>
+<pre><code class="language-swift">/// Create a new Java string from a UTF-16 buffer
+///
+/// This corresponds to the JNI `NewString` function.
+/// It creates a `jstring` from the provided buffer of 16-bit characters
+///
+/// - Parameters:
+///   - chars: Pointer to the UTF-16 characters (`jchar` array)
+///   - length: Number of characters in the array (not bytes)
+/// - Returns: A new `jstring`, or `nil` if creation fails
+newString(chars: UnsafePointer&lt;jchar&gt;, length: jint) -&gt; jstring?
+
+/// Get the UTF-16 length of a Java string
+///
+/// Equivalent to `GetStringLength`.
+/// This returns the number of UTF-16 code units, not bytes
+///
+/// - Parameter string: The Java string
+/// - Returns: Number of UTF-16 characters in the string
+getStringLength(string: jstring) -&gt; Int32
+
+/// Retrieve a pointer to the UTF-16 contents of a Java string
+///
+/// This returns a read-only buffer of `jchar` values
+/// that represent the UTF-16 encoding of the string
+///
+/// - Important: After use, you **must** call `releaseStringChars`
+///              to avoid memory leaks
+///
+/// - Parameters:
+///   - string: Java `jstring` instance
+///   - isCopy: Optional pointer that receives whether the data is a copy
+/// - Returns: Pointer to UTF-16 characters or `nil`
+getStringChars(
+    string: jstring,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafePointer&lt;jchar&gt;?
+
+/// Release the buffer obtained from `getStringChars`
+///
+/// - Parameters:
+///   - string: The original Java string
+///   - chars: Pointer returned from `getStringChars`
+releaseStringChars(string: jstring, chars: UnsafePointer&lt;jchar&gt;)
+
+/// Create a new Java UTF-8 string from a Swift `String`
+///
+/// This wraps `NewStringUTF`, which creates a Java string
+/// from a C-style UTF-8 encoded string
+///
+/// - Parameter string: A Swift string (will be converted to C UTF-8)
+/// - Returns: A new `jstring`, or `nil` if creation fails
+newStringUTF(string: String) -&gt; jstring?
+
+/// Get the UTF-8 byte length of a Java string (not character count)
+///
+/// Equivalent to `GetStringUTFLength`, this returns the number of bytes
+/// required to encode the Java string in UTF-8
+///
+/// - Parameter string: The Java string
+/// - Returns: Number of bytes in UTF-8 encoding
+getStringUTFLength(string: jstring) -&gt; Int32
+
+/// Retrieve a pointer to the UTF-8 encoded contents of a Java string
+///
+/// This pointer is valid until `releaseStringUTFChars` is called
+///
+/// - Important: After use, call `releaseStringUTFChars`
+///
+/// - Parameters:
+///   - string: The Java `jstring`
+///   - isCopy: Optional pointer to receive copy status
+/// - Returns: Pointer to null-terminated UTF-8 C string
+getStringUTFChars(
+    string: jstring,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafePointer&lt;CChar&gt;?
+
+/// Release a UTF-8 string buffer previously acquired from `getStringUTFChars`
+///
+/// - Parameters:
+///   - string: The original Java string
+///   - chars: Pointer obtained from `getStringUTFChars`
+releaseStringUTFChars(
+    string: jstring,
+    chars: UnsafePointer&lt;CChar&gt;
+)
+</code></pre>
+<h2 id="arrays">Arrays</h2>
+<pre><code class="language-swift">/// Get the number of elements in a Java array
+///
+/// Works for any array type including `jobjectArray`, `jintArray`, etc.
+///
+/// - Parameter array: A JNI `jarray` handle
+/// - Returns: The number of elements in the array
+getArrayLength(array: jarray) -&gt; Int32
+</code></pre>
+<h3 id="object-arrays">Object Arrays</h3>
+<pre><code class="language-swift">/// Create a new Java object array
+///
+/// This corresponds to JNI's `NewObjectArray`
+///
+/// - Parameters:
+///   - length: Number of elements in the array
+///   - clazz: Class type of array elements
+///   - initialElement: Optional element to initialize all entries with
+/// - Returns: A `JObjectArray` wrapping the created array
+newObjectArray(
+    length: jint,
+    clazz: JClass,
+    initialElement: JObject? = nil
+) -&gt; JObjectArray?
+
+/// Get an element from a Java object array
+///
+/// - Parameters:
+///   - array: The object array
+///   - index: The index of the element to retrieve
+/// - Returns: A `JObject` wrapper for the element at that index
+getObjectArrayElement(array: JObjectArray, index: jint) -&gt; JObject?
+
+/// Get an element from a Java object array
+///
+/// - Parameters:
+///   - array: The object array
+///   - index: The index of the element to retrieve
+/// - Returns: A `JObject` wrapper for the element at that index
+getObjectArrayElement(
+    arrayObject: JObject,
+    index: jint,
+    returningClass: JClass? = nil
+) -&gt; JObject?
+
+/// Set an element in a Java object array
+///
+/// - Parameters:
+///   - array: The target object array
+///   - index: Index of the element to set
+///   - value: The value to insert (may be `nil`)
+setObjectArrayElement(array: JObjectArray, index: jint, value: JObject?)
+
+/// Set an element in a Java object array
+///
+/// - Parameters:
+///   - arrayObject: The target object array
+///   - index: Index of the element to set
+///   - value: The value to insert (may be `nil`)
+setObjectArrayElement(arrayObject: JObject, index: jint, value: JObject?)
+</code></pre>
+<h3 id="primitive-arrays">Primitive Arrays</h3>
+<pre><code class="language-swift">/// Get a pointer to the contents of a `boolean[]` Java array
+///
+/// - Parameters:
+///   - array: A JNI `jbooleanArray`
+///   - isCopy: Optional pointer to receive JNI copy status (1=copy, 0=direct)
+/// - Returns: Pointer to native memory holding the array contents
+getBooleanArrayElements(
+    array: jbooleanArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;jboolean&gt;?
+</code></pre>
+<details>
+    <summary>More Examples</summary>
+
+
+<pre><code class="language-swift">/// Get a pointer to a `byte[]` Java array
+getByteArrayElements(
+    array: jbyteArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;jbyte&gt;?
+
+/// Get a pointer to a `char[]` Java array
+getCharArrayElements(
+    array: jcharArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;jchar&gt;?
+
+/// Get a pointer to a `short[]` Java array
+getShortArrayElements(
+    array: jshortArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;jshort&gt;?
+
+/// Get a pointer to an `int[]` Java array
+getIntArrayElements(
+    array: jintArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;Int32&gt;?
+
+/// Get a pointer to a `long[]` Java array
+getLongArrayElements(
+    array: jlongArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;Int64&gt;?
+
+/// Get a pointer to a `float[]` Java array
+getFloatArrayElements(
+    array: jfloatArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;Float&gt;?
+
+/// Get a pointer to a `double[]` Java array
+getDoubleArrayElements(
+    array: jdoubleArray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutablePointer&lt;Double&gt;?
+</code></pre>
+
+</details>
+
+<h3 id="release">Release</h3>
+<pre><code class="language-swift">/// Release memory returned by `getBooleanArrayElements`
+///
+/// - Parameters:
+///   - array: The original `jbooleanArray`
+///   - elems: Pointer previously returned
+///   - mode: `0` to copy back,
+///           `JNI_COMMIT` to copy without free,
+///           `JNI_ABORT` to discard changes
+releaseBooleanArrayElements(
+    array: jbooleanArray,
+    elems: UnsafeMutablePointer&lt;jboolean&gt;,
+    mode: jint = 0
+) {
+    env.pointee!.pointee.ReleaseBooleanArrayElements!(env, array, elems, mode)
+}
+</code></pre>
+<details>
+    <summary>More Examples</summary>
+
+
+<pre><code class="language-swift">/// Release memory for `byte[]`
+releaseByteArrayElements(
+    array: jbyteArray,
+    elems: UnsafeMutablePointer&lt;jbyte&gt;,
+    mode: jint = 0
+) {
+    env.pointee!.pointee.ReleaseByteArrayElements!(env, array, elems, mode)
+}
+
+/// Release memory for `char[]`
+releaseCharArrayElements(
+    array: jcharArray,
+    elems: UnsafeMutablePointer&lt;jchar&gt;,
+    mode: jint = 0
+) {
+    env.pointee!.pointee.ReleaseCharArrayElements!(env, array, elems, mode)
+}
+
+/// Release memory for `short[]`
+releaseShortArrayElements(
+    array: jshortArray,
+    elems: UnsafeMutablePointer&lt;jshort&gt;,
+    mode: jint = 0
+) {
+    env.pointee!.pointee.ReleaseShortArrayElements!(env, array, elems, mode)
+}
+
+/// Release memory for `int[]`
+releaseIntArrayElements(
+    array: jintArray,
+    elems: UnsafeMutablePointer&lt;jint&gt;,
+    mode: jint = 0
+) {
+    env.pointee!.pointee.ReleaseIntArrayElements!(env, array, elems, mode)
+}
+
+/// Release memory for `long[]`
+releaseLongArrayElements(
+    array: jlongArray,
+    elems: UnsafeMutablePointer&lt;jlong&gt;,
+    mode: jint = 0
+) {
+    env.pointee!.pointee.ReleaseLongArrayElements!(env, array, elems, mode)
+}
+
+/// Release memory for `float[]`
+releaseFloatArrayElements(
+    array: jfloatArray,
+    elems: UnsafeMutablePointer&lt;jfloat&gt;,
+    mode: jint = 0
+) {
+    env.pointee!.pointee.ReleaseFloatArrayElements!(env, array, elems, mode)
+}
+
+/// Release memory for `double[]`
+releaseDoubleArrayElements(
+    array: jdoubleArray,
+    elems: UnsafeMutablePointer&lt;jdouble&gt;,
+    mode: jint = 0
+)
+</code></pre>
+
+</details>
+
+<h3 id="region-getters">Region Getters</h3>
+<pre><code class="language-swift">/// Copy a region from a Java `boolean[]` array into a native buffer
+///
+/// - Parameters:
+///   - array: The Java boolean array
+///   - start: Starting index to copy from
+///   - length: Number of elements to copy
+///   - buffer: Pointer to destination buffer to write into
+getBooleanArrayRegion(
+    array: jbooleanArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jboolean&gt;
+)
+</code></pre>
+<details>
+    <summary>More Examples</summary>
+
+
+<pre><code class="language-swift">/// Copy a region from a Java `byte[]` array
+getByteArrayRegion(
+    array: jbyteArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jbyte&gt;
+)
+
+/// Copy a region from a Java `char[]` array
+getCharArrayRegion(
+    array: jcharArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jchar&gt;
+)
+
+/// Copy a region from a Java `short[]` array
+getShortArrayRegion(
+    array: jshortArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jshort&gt;
+)
+
+/// Copy a region from a Java `int[]` array
+getIntArrayRegion(
+    array: jintArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jint&gt;
+)
+
+/// Copy a region from a Java `long[]` array
+getLongArrayRegion(
+    array: jlongArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jlong&gt;
+)
+
+/// Copy a region from a Java `float[]` array
+getFloatArrayRegion(
+    array: jfloatArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jfloat&gt;
+)
+
+/// Copy a region from a Java `double[]` array
+getDoubleArrayRegion(
+    array: jdoubleArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jdouble&gt;
+)
+</code></pre>
+
+</details>
+
+<h3 id="region-setters">Region Setters</h3>
+<pre><code class="language-swift">/// Set a region of a Java `boolean[]` array from native buffer data
+///
+/// - Parameters:
+///   - array: The Java array to update
+///   - start: The starting index to write into
+///   - length: Number of elements to write
+///   - buffer: Native buffer containing the data to write
+setBooleanArrayRegion(
+    array: jbooleanArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jboolean&gt;
+)
+</code></pre>
+<details>
+    <summary>More Examples</summary>
+
+
+<pre><code class="language-swift">/// Set region of `byte[]` array
+setByteArrayRegion(
+    array: jbyteArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jbyte&gt;
+)
+
+/// Set region of `char[]` array
+setCharArrayRegion(
+    array: jcharArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jchar&gt;
+)
+
+/// Set region of `short[]` array
+setShortArrayRegion(
+    array: jshortArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jshort&gt;
+)
+
+/// Set region of `int[]` array
+setIntArrayRegion(
+    array: jintArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jint&gt;
+)
+
+/// Set region of `long[]` array
+setLongArrayRegion(
+    array: jlongArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jlong&gt;
+)
+
+/// Set region of `float[]` array
+setFloatArrayRegion(
+    array: jfloatArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jfloat&gt;
+)
+
+/// Set region of `double[]` array
+setDoubleArrayRegion(
+    array: jdoubleArray,
+    start: jint,
+    length: jint,
+    buffer: UnsafePointer&lt;jdouble&gt;
+)
+</code></pre>
+
+</details>
+
+<h2 id="native-method-registration">Native Method Registration</h2>
+<pre><code class="language-swift">/// Register native methods with a Java class
+///
+/// - Parameters:
+///   - clazz: The class to register native methods with
+///   - methods: Pointer to an array of `JNINativeMethod`
+///   - count: Number of methods to register
+/// - Returns: JNI status code (`JNI_OK` on success)
+registerNatives(
+    clazz: JClass,
+    methods: UnsafePointer&lt;JNINativeMethod&gt;,
+    count: jint
+) -&gt; Int32
+
+/// Unregister all native methods previously registered for the given class
+///
+/// - Parameter clazz: The class to unregister methods from
+/// - Returns: JNI status code (`JNI_OK` on success)
+unregisterNatives(clazz: JClass) -&gt; Int32
+</code></pre>
+<h2 id="monitor-synchronized-helpers">Monitor (synchronized) Helpers</h2>
+<pre><code class="language-swift">/// Enter the monitor associated with a Java object (like `synchronized` block)
+monitorEnter(object: JObject) -&gt; Int32
+
+/// Exit the monitor associated with a Java object
+monitorExit(object: JObject) -&gt; Int32
+</code></pre>
+<h2 id="jvm-access">JVM Access</h2>
+<pre><code class="language-swift">/// Get the `JavaVM*` associated with this `JNIEnv`
+///
+/// - Returns: The pointer to the `JavaVM`, or `nil` if retrieval fails
+getJavaVM() -&gt; UnsafeMutablePointer&lt;JavaVM?&gt;?
+</code></pre>
+<h2 id="string-region-access">String Region Access</h2>
+<pre><code class="language-swift">/// Copy a region of a Java string's UTF-16 characters into a buffer
+getStringRegion(
+    string: jstring,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;jchar&gt;
+)
+
+/// Copy a region of a Java string's UTF-8 characters into a buffer
+getStringUTFRegion(
+    string: jstring,
+    start: jint,
+    length: jint,
+    buffer: UnsafeMutablePointer&lt;CChar&gt;
+)
+</code></pre>
+<h2 id="critical-array-access">Critical Array Access</h2>
+<pre><code class="language-swift">/// Get a pointer to a primitive array's contents
+/// in a critical section (fastest access)
+///
+/// - Warning: The GC is disabled while the pointer is held
+getPrimitiveArrayCritical(
+    array: jarray,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafeMutableRawPointer?
+
+/// Release the pointer acquired from `getPrimitiveArrayCritical`
+///
+/// - Parameter mode: Either 0, `JNI_COMMIT`, or `JNI_ABORT`
+releasePrimitiveArrayCritical(
+    array: jarray,
+    pointer: UnsafeMutableRawPointer,
+    mode: jint = 0
+)
+</code></pre>
+<h2 id="critical-string-access">Critical String Access</h2>
+<pre><code class="language-swift">/// Get a pointer to the characters of a Java string in a critical section
+///
+/// - Warning: The GC is disabled while the pointer is held
+getStringCritical(
+    string: jstring,
+    isCopy: UnsafeMutablePointer&lt;jboolean&gt;? = nil
+) -&gt; UnsafePointer&lt;jchar&gt;?
+
+/// Release a string pointer acquired from `getStringCritical`
+releaseStringCritical(string: jstring, chars: UnsafePointer&lt;jchar&gt;)
+</code></pre>
+<h2 id="weak-global-refs">Weak Global Refs</h2>
+<pre><code class="language-swift">/// Create a weak global reference to a Java object
+///
+/// Weak references allow the JVM to GC the object
+/// when no strong references exist
+newWeakGlobalRef(obj: JObject) -&gt; jweak?
+
+/// Delete a previously created weak global reference
+deleteWeakGlobalRef(ref: jweak)
+</code></pre>
+<h2 id="exception-check">Exception Check</h2>
+<pre><code class="language-swift">/// Check if a Java exception is currently pending on this thread
+///
+/// - Returns: `true` if an exception has occurred
+exceptionCheck() -&gt; Bool
+</code></pre>
+<h2 id="direct-bytebuffer">Direct ByteBuffer</h2>
+<pre><code class="language-swift">/// Create a `java.nio.DirectByteBuffer` from a raw memory address
+///
+/// - Parameters:
+///   - address: Pointer to the memory to wrap
+///   - capacity: Number of bytes the buffer should expose
+newDirectByteBuffer(address: UnsafeMutableRawPointer, capacity: Int64) -&gt; jobject?
+
+/// Get the memory address backing a direct byte buffer
+getDirectBufferAddress(buffer: JObject) -&gt; UnsafeMutableRawPointer?
+
+/// Get the capacity in bytes of a direct byte buffer
+getDirectBufferCapacity(buffer: JObject) -&gt; Int64
+</code></pre>
+<h2 id="reference-type-inspection">Reference Type Inspection</h2>
+<pre><code class="language-swift">/// Inspect the type of a JNI object reference
+/// (`local`, `global`, `weak global`)
+///
+/// - Returns: A `JObjectRefType` describing the reference type
+getObjectRefType(obj: JObject) -&gt; JObjectRefType
+</code></pre>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      SwifDroid Docs &copy; 2025 by Mikhail Isaev<br>Licensed under CC BY-NC-SA 4.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/+t9zXkfjoKNNlY2Ri" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.com/invite/Wh3n86ttRB" target="_blank" rel="noopener" title="discord.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/swifdroid" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "search.highlight", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.path", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.select"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../assets/js/prism.js"></script>
+      
+    
+  </body>
+</html>

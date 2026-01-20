@@ -1,0 +1,4586 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="SwifDroid documentation (Android framework for Swift).">
+      
+      
+        <meta name="author" content="Mikhail Isaev">
+      
+      
+        <link rel="canonical" href="https://docs.swifdroid.com/app/x/recycler-view/">
+      
+      
+        <link rel="prev" href="../../classic/v-stack/">
+      
+      
+        <link rel="next" href="../../permissions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>RecyclerView - Swift for Android</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/prism.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/fonts.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","GTM-KKVJQPKW"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","GTM-KKVJQPKW",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=GTM-KKVJQPKW",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#recycler-view" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Swift for Android" class="md-header__button md-logo" aria-label="Swift for Android" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Swift for Android
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RecyclerView
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/swifdroid/droid" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    swifdroid/droid
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../setup/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Application
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../lib/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Library
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../jni-kit/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JNIKit
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Swift for Android" class="md-nav__button md-logo" aria-label="Swift for Android" data-md-component="logo">
+      
+  <img src="../../../assets/logo.png" alt="logo">
+
+    </a>
+    Swift for Android
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/swifdroid/droid" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    swifdroid/droid
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../setup/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/macos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    on macOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    on Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    on Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Application
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entry-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entry Point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manifest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manifest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../activities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Activities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../views/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../r/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    R
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../colors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Colors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Themes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../for-each/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ForEach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../units/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Units
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_16" id="__nav_3_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Classic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_16_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_16_1" id="__nav_3_16_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lists and Collections
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_16_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_16_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lists and Collections
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classic/h-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HSpace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classic/h-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classic/space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Space
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classic/v-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VSpace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classic/v-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VStack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_17" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_17" id="__nav_3_17_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android X
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_17_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Android X
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RecyclerView
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RecyclerView
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adapter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adapter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-or-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count or Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create View
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-view-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single view type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-view-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple view types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bind-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bind View
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bind View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Type
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View Type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-integers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using integers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-typed-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a typed enum
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout Managers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layout Managers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Default">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#item-prefetch-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Prefetch Enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#measurement-cache-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurement Cache Enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linearlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinearLayoutManager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinearLayoutManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recycle-children-on-detach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recycle Children On Detach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-prefetch-item-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Prefetch Item Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smooth-scrollbar-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Smooth Scrollbar Enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-from-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack From End
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gridlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GridLayoutManager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GridLayoutManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#span-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Span Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-spans-to-estimate-scrollbar-dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Spans To Estimate Scrollbar Dimensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#staggeredgridlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StaggeredGridLayoutManager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StaggeredGridLayoutManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gap-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gap Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-layout_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flexboxlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FlexboxLayoutManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#has-fixed-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Has Fixed Size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-set-and-item-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Set and Item Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Set and Item Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-set-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Set Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-inserted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Inserted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-range-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Range Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-range-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Range Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-range-inserted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Range Inserted
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#item-size-and-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Size and Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Item Size and Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefer-content-based-sizing-wrapcontent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefer Content-Based Sizing (wrapContent)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-view-types-for-categorical-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use View Types for Categorical Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-sizing-in-bindview-use-sparingly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Sizing in bindView (Use Sparingly)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hasfixedsize-and-variable-item-heights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hasFixedSize and Variable Item Heights
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#empty-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shared-preferences/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared Preferences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../lib/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Library
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Library
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/swift-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swift Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/kotlin-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kotlin Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/development-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/entry-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entry Point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/class-loader/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Class Loader
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/examples/sending-int/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending an Int
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/examples/sending-int-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending an Int Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/examples/sending-string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending a String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/examples/sending-date/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending a Date
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/examples/receiving-string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Receiving a String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/examples/wrapping-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wrapping a Class
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/code/examples/async-await/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Async/Await
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Distribution
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Distribution
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/distribution/library-import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Library Import
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/distribution/standalone-aar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standalone AAR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../lib/distribution/jitpack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JitPack Repository
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../jni-kit/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JNIKit
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JNIKit
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/initialization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Initialization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/values/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Values
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/signature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signature
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/objects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/fields/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fields
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/casting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Casting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/to-string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    To String
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/optionals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optionals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../jni-kit/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adapter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Adapter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-or-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count or Items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create View
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-view-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single view type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-view-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple view types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bind-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bind View
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bind View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using items
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Type
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="View Type">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-integers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using integers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-typed-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a typed enum
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layout-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout Managers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Layout Managers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Default">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#item-prefetch-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Prefetch Enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#measurement-cache-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measurement Cache Enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linearlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinearLayoutManager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LinearLayoutManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recycle-children-on-detach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recycle Children On Detach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-prefetch-item-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Prefetch Item Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smooth-scrollbar-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Smooth Scrollbar Enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stack-from-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack From End
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gridlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GridLayoutManager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GridLayoutManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#span-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Span Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-spans-to-estimate-scrollbar-dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Spans To Estimate Scrollbar Dimensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#staggeredgridlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StaggeredGridLayoutManager
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StaggeredGridLayoutManager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gap-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gap Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-layout_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reverse Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flexboxlayoutmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FlexboxLayoutManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#has-fixed-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Has Fixed Size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-set-and-item-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Set and Item Changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Set and Item Changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-set-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Set Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-inserted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Inserted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-range-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Range Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-range-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Range Removed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#item-range-inserted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Range Inserted
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#item-size-and-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Item Size and Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Item Size and Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prefer-content-based-sizing-wrapcontent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefer Content-Based Sizing (wrapContent)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-view-types-for-categorical-sizes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use View Types for Categorical Sizes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#programmatic-sizing-in-bindview-use-sparingly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Programmatic Sizing in bindView (Use Sparingly)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hasfixedsize-and-variable-item-heights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hasFixedSize and Variable Item Heights
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#empty-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty State
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Welcome
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Application
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Android X
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="recycler-view">Recycler View</h1>
+<p>A powerful and flexible component for displaying large data sets as a scrollable list or grid.</p>
+<p>It is optimized for performance by reusing item views that scroll off-screen, reducing memory usage and avoiding unnecessary view creation.</p>
+<p>A basic example:</p>
+<pre><code class="language-swift">RecyclerView()
+    .layoutManager(.linear(orientation: .vertical))
+    .adapter(
+        count: 30,
+        createView:
+            TextView()
+                .width(.matchParent)
+                .height(.wrapContent)
+                .textColor(.black),
+        bindView: { view, index in
+            view
+                .text(&quot;Item at position: \(index)&quot;)
+                .backgroundColor(index % 2 == 0 ? .lightGray : .white)
+                .padding()
+        }
+    )
+    .hasFixedSize(true)
+</code></pre>
+<h2 id="adapter">Adapter</h2>
+<p>The adapter is responsible for:</p>
+<ul>
+<li>reporting how many items exist,</li>
+<li>creating item views,</li>
+<li>binding data to reusable views.</li>
+</ul>
+<p>You attach an adapter like this:</p>
+<pre><code class="language-swift">RecyclerView().adapter(...)
+</code></pre>
+<h3 id="count-or-items">Count or Items</h3>
+<p>You can define the data source in two ways.</p>
+<p><strong>Using a fixed count</strong><br />
+Provide the total number of items:</p>
+<pre><code class="language-swift">RecyclerView().adapter(
+    count: 100,
+    ...
+)
+</code></pre>
+<p><strong>Using items</strong><br />
+Provide an array (or a reactive state):</p>
+<pre><code class="language-swift">@State var items: [String] = [&quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;]
+RecyclerView().adapter(
+    items: $items,
+    ...
+)
+</code></pre>
+<p>Using <code>@State</code> enables automatic updates when the data changes.</p>
+<h3 id="create-view">Create View</h3>
+<p><code>createView</code> defines how item views are created.<br />
+It is called only when a new view instance is needed.</p>
+<h4 id="single-view-type">Single view type</h4>
+<p>If all items use the same view, simply return a view instance:</p>
+<pre><code class="language-swift">createView: TextView()
+    .width(.matchParent)
+    .height(.wrapContent)
+</code></pre>
+<p>This view will later be reused and configured in <code>bindView</code>.</p>
+<h4 id="multiple-view-types">Multiple view types</h4>
+<p>If your list contains different item layouts, use <code>viewType</code>.</p>
+<p>You may still return the same view class for all types:</p>
+<pre><code class="language-swift">createView: { viewType in
+    TextView()
+        .width(.matchParent)
+        .height(.wrapContent)
+}
+</code></pre>
+<p>Or define a type-safe enum that conforms to <code>Viewable</code>:</p>
+<pre><code class="language-swift">enum Row: Viewable {
+    case title(TextView)
+    case rectangle(LinearLayout)
+
+    var view: some View {
+        switch self {
+        case .title(let v): v
+        case .rectangle(let v): v
+        }
+    }
+}
+</code></pre>
+<p>Then create views based on the type:</p>
+<pre><code class="language-swift">RecyclerView()
+    .adapter(
+        items: ...,
+        createView: { viewType in
+            switch viewType {
+            case .title:
+                return Row.title(
+                    TextView()
+                        .width(.matchParent)
+                        .height(.wrapContent)
+                )
+            case .rectangle:
+                return Row.rectangle(
+                    LinearLayout()
+                        .width(.matchParent)
+                        .height(100, .dp)
+                )
+            }
+        },
+        bindView: ...,
+        viewType: { item, position in
+            item.isTitle ? .title : .rectangle
+        }
+    )
+</code></pre>
+<p>This approach keeps complex lists clean, readable, and type-safe.</p>
+<h3 id="bind-view">Bind View</h3>
+<p><code>bindView</code> connects your data to a reusable view.<br />
+It is called every time a view is reused for a new item.</p>
+<h4 id="using-count">Using count</h4>
+<p>When using count, you receive the item position:</p>
+<pre><code class="language-swift">bindView: { view, index in
+    view.text(&quot;Item at position: \(index)&quot;)
+}
+</code></pre>
+<h4 id="using-items">Using items</h4>
+<p>When using <code>items</code>, you receive both the item and its position:</p>
+<pre><code class="language-swift">bindView: { view, item, position in
+    view.text(item)
+}
+</code></pre>
+<p>If your view is an enum conforming to <code>Viewable</code>, you can safely pattern-match:</p>
+<pre><code class="language-swift">bindView: { view, item, position in
+    switch view {
+    case .title(let textView):
+        textView.text(item.title)
+    case .rectangle(let linearLayout):
+        linearLayout.backgroundColor(item.color)
+    }
+}
+</code></pre>
+<h3 id="view-type">View Type</h3>
+<p>If your RecyclerView displays multiple layouts, you must define how the view type is determined.</p>
+<h4 id="using-integers">Using integers</h4>
+<pre><code class="language-swift">viewType: { item, position -&gt; Int in
+    position % 2 // Example: two view types based on position
+}
+</code></pre>
+<h4 id="using-a-typed-enum">Using a typed enum</h4>
+<p>For better readability and safety, use a custom type:</p>
+<pre><code class="language-swift">enum RowType: Int, RecyclerView.ViewType {
+    case rectangle = 0
+    case title = 1
+    static func from(rawValue: Int) -&gt; RowType { .init(rawValue: rawValue)! }
+}
+</code></pre>
+<pre><code class="language-swift">RecyclerView()
+    .adapter(
+        items: ...,
+        createView: { type in
+            switch type {
+            case .rectangle:
+                return LinearLayout()
+            case .title:
+                return TextView()
+            }
+        },
+        viewType: { item, position -&gt; RowType in
+            item.id % 2 == 0 ? .rectangle : .title
+        }
+    )
+</code></pre>
+<h2 id="layout-managers">Layout Managers</h2>
+<p>Layout managers control <strong>how items are positioned and measured</strong>, and when views are recycled.</p>
+<p>You can choose from several built-in layout managers or implement your own.</p>
+<h3 id="default">Default</h3>
+<p>These options apply to the base RecyclerView behavior, regardless of the specific layout manager used.</p>
+<h4 id="item-prefetch-enabled">Item Prefetch Enabled</h4>
+<p>Controls whether the LayoutManager should be asked to create and bind views outside the visible viewport while the UI thread is idle between frames.</p>
+<p>Enabling this can improve scroll performance by preparing views in advance.</p>
+<pre><code class="language-swift">.itemPrefetchEnabled(true)
+</code></pre>
+<h4 id="measurement-cache-enabled">Measurement Cache Enabled</h4>
+<p>Controls whether RecyclerView should use its own measurement cache for child views.</p>
+<p>This cache is more aggressive than the default framework cache and can improve performance when item sizes are stable.</p>
+<pre><code class="language-swift">.measurementCacheEnabled(true)
+</code></pre>
+<h3 id="linearlayoutmanager">LinearLayoutManager</h3>
+<p>Displays items in a vertical or horizontal list.</p>
+<pre><code class="language-swift">.layoutManager(
+    .linear(orientation: .vertical)
+    .reverseLayout()
+    .recycleChildrenOnDetach()
+    .initialPrefetchItemCount(10)
+    .smoothScrollbarEnabled()
+    .stackFromEnd()
+)
+</code></pre>
+<p>Here <code>.linear(orientation: .vertical)</code> is a shorthand for:</p>
+<pre><code class="language-swift">LinearLayoutManager(orientation: .vertical)
+</code></pre>
+<h4 id="orientation">Orientation</h4>
+<p>Defines the direction in which items are laid out.</p>
+<p>Possible values:
+- <code>.vertical</code>
+- <code>.horizontal</code></p>
+<p>The default orientation is <code>.vertical</code>.</p>
+<pre><code class="language-swift">LinearLayoutManager(orientation: .horizontal)
+</code></pre>
+<p>or</p>
+<pre><code class="language-swift">LinearLayoutManager().orientation(.horizontal)
+</code></pre>
+<h4 id="reverse-layout">Reverse Layout</h4>
+<p>Reverses the item traversal and layout order.</p>
+<p>Default value is <code>false</code>.</p>
+<pre><code class="language-swift">LinearLayoutManager().reverseLayout(true)
+</code></pre>
+<h4 id="recycle-children-on-detach">Recycle Children On Detach</h4>
+<p>Controls whether child views should be recycled when the LayoutManager is detached from the RecyclerView.</p>
+<p>Default value is <code>false</code>.</p>
+<pre><code class="language-swift">LinearLayoutManager().recycleChildrenOnDetach(true)
+</code></pre>
+<h4 id="initial-prefetch-item-count">Initial Prefetch Item Count</h4>
+<p>Sets how many items should be prefetched when this RecyclerView is nested inside another RecyclerView.</p>
+<p>This helps improve scroll performance for nested lists.</p>
+<pre><code class="language-swift">LinearLayoutManager().initialPrefetchItemCount(10)
+</code></pre>
+<h4 id="smooth-scrollbar-enabled">Smooth Scrollbar Enabled</h4>
+<p>When enabled, the scrollbar thumb size and position are calculated based on the number of visible pixels in the visible items.</p>
+<p>This assumes that all items have similar dimensions.<br />
+If item sizes vary significantly, the scrollbar may appear to change size while scrolling. In that case, disable this option.</p>
+<pre><code class="language-swift">LinearLayoutManager().smoothScrollbarEnabled(false)
+</code></pre>
+<h4 id="stack-from-end">Stack From End</h4>
+<p>When enabled, items are laid out starting from the end of the container (for example, from the bottom in a vertical list).</p>
+<p>This is commonly used for chat or log-style layouts.</p>
+<pre><code class="language-swift">LinearLayoutManager().stackFromEnd(true)
+</code></pre>
+<h3 id="gridlayoutmanager">GridLayoutManager</h3>
+<p>Displays items in a grid with multiple columns or rows.</p>
+<p>It inherits from <code>LinearLayoutManager</code>, so all of its configuration options are also available.</p>
+<pre><code class="language-swift">.layoutManager(
+    .grid(spanCount: 3, orientation: .vertical)
+    .reverseLayout(true)
+    .usingSpansToEstimateScrollbarDimensions(true)
+)
+</code></pre>
+<h4 id="span-count">Span Count</h4>
+<p>Defines the number of spans in the grid.
+- For <code>.vertical</code> orientation: number of columns
+- For <code>.horizontal</code> orientation: number of rows</p>
+<pre><code class="language-swift">GridLayoutManager(spanCount: 3)
+</code></pre>
+<p>or</p>
+<pre><code class="language-swift">GridLayoutManager().spanCount(3)
+</code></pre>
+<h4 id="using-spans-to-estimate-scrollbar-dimensions">Using Spans To Estimate Scrollbar Dimensions</h4>
+<p>When enabled, scrollbar range and offset calculations take span information into account.</p>
+<p>This improves scrollbar accuracy but requires additional calls to
+SpanSizeLookup.getSpanGroupIndex.</p>
+<p>Whether this is necessary depends on the structure and variability of your grid.</p>
+<pre><code class="language-swift">GridLayoutManager().usingSpansToEstimateScrollbarDimensions(true)
+</code></pre>
+<h3 id="staggeredgridlayoutmanager">StaggeredGridLayoutManager</h3>
+<p>Displays items in a staggered grid, where items may have different sizes along the scrolling axis.</p>
+<pre><code class="language-swift">.layoutManager(
+    .staggeredGrid(spanCount: 3, orientation: .vertical)
+    .gapStrategy(.none)
+    .reverseLayout(true)
+)
+</code></pre>
+<h4 id="gap-strategy">Gap Strategy</h4>
+<p>Defines how the layout manager handles gaps between items.</p>
+<p>Changing this value triggers a layout pass.</p>
+<p>Available strategies:
+- <code>.none</code> – leaves gaps as-is
+- <code>.lazy</code> – deprecated, no longer supported
+- <code>.moveItemsBetweenSpans</code> – minimizes gaps by moving items between spans with animations</p>
+<pre><code class="language-swift">StaggeredGridLayoutManager().gapStrategy(.none)
+</code></pre>
+<h4 id="reverse-layout_1">Reverse Layout</h4>
+<p>Reverses item traversal and layout order.</p>
+<p>Default value is <code>false</code>.</p>
+<pre><code class="language-swift">StaggeredGridLayoutManager().reverseLayout(true)
+</code></pre>
+<h3 id="flexboxlayoutmanager">FlexboxLayoutManager</h3>
+<p>Not implemented yet.<br />
+You can still use Android’s standard <code>FlexboxLayoutManager</code> with additional setup. Native support is planned for future releases.</p>
+<h2 id="has-fixed-size">Has Fixed Size</h2>
+<p>By default, RecyclerView assumes item sizes may change.<br />
+If the overall size of the RecyclerView <strong>does not depend on its content</strong>, enable fixed size for better performance:</p>
+<pre><code class="language-swift">RecyclerView().hasFixedSize(true)
+</code></pre>
+<h2 id="data-set-and-item-changes">Data Set and Item Changes</h2>
+<p>To notify a RecyclerView about data set changes manually, you need a reference to its instance.</p>
+<div class="admonition important">
+<p>If you are using items backed by <code>@State</code>, you do not need to call any notify methods – updates are handled automatically.</p>
+</div>
+<p>There are two recommended ways to keep a reference to a RecyclerView.</p>
+<p><strong>Using a lazy property</strong></p>
+<pre><code class="language-swift">lazy var recyclerView = RecyclerView()
+</code></pre>
+<p>Use it directly in the body:</p>
+<pre><code class="language-swift">body {
+    recyclerView
+        .layoutManager(...)
+        .adapter(...)
+}
+</code></pre>
+<p><strong>Using a bound instance</strong><br />
+Declare a force-unwrapped variable:</p>
+<pre><code class="language-swift">var recyclerView: RecyclerView!
+</code></pre>
+<p>Bind it inside the body using <code>itself</code>:</p>
+<pre><code class="language-swift">body {
+    RecyclerView()
+        .itself(&amp;self.recyclerView)
+        .layoutManager(...)
+        .adapter(...)
+}
+</code></pre>
+<p>Once you have a reference, you can explicitly notify the RecyclerView about data changes.</p>
+<h3 id="data-set-changed">Data Set Changed</h3>
+<p>Notifies the adapter that <strong>the entire data set has changed</strong>.</p>
+<p>This forces all visible views to be rebound and is similar to <code>UITableView.reloadData()</code> in iOS.</p>
+<pre><code class="language-swift">items = [&quot;New&quot;, &quot;Data&quot;, &quot;Set&quot;]
+recyclerView.notifyDataSetChanged()
+</code></pre>
+<p>Better UX can be achieved by using more specific notify methods below.</p>
+<h3 id="item-changed">Item Changed</h3>
+<p>Notifies that a single item has changed.</p>
+<pre><code class="language-swift">items[0] = &quot;New Value&quot;
+recyclerView.notifyItemChanged(at: 0)
+</code></pre>
+<h3 id="item-removed">Item Removed</h3>
+<p>Notifies that a single item has been removed.</p>
+<pre><code class="language-swift">items.remove(at: 0)
+recyclerView.notifyItemRemoved(at: 0)
+</code></pre>
+<h3 id="item-inserted">Item Inserted</h3>
+<p>Notifies that a single item has been inserted.</p>
+<pre><code class="language-swift">items.insert(&quot;Inserted Item&quot;, at: 0)
+recyclerView.notifyItemInserted(at: 0)
+</code></pre>
+<h3 id="item-range-changes">Item Range Changes</h3>
+<p>Notifies that a range of items has changed.</p>
+<pre><code class="language-swift">items[0] = &quot;New Value 1&quot;
+items[1] = &quot;New Value 2&quot;
+recyclerView.notifyItemRangeChanged(startAt: 0, count: 2)
+</code></pre>
+<h3 id="item-range-removed">Item Range Removed</h3>
+<p>Notifies that a range of items has been removed.</p>
+<pre><code class="language-swift">items.removeSubrange(0..&lt;2)
+recyclerView.notifyItemRangeRemoved(startAt: 0, count: 2)
+</code></pre>
+<h3 id="item-range-inserted">Item Range Inserted</h3>
+<p>Notifies that a range of items has been inserted.</p>
+<pre><code class="language-swift">items.insert(contentsOf: [&quot;Inserted Item 1&quot;, &quot;Inserted Item 2&quot;], at: 0)
+recyclerView.notifyItemRangeInserted(startAt: 0, count: 2)
+</code></pre>
+<h2 id="item-size-and-performance">Item Size and Performance</h2>
+<p>RecyclerView is highly optimized, but changing item sizes incorrectly can significantly affect scroll performance.</p>
+<p>In general, avoid resizing item views inside <code>bindView</code> unless absolutely necessary.</p>
+<h3 id="prefer-content-based-sizing-wrapcontent">Prefer Content-Based Sizing (<code>wrapContent</code>)</h3>
+<p>If an item’s height depends on its content (for example, text length or image size), use <code>.wrapContent</code> for the root view.</p>
+<pre><code class="language-swift">TextView()
+    .width(.matchParent)
+    .height(.wrapContent)
+</code></pre>
+<p>This allows RecyclerView to measure items efficiently during the layout phase, without triggering extra layout passes while scrolling.</p>
+<h3 id="use-view-types-for-categorical-sizes">Use View Types for Categorical Sizes</h3>
+<p>If your list contains a small set of predefined item sizes (for example: compact, regular, expanded), use viewType and provide different views per type.</p>
+<pre><code class="language-swift">viewType: { item, _ in
+    item.isLarge ? .large : .compact
+}
+</code></pre>
+<p>This lets RecyclerView recycle views of the same size, instead of continuously resizing a single view instance.</p>
+<h3 id="programmatic-sizing-in-bindview-use-sparingly">Programmatic Sizing in bindView (Use Sparingly)</h3>
+<p>If item size must be calculated dynamically (for example, based on screen size), you may set the height in <code>bindView</code>:</p>
+<pre><code class="language-swift">bindView: { view, item, _ in
+    view.height(calculatedHeight, .dp)
+}
+</code></pre>
+<div class="admonition warning">
+<p>Only update the size when it actually changes. Repeated layout updates trigger expensive layout passes and can cause scroll stutter.</p>
+</div>
+<h3 id="hasfixedsize-and-variable-item-heights"><code>hasFixedSize</code> and Variable Item Heights</h3>
+<p>If your items do not all have the same size, ensure fixed size mode is disabled:</p>
+<pre><code class="language-swift">RecyclerView().hasFixedSize(false)
+</code></pre>
+<p>When <code>hasFixedSize(true)</code> is enabled, RecyclerView assumes all items have identical dimensions, which can cause visual issues with variable-sized items.</p>
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="empty-state">Empty State</h3>
+<p>RecyclerView does not provide built-in empty state handling.</p>
+<p>Unlike SwiftUI, SwifDroid does <strong>not</strong> recreate the view hierarchy when state changes.<br />
+Instead, view instances observe <code>@State</code> and update their properties reactively.</p>
+<p>The recommended approach is to keep both views in the hierarchy and control their visibility based on state.</p>
+<pre><code class="language-swift">@State var items: [String] = []
+
+body {
+    TextView(&quot;No items available&quot;)
+        .gravity(.center)
+        .width(.matchParent)
+        .height(.matchParent)
+        .visibility($items.map { $0.isEmpty ? .visible : .gone })
+    RecyclerView()
+        .adapter(
+            items: $items,
+            createView: TextView(),
+            bindView: { view, item, _ in
+                view.text(item)
+            }
+        )
+        .visibility($items.map { $0.isEmpty ? .gone : .visible })
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      SwifDroid Docs &copy; 2025 by Mikhail Isaev<br>Licensed under CC BY-NC-SA 4.0
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/+t9zXkfjoKNNlY2Ri" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://discord.com/invite/Wh3n86ttRB" target="_blank" rel="noopener" title="discord.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/swifdroid" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["search.suggest", "search.highlight", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top", "navigation.path", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/js/prism.js"></script>
+      
+    
+  </body>
+</html>
