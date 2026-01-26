@@ -1,79 +1,59 @@
 # Space
 
-An invisible layout helper used to create adjustable gaps between views.
+`Space()` creates flexible empty room inside a layout. Use it when two pieces of content should move apart and the container, rather than a hard-coded gap, should decide how much room belongs between them.
 
-`Space` is a lightweight wrapper around Android’s `android.widget.Space`.  
-It does **not** draw anything and exists purely to participate in layout measurement and positioning.
+A new `Space()` starts with weight `1`. In a compatible weight-aware linear layout such as `HStack` or `VStack`, that makes the spacer eligible to take remaining space. When the gap has a deliberate horizontal or vertical size instead, use [`HSpace`](h-space.md) or [`VSpace`](v-space.md).
 
-Unlike margins or padding, `Space` behaves like a real view and can expand or shrink based on layout rules such as weight.
+## Use it when…
+
+Use `Space()` between views that should stay anchored to opposite sides of the available room: a title and an action, a leading value and a trailing control, or two groups that should separate as the screen grows.
+
+If the design calls for a specific gap such as 8 or 16 dp, prefer `HSpace` or `VSpace`. They make the direction and fixed dimension explicit; `Space` is the flexible choice.
+
+## How it behaves
+
+`Space` contributes layout space without visible content. Its public initializer applies weight `1`, so one spacer can absorb the remaining room in a compatible weighted parent.
+
+When a layout contains more than one `Space()`, each starts with the same weight `1`. They therefore participate in the parent's flexible-space distribution with equal weight.
+
+## Examples
+
+### Push an action to the other side
+
+Here the spacer expands between the title and button. As the row gets wider or narrower, the middle gap changes while the content stays at opposite sides.
 
 ```swift
 body {
     HStack {
-        TextView("Left")
+        TextView("Inbox")
         Space()
-        Button("Right")
+        Button("Compose")
     }
     .width(.matchParent)
     .height(.wrapContent)
 }
 ```
 
-In this example, Space expands to fill the available horizontal space, pushing the views apart.
+### Split flexible space evenly
 
-
-## Behavior
-
-- `Space` has **no visual representation**
-- It takes up space during layout measurement
-- It is ignored by accessibility services
-- It is commonly used inside `LinearLayout`-based containers (`HStack`, `VStack`)
-
-By default, `Space` is initialized with:
-
-```swift
-weight(1)
-```
-This means it will expand to consume available space when used inside a layout that supports weights.
-
-## Weight-based spacing
-
-You can control how much space is taken by providing different weights:
+Both spacers start with weight `1`, so they participate equally in distribution of the row's remaining flexible space.
 
 ```swift
 body {
     HStack {
-        TextView("A")
-        Space(weight: 1)
-        TextView("B")
-        Space(weight: 2)
-        TextView("C")
+        TextView("Start")
+        Space()
+        TextView("Middle")
+        Space()
+        TextView("End")
     }
+    .width(.matchParent)
+    .height(.wrapContent)
 }
 ```
 
-In this layout:
-- The second space will be twice as wide as the first
-- All spacing is resolved by the layout system, not manually calculated
+## Notes
 
-## Fixed-size spacing
+When declaring a new spacer inline, keep `Space()` at its default weight. Chaining `.weight(...)` onto a newly constructed `Space()` does not replace that initializer-applied weight in the current API.
 
-If you need a fixed gap instead of flexible spacing, you can set explicit dimensions:
-```swift
-Space()
-    .width(16, .dp)
-```
-This behaves like a constant spacer and does not rely on weight.
-
-## When to use Space
-
-Use `Space` when:
-- You need flexible spacing between views
-- You want layout-driven gaps instead of hardcoded margins
-- You want to distribute empty space predictably
-
-Avoid `Space` when:
-- Padding or margins are sufficient
-- The layout does not support weights
-
-`Space` is a simple but powerful tool for building clean, adaptive layouts while staying fully aligned with native Android behavior.
+If a directional spacer needs an explicit construction-time weight, `HSpace` and `VSpace` expose `weight:` in their public initializers.
