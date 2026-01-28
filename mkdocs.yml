@@ -104,6 +104,8 @@ nav:
     - State: app/state.md
     - Units: app/units.md
     - Classic:
+      - Layouts:
+        - AbsoluteLayout: app/classic/absolute-layout.md
       - Buttons:
         - Button: app/classic/button.md
       - Text:
