@@ -106,6 +106,7 @@ nav:
     - Classic:
       - Layouts:
         - AbsoluteLayout: app/classic/absolute-layout.md
+        - FrameLayout: app/classic/frame-layout.md
       - Buttons:
         - Button: app/classic/button.md
       - Text:
