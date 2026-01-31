@@ -108,6 +108,7 @@ nav:
         - AbsoluteLayout: app/classic/absolute-layout.md
         - FrameLayout: app/classic/frame-layout.md
         - LinearLayout: app/classic/linear-layout.md
+        - RelativeLayout: app/classic/relative-layout.md
       - Buttons:
         - Button: app/classic/button.md
       - Text:
