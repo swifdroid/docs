@@ -120,6 +120,8 @@ nav:
         - Space: app/classic/space.md
         - VSpace: app/classic/v-space.md
         - VStack: app/classic/v-stack.md
+      - Other:
+        - AdapterView: app/classic/adapter-view.md
     - Android X:
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
