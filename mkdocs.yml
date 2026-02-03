@@ -124,6 +124,7 @@ nav:
         - VStack: app/classic/v-stack.md
       - Other:
         - AdapterView: app/classic/adapter-view.md
+        - Menu: app/classic/menu.md
     - Android X:
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
