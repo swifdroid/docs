@@ -126,6 +126,7 @@ nav:
       - Other:
         - AdapterView: app/classic/adapter-view.md
         - Menu: app/classic/menu.md
+        - SurfaceView: app/classic/surface-view.md
     - Android X:
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
