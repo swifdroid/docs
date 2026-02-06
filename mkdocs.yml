@@ -116,6 +116,7 @@ nav:
         - TextView: app/classic/text-view.md
       - Media:
         - Gallery: app/classic/gallery.md
+        - TextureView: app/classic/texture-view.md
       - Lists and Collections:
         - HSpace: app/classic/h-space.md
         - HStack: app/classic/h-stack.md
