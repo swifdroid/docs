@@ -126,6 +126,7 @@ nav:
         - VStack: app/classic/v-stack.md
       - Other:
         - AdapterView: app/classic/adapter-view.md
+        - ActionProvider: app/classic/action-provider.md
         - Menu: app/classic/menu.md
         - SurfaceView: app/classic/surface-view.md
         - Toast: app/classic/toast.md
