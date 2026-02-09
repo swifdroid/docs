@@ -131,6 +131,8 @@ nav:
         - SurfaceView: app/classic/surface-view.md
         - Toast: app/classic/toast.md
     - Android X:
+      - Containers & Fragments:
+        - DrawerLayout: app/x/drawer-layout.md
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
     - Shared Preferences: app/shared-preferences.md
