@@ -133,6 +133,7 @@ nav:
     - Android X:
       - Containers & Fragments:
         - DrawerLayout: app/x/drawer-layout.md
+        - SlidingPaneLayout: app/x/sliding-pane-layout.md
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
     - Shared Preferences: app/shared-preferences.md
