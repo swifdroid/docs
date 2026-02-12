@@ -135,6 +135,7 @@ nav:
         - DrawerLayout: app/x/drawer-layout.md
         - SlidingPaneLayout: app/x/sliding-pane-layout.md
         - FragmentActivity: app/x/fragment-activity.md
+        - DialogFragment: app/x/dialog-fragment.md
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
     - Shared Preferences: app/shared-preferences.md
