@@ -137,6 +137,8 @@ nav:
         - FragmentActivity: app/x/fragment-activity.md
         - DialogFragment: app/x/dialog-fragment.md
         - FragmentContainerView: app/x/fragment-container-view.md
+      - Navigation:
+        - AppBarConfiguration: app/x/navigation/app-bar-configuration.md
       - RecyclerView: app/x/recycler-view.md
     - Permissions: app/permissions.md
     - Shared Preferences: app/shared-preferences.md
