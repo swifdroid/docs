@@ -128,6 +128,7 @@ nav:
         - AdapterView: app/classic/adapter-view.md
         - ActionProvider: app/classic/action-provider.md
         - Menu: app/classic/menu.md
+        - ProgressBar: app/classic/progress-bar.md
         - SurfaceView: app/classic/surface-view.md
         - Toast: app/classic/toast.md
     - Android X:
