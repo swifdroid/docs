@@ -129,6 +129,7 @@ nav:
         - ActionProvider: app/classic/action-provider.md
         - Menu: app/classic/menu.md
         - ProgressBar: app/classic/progress-bar.md
+        - RatingBar: app/classic/rating-bar.md
         - SeekBar: app/classic/seek-bar.md
         - SurfaceView: app/classic/surface-view.md
         - Toast: app/classic/toast.md
