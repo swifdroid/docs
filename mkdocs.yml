@@ -125,6 +125,7 @@ nav:
         - VSpace: app/classic/v-space.md
         - VStack: app/classic/v-stack.md
       - Other:
+        - AbsSeekBar: app/classic/abs-seek-bar.md
         - AdapterView: app/classic/adapter-view.md
         - ActionProvider: app/classic/action-provider.md
         - Menu: app/classic/menu.md
