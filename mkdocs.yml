@@ -112,6 +112,7 @@ nav:
       - Buttons:
         - Button: app/classic/button.md
         - CompoundButton: app/classic/compound-button.md
+        - RadioButton: app/classic/radio-button.md
       - Text:
         - EditText: app/classic/edit-text.md
         - TextView: app/classic/text-view.md
