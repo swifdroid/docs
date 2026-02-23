@@ -136,6 +136,7 @@ nav:
         - RatingBar: app/classic/rating-bar.md
         - SeekBar: app/classic/seek-bar.md
         - SurfaceView: app/classic/surface-view.md
+        - Switch: app/classic/switch.md
         - Toast: app/classic/toast.md
     - Android X:
       - Containers & Fragments:
