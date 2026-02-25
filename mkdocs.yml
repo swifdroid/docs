@@ -115,6 +115,7 @@ nav:
         - RadioButton: app/classic/radio-button.md
         - ToggleButton: app/classic/toggle-button.md
       - Text:
+        - AutoCompleteTextView: app/classic/auto-complete-text-view.md
         - EditText: app/classic/edit-text.md
         - TextView: app/classic/text-view.md
       - Media:
