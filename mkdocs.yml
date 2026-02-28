@@ -139,6 +139,7 @@ nav:
         - RatingBar: app/classic/rating-bar.md
         - SearchView: app/classic/search-view.md
         - SeekBar: app/classic/seek-bar.md
+        - Spinner: app/classic/spinner.md
         - SurfaceView: app/classic/surface-view.md
         - Switch: app/classic/switch.md
         - Toast: app/classic/toast.md
