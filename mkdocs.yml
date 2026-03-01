@@ -135,6 +135,7 @@ nav:
         - ActionProvider: app/classic/action-provider.md
         - CheckBox: app/classic/check-box.md
         - Menu: app/classic/menu.md
+        - NumberPicker: app/classic/number-picker.md
         - ProgressBar: app/classic/progress-bar.md
         - RatingBar: app/classic/rating-bar.md
         - SearchView: app/classic/search-view.md
