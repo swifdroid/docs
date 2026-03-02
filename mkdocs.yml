@@ -114,6 +114,8 @@ nav:
         - CompoundButton: app/classic/compound-button.md
         - RadioButton: app/classic/radio-button.md
         - ToggleButton: app/classic/toggle-button.md
+      - Date & Time:
+        - Chronometer: app/classic/chronometer.md
       - Text:
         - AutoCompleteTextView: app/classic/auto-complete-text-view.md
         - EditText: app/classic/edit-text.md
