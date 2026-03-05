@@ -118,6 +118,7 @@ nav:
         - Chronometer: app/classic/chronometer.md
         - DatePicker: app/classic/date-picker.md
         - TextClock: app/classic/text-clock.md
+        - TimePicker: app/classic/time-picker.md
       - Text:
         - AutoCompleteTextView: app/classic/auto-complete-text-view.md
         - EditText: app/classic/edit-text.md
