@@ -149,6 +149,7 @@ nav:
         - SurfaceView: app/classic/surface-view.md
         - Switch: app/classic/switch.md
         - Toast: app/classic/toast.md
+        - ViewAnimator: app/classic/view-animator.md
     - Android X:
       - Containers & Fragments:
         - DrawerLayout: app/x/drawer-layout.md
