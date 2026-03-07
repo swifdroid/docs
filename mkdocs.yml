@@ -150,6 +150,7 @@ nav:
         - Switch: app/classic/switch.md
         - Toast: app/classic/toast.md
         - ViewAnimator: app/classic/view-animator.md
+        - ViewFlipper: app/classic/view-flipper.md
     - Android X:
       - Containers & Fragments:
         - DrawerLayout: app/x/drawer-layout.md
