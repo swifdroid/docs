@@ -123,6 +123,7 @@ nav:
         - AutoCompleteTextView: app/classic/auto-complete-text-view.md
         - EditText: app/classic/edit-text.md
         - MultiAutoCompleteTextView: app/classic/multi-auto-complete-text-view.md
+        - TextSwitcher: app/classic/text-switcher.md
         - TextView: app/classic/text-view.md
       - Media:
         - Gallery: app/classic/gallery.md
