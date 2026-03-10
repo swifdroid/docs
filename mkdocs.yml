@@ -127,6 +127,7 @@ nav:
         - TextView: app/classic/text-view.md
       - Media:
         - Gallery: app/classic/gallery.md
+        - ImageSwitcher: app/classic/image-switcher.md
         - TextureView: app/classic/texture-view.md
       - Lists and Collections:
         - HSpace: app/classic/h-space.md
