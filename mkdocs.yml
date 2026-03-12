@@ -133,6 +133,7 @@ nav:
         - HSpace: app/classic/h-space.md
         - HStack: app/classic/h-stack.md
         - ListPopupWindow: app/classic/list-popup-window.md
+        - ListView: app/classic/list-view.md
         - Space: app/classic/space.md
         - StackView: app/classic/stack-view.md
         - VSpace: app/classic/v-space.md
