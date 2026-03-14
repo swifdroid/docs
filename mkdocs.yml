@@ -130,6 +130,7 @@ nav:
         - ImageSwitcher: app/classic/image-switcher.md
         - TextureView: app/classic/texture-view.md
       - Lists and Collections:
+        - ExpandableListView: app/classic/expandable-list-view.md
         - GridView: app/classic/grid-view.md
         - HSpace: app/classic/h-space.md
         - HStack: app/classic/h-stack.md
