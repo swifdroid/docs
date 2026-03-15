@@ -138,6 +138,7 @@ nav:
         - ListView: app/classic/list-view.md
         - Space: app/classic/space.md
         - StackView: app/classic/stack-view.md
+        - TwoLineListItem: app/classic/two-line-list-item.md
         - VSpace: app/classic/v-space.md
         - VStack: app/classic/v-stack.md
       - Other:
