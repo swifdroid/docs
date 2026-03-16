@@ -121,6 +121,7 @@ nav:
         - TimePicker: app/classic/time-picker.md
       - Text:
         - AutoCompleteTextView: app/classic/auto-complete-text-view.md
+        - CheckedTextView: app/classic/checked-text-view.md
         - EditText: app/classic/edit-text.md
         - MultiAutoCompleteTextView: app/classic/multi-auto-complete-text-view.md
         - TextSwitcher: app/classic/text-switcher.md
