@@ -144,6 +144,7 @@ nav:
         - VStack: app/classic/v-stack.md
       - Other:
         - AbsSeekBar: app/classic/abs-seek-bar.md
+        - ActionMenuView: app/classic/action-menu-view.md
         - AdapterView: app/classic/adapter-view.md
         - ActionProvider: app/classic/action-provider.md
         - CheckBox: app/classic/check-box.md
