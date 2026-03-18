@@ -129,6 +129,7 @@ nav:
       - Media:
         - Gallery: app/classic/gallery.md
         - ImageSwitcher: app/classic/image-switcher.md
+        - ImageView: app/classic/image-view.md
         - TextureView: app/classic/texture-view.md
       - Lists and Collections:
         - ExpandableListView: app/classic/expandable-list-view.md
