@@ -112,6 +112,7 @@ nav:
       - Buttons:
         - Button: app/classic/button.md
         - CompoundButton: app/classic/compound-button.md
+        - ImageButton: app/classic/image-button.md
         - RadioButton: app/classic/radio-button.md
         - ToggleButton: app/classic/toggle-button.md
       - Date & Time:
