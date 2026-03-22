@@ -155,6 +155,7 @@ nav:
         - Menu: app/classic/menu.md
         - NumberPicker: app/classic/number-picker.md
         - ProgressBar: app/classic/progress-bar.md
+        - QuickContactBadge: app/classic/quick-contact-badge.md
         - RatingBar: app/classic/rating-bar.md
         - SearchView: app/classic/search-view.md
         - SeekBar: app/classic/seek-bar.md
