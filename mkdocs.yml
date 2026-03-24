@@ -115,6 +115,7 @@ nav:
         - ImageButton: app/classic/image-button.md
         - RadioButton: app/classic/radio-button.md
         - ToggleButton: app/classic/toggle-button.md
+        - ZoomButton: app/classic/zoom-button.md
       - Date & Time:
         - Chronometer: app/classic/chronometer.md
         - DatePicker: app/classic/date-picker.md
