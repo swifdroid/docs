@@ -165,6 +165,7 @@ nav:
         - SurfaceView: app/classic/surface-view.md
         - Switch: app/classic/switch.md
         - Toast: app/classic/toast.md
+        - Toolbar: app/classic/toolbar.md
         - ViewAnimator: app/classic/view-animator.md
         - ViewFlipper: app/classic/view-flipper.md
         - ViewSwitcher: app/classic/view-switcher.md
