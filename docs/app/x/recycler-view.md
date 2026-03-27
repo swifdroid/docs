@@ -403,8 +403,18 @@ StaggeredGridLayoutManager().reverseLayout(true)
 
 ### FlexboxLayoutManager
 
-Not implemented yet.  
-You can still use Android’s standard `FlexboxLayoutManager` with additional setup. Native support is planned for future releases.
+Droid provides a native `FlexboxLayoutManager` wrapper backed by Google's Flexbox layout manager.
+
+```swift
+RecyclerView()
+    .layoutManager(
+        FlexboxLayoutManager()
+    )
+```
+
+The current wrapper can be attached directly through `layoutManager(_:)`, and using it adds Droid's Flexbox Gradle dependency automatically.
+
+Flexbox-specific configuration is intentionally left to the later parity pass; this closure correction only removes the stale claim that the layout manager itself is unavailable.
 
 ## Has Fixed Size
 
