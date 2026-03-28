@@ -117,6 +117,7 @@ nav:
         - ToggleButton: app/classic/toggle-button.md
         - ZoomButton: app/classic/zoom-button.md
       - Date & Time:
+        - CalendarView: app/classic/calendar-view.md
         - Chronometer: app/classic/chronometer.md
         - DatePicker: app/classic/date-picker.md
         - TextClock: app/classic/text-clock.md
