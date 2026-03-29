@@ -139,6 +139,7 @@ nav:
       - Lists and Collections:
         - ExpandableListView: app/classic/expandable-list-view.md
         - GridView: app/classic/grid-view.md
+        - HorizontalScrollView: app/classic/horizontal-scroll-view.md
         - HSpace: app/classic/h-space.md
         - HStack: app/classic/h-stack.md
         - ListPopupWindow: app/classic/list-popup-window.md
