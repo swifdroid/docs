@@ -145,6 +145,7 @@ nav:
         - ListPopupWindow: app/classic/list-popup-window.md
         - ListView: app/classic/list-view.md
         - OverScroller: app/classic/over-scroller.md
+        - ScrollView: app/classic/scroll-view.md
         - Space: app/classic/space.md
         - StackView: app/classic/stack-view.md
         - TwoLineListItem: app/classic/two-line-list-item.md
