@@ -158,13 +158,16 @@ nav:
         - AdapterView: app/classic/adapter-view.md
         - ActionProvider: app/classic/action-provider.md
         - CheckBox: app/classic/check-box.md
+        - Magnifier: app/classic/magnifier.md
         - Menu: app/classic/menu.md
         - NumberPicker: app/classic/number-picker.md
+        - PopupMenu: app/classic/popup-menu.md
         - ProgressBar: app/classic/progress-bar.md
         - QuickContactBadge: app/classic/quick-contact-badge.md
         - RatingBar: app/classic/rating-bar.md
         - SearchView: app/classic/search-view.md
         - SeekBar: app/classic/seek-bar.md
+        - SlidingDrawer: app/classic/sliding-drawer.md
         - Spinner: app/classic/spinner.md
         - SurfaceView: app/classic/surface-view.md
         - Switch: app/classic/switch.md
