@@ -162,6 +162,7 @@ nav:
         - Menu: app/classic/menu.md
         - NumberPicker: app/classic/number-picker.md
         - PopupMenu: app/classic/popup-menu.md
+        - PopupWindow: app/classic/popup-window.md
         - ProgressBar: app/classic/progress-bar.md
         - QuickContactBadge: app/classic/quick-contact-badge.md
         - RatingBar: app/classic/rating-bar.md
