@@ -106,6 +106,7 @@ nav:
     - Classic:
       - Layouts:
         - AbsoluteLayout: app/classic/absolute-layout.md
+        - GridLayout: app/classic/grid-layout.md
         - FrameLayout: app/classic/frame-layout.md
         - LinearLayout: app/classic/linear-layout.md
         - RelativeLayout: app/classic/relative-layout.md
