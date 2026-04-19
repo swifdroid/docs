@@ -176,6 +176,7 @@ nav:
         - Toast: app/classic/toast.md
         - Toolbar: app/classic/toolbar.md
         - ViewAnimator: app/classic/view-animator.md
+        - ViewStub: app/classic/view-stub.md
         - ViewFlipper: app/classic/view-flipper.md
         - ViewSwitcher: app/classic/view-switcher.md
         - ZoomControls: app/classic/zoom-controls.md
