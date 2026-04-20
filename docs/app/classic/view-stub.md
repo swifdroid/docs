@@ -16,7 +16,7 @@ Do not use it for content that appears immediately on every screen. For always-v
 
 The stub occupies no meaningful space until inflation. `layoutResource(_:)` names the layout to build. `inflatedId(_:)` names the id Android assigns to the inflated root so later lookups still work.
 
-`inflate()` builds that layout, replaces the stub in its parent, and returns the new `View?`. Calling inflate again does not create a second copy — the stub has already been consumed.
+`inflate()` builds that layout, replaces the stub in its parent, and returns the new `View?`. After a successful inflate the stub is gone, so a second `inflate()` has nothing left to replace — do not rely on it as a retry path.
 
 Read `layoutResource()` / `inflatedId()` back when you need to confirm configuration before inflating.
 
@@ -57,7 +57,7 @@ ViewStub()
 ViewStub(id: 3001)
 
 ViewStub(id: 3001) {
-    // optional placeholder content
+    // single child content via BodyBuilder
 }
 ```
 
@@ -101,4 +101,4 @@ Inflation is a one-shot replacement. Do not expect the stub to remain in the hie
 
 ## Notes
 
-Point `layoutResource` at a real layout id before calling `inflate()`. If inflation fails, the method returns `nil` and the stub stays in place so you can recover or retry after fixing the resource.
+Point `layoutResource` at a real layout id before calling `inflate()`. The wrapper returns `View?` from `inflate()`; treat `nil` as “no inflated view” and inspect the resource before trying again.
