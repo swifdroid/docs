@@ -1,72 +1,57 @@
 # Switch
 
-`Switch` is the classic Android two-state settings control. It inherits checked-state behavior from `CompoundButton` and adds switch-specific track sizing, padding, tint, drawable, icon, and text-style configuration.
+`Switch` is the classic Android two-state control for settings that should look immediately on or off.
 
-Use it when changing the value should feel like immediately turning a setting on or off.
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work as on any other control; switch-specific checked-state and track/thumb styling are not wrapped yet.
 
 ## Use it when…
 
-Use a switch for persistent settings and modes where the visual on/off state should be obvious at a glance.
+Use a switch for a persistent setting or mode where the on/off meaning should be obvious at a glance, such as enabling notifications or dark theme.
+
+Do not use it when the user is choosing among several exclusive options — that is radio-group territory — or when a compact checkbox fits the form better.
 
 ## How it behaves
 
-`switchMinWidth(_:)`, `switchPadding(_:)`, `thumbTextPadding(_:)`, `trackDrawable(_:)`, `trackResource(_:)`, `trackTintList(_:)`, `switchTextAppearance(_:_:)`, `switchTypeface(...)`, and `trackIcon(_:)` are queued Droid view properties.
+`Switch` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and toggle `enabled(_:)` / `visibility(_:)`.
 
-Checked-state methods inherited from `CompoundButton` operate on the live Android instance.
+The current type does **not** inherit `CompoundButton` and does **not** conform to `Checkable`. Methods such as `checked(_:)`, `isChecked()`, `toggle()`, `switchMinWidth(_:)`, `trackTintList(_:)`, and similar Android switch APIs are not available on this Droid type at the current pin.
 
 ## Examples
 
-### Configure spacing and track tint
+### Place a settings switch
 
 ```swift
-func makeSwitch(tint: ColorStateList) -> Switch {
-    Switch()
-        .switchMinWidth(48)
-        .switchPadding(8)
-        .thumbTextPadding(4)
-        .trackTintList(tint)
+Switch(id: 2001)
+    .padding(h: 16, v: 12)
+```
+
+The control is created and can sit in a settings row like any other view.
+
+### React to a tap
+
+```swift
+let syncSwitch = Switch(id: 2001)
+
+syncSwitch.onClick {
+    // Handle the user activating the control.
+    // Checked-state reads/writes are not wrapped yet.
 }
 ```
 
-### Update a live switch
+### Disable the control until setup finishes
 
 ```swift
-func enableSync(_ control: Switch) {
-    control.checked(true)
-}
+Switch(id: 2002)
+    .enabled(false)
 ```
 
 ## Initializers
 
 ```swift
 Switch()
-Switch(id: 1001)
+Switch(id: 2001)
 ```
 
-## Methods
+## Notes
 
-### Checked state
-
-`Switch` inherits `isChecked()`, `checked(_:)`, `toggle()`, and `performClick()` from `CompoundButton`.
-
-`checked(_:)` is a live operation, so configure the visual switch properties while building the view and update state after materialization.
-
-### Layout and spacing
-
-`switchMinWidth(_:)`, `switchPadding(_:)`, and `thumbTextPadding(_:)` accept dimensions in `.dp` by default.
-
-The corresponding getter overloads read the live Android values and convert them into the requested `DimensionUnit`.
-
-### Track appearance
-
-`trackDrawable(_:)` installs a drawable, `trackResource(_:)` installs one by resource identifier, and `trackTintList(_:)` applies a tint.
-
-`trackDrawable()` and `trackTintList()` read the current live values.
-
-### Text appearance and typeface
-
-`switchTextAppearance(_:_:)` forwards a context and style resource. `switchTypeface(_:)` and `switchTypeface(_:_:)` configure the typeface and optional style.
-
-### Advanced track helpers
-
-`setTrackResourceAsync(_:)`, `trackIcon(_:)`, and `setTrackIconAsync(_:)` expose Android's asynchronous/resource/icon track APIs for lower-level integrations.
+Android’s full `Switch` widget has checked state, thumb/track drawables, and text appearance. None of that is part of the current Droid `Switch` surface. Treat this page as placement plus shared view behavior only.
