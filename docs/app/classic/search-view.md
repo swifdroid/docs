@@ -1,75 +1,49 @@
 # SearchView
 
-`SearchView` is Android's dedicated search widget. The current Droid wrapper inherits `LinearLayout` and exposes query text, hints, iconified state, submit behavior, suggestion integration, searchable metadata, and listener bridges.
+`SearchView` is Android’s dedicated search control: an expandable field for typing a query and submitting it.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; query, hint, iconify, suggestion, and searchable-info APIs are not wrapped yet.
 
 ## Use it when…
 
-Use `SearchView` when search is a first-class interaction and you want Android's dedicated expand/collapse, query, submit, and suggestion behavior rather than a generic text field.
+Use `SearchView` when search is a first-class action on the screen and you want the familiar expand/collapse search chrome.
+
+Do not use it as a generic text field. For free-form input, use [`EditText`](edit-text.md).
 
 ## How it behaves
 
-Query text, query hint, IME/input options, max width, iconified state, submit-button state, query refinement, listeners, searchable info, and suggestions adapter are queued Droid view properties.
+`SearchView` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Getter and lifecycle methods operate on the live Android instance.
+The current type does **not** inherit `LinearLayout`. It does not expose `query(_:)`, `queryHint(_:)`, `iconified(_:)`, `submitButtonEnabled(_:)`, suggestion adapters, or listener bridges at this pin.
 
 ## Examples
 
-### Build an expanded search field
+### Place a search entry point
 
 ```swift
-SearchView()
-    .queryHint("Search")
-    .iconifiedByDefault(false)
-    .iconified(false)
-    .submitButtonEnabled(true)
+SearchView(id: 3001)
+    .padding(h: 12, v: 8)
 ```
 
-### Preload a query
+The control is created and can sit in an app bar or search row.
+
+### Keep it hidden until the user opens search
 
 ```swift
-SearchView()
-    .query("swift", submit: false)
-```
+let search = SearchView(id: 3002)
+    .visibility(.gone)
 
-Pass `submit: true` only when setting the query should also submit it through Android.
+// later
+search.visibility(.visible)
+```
 
 ## Initializers
 
 ```swift
 SearchView()
-SearchView(id: 1001)
+SearchView(id: 3001)
 ```
 
-## Methods
+## Notes
 
-### Query text and hint
-
-`query(_:, submit:)` queues the text and optional submit flag. `queryHint(_:)` queues the hint.
-
-`query()` and `queryHint()` read the current live values.
-
-### Expand and collapse state
-
-`iconifiedByDefault(_:)` configures the resting state. `iconified(_:)` expands or collapses the search view.
-
-`iconified()`, `isIconified()`, `iconifiedByDefault()`, and `isIconifiedByDefault()` read live state.
-
-### Submit and refinement
-
-`submitButtonEnabled(_:)` controls whether Android may show the submit button for a non-empty query.
-
-`queryRefinementEnabled(_:)` controls query-refinement affordances for suggestions.
-
-### IME and input configuration
-
-`imeOptions(_:)`, `inputType(_:)`, `maxWidth(_:)`, and `appSearchData(_:)` are queued configuration properties. Their getter counterparts read current live state where available.
-
-### Suggestions and listeners
-
-`suggestionsAdapter(_:)`, `searchableInfo(_:)`, `onQueryTextListener(_:)`, `onSuggestionListener(_:)`, `onCloseListener(_:)`, `onSearchClickListener(_:)`, and `onQueryTextFocusChangeListener(_:)` accept JNI-compatible objects.
-
-Droid exposes these bridges but does not construct those Android adapter/listener/searchable objects for you.
-
-### Action-view and lifecycle helpers
-
-`onActionViewExpanded()`, `onActionViewCollapsed()`, focus/state methods, measurement/layout hooks, and key handling are available for lower-level integrations.
+Android’s `SearchView` can own query text, submit behavior, and suggestions. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.
