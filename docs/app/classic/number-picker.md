@@ -1,76 +1,44 @@
 # NumberPicker
 
-`NumberPicker` is Android's wheel-style control for choosing a value from a bounded range. The current Droid wrapper exposes min/max/value configuration, wrapping, displayed labels, text appearance, long-press timing, enabled state, and listener bridges.
+`NumberPicker` is Android’s wheel control for choosing a value from a bounded range or a short label list.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; min/max/value, wrapping, displayed labels, and listeners are not wrapped yet.
 
 ## Use it when…
 
-Use it when users choose from a modest numeric range or from a short list of labels that map cleanly onto consecutive values.
+Use a number picker when the user should choose one value from a small, obvious range and a wheel feels faster than typing.
+
+For free numeric input, use [`EditText`](edit-text.md). For one-of-few named options, a radio group or spinner-shaped control is usually clearer.
 
 ## How it behaves
 
-`minValue(_:)`, `maxValue(_:)`, `value(_:)`, `wrapSelectorWheel(_:)`, displayed values, text appearance, enabled state, long-press interval, formatter, and listener setters are queued Droid view properties.
+`NumberPicker` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Getter methods and event/lifecycle helpers operate on the live Android instance.
+The current type does **not** expose `minValue(_:)`, `maxValue(_:)`, `value(_:)`, `wrapSelectorWheel(_:)`, `displayedValues(_:)`, formatters, or value-change listeners at this pin.
 
 ## Examples
 
-### Pick a quantity
+### Place a quantity control
 
 ```swift
-NumberPicker()
-    .minValue(1)
-    .maxValue(10)
-    .value(1)
-    .wrapSelectorWheel(false)
+NumberPicker(id: 4001)
+    .padding(h: 16, v: 12)
 ```
 
-### Use labels instead of raw numbers
+### Disable it until a range is known
 
 ```swift
-NumberPicker()
-    .minValue(0)
-    .maxValue(2)
-    .displayedValues(["Small", "Medium", "Large"])
-    .value(1)
+NumberPicker(id: 4002)
+    .enabled(false)
 ```
 
 ## Initializers
 
 ```swift
 NumberPicker()
-NumberPicker(id: 1001)
+NumberPicker(id: 4001)
 ```
 
-## Methods
+## Notes
 
-### Range and current value
-
-`minValue(_:)`, `maxValue(_:)`, and `value(_:)` configure the picker while it is being built.
-
-`minValue()`, `maxValue()`, and `value()` read the current Android values.
-
-### Wrapping
-
-`wrapSelectorWheel(_:)` controls whether moving past an end wraps to the other side. `wrapSelectorWheel()` reads the live setting.
-
-### Displayed labels
-
-`displayedValues(_:)` queues a Swift string array and forwards it to Android as the displayed labels.
-
-`displayedValues()` exposes the current Android string-array object as `JObject?`.
-
-### Appearance and interaction
-
-`selectionDividerHeight(_:)`, `textColor(_:)`, `textSize(_:)`, `setEnabled(_:)`, and `onLongPressUpdateInterval(_:)` configure presentation and behavior.
-
-Getter methods expose selection-divider height, text color/size, solid color, fading-edge strengths, and related live state.
-
-### Formatter and listeners
-
-`formatter(_:)`, `onScrollListener(_:)`, and `onValueChangedListener(_:)` accept JNI-compatible Android objects and queue them for the picker.
-
-Droid exposes those bridges but does not construct formatter/listener objects for you.
-
-### Low-level helpers
-
-Scroll computation, click/long-click, touch/key/hover/trackball dispatch, accessibility, drawing, layout/measurement, and drawable-resolution hooks are available for lower-level integrations.
+Android’s `NumberPicker` owns range, wrapping, and displayed labels. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.
