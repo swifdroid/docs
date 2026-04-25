@@ -1,69 +1,52 @@
 # Spinner
 
-`Spinner` is Android's compact single-choice popup control. The current Droid wrapper exposes adapter assignment, prompt text, dropdown geometry/background, gravity, enabled state, click helpers, and item-click listener bridges.
+`Spinner` is Android’s compact single-choice control that shows the current option and opens a popup or dialog for the rest.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; adapter, prompt, dropdown geometry, and item-click APIs are not wrapped yet.
 
 ## Use it when…
 
-Use a spinner when users choose one value from a relatively short set and keeping all options visible would take too much screen space.
+Use a spinner when the user picks one value from a short set and keeping every option permanently visible would take too much space.
+
+For always-visible exclusive choices, use [`RadioGroup`](radio-group.md).
 
 ## How it behaves
 
-`adapter(_:)`, `prompt(_:)`, dropdown offsets/width, gravity, popup background, enabled state, and item-click listeners are queued Droid view properties.
+`Spinner` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Getter methods and popup/click/state helpers operate on the live Android instance.
+The current type does **not** expose `adapter(_:)`, `prompt(_:)`, dropdown width/offsets, popup background, or item-click listeners. There is no Droid `SpinnerAdapter` type at this pin.
 
 ## Examples
 
-### Configure prompt and popup width
+### Place a country or option picker
 
 ```swift
-Spinner()
-    .prompt("Country")
-    .dropDownWidth(240)
-    .dropDownVerticalOffset(4)
+Spinner(id: 5001)
+    .padding(h: 16, v: 12)
 ```
 
-### Attach a compatible spinner adapter
+### Disable the control while options load
 
 ```swift
-func makeSpinner<T: SpinnerAdapter & JObjectable>(adapter: T) -> Spinner {
-    Spinner()
-        .adapter(adapter)
-        .prompt("Choose an option")
-}
+Spinner(id: 5002)
+    .enabled(false)
 ```
-
-The adapter must conform to Droid's `SpinnerAdapter` bridge and be JNI-compatible.
 
 ## Initializers
 
 ```swift
 Spinner()
-Spinner(id: 1001)
+Spinner(id: 5001)
 ```
 
-## Methods
+There is also a single-child content initializer:
 
-### Adapter
+```swift
+Spinner(id: 5001) {
+    // declarative child content via BodyBuilder
+}
+```
 
-`adapter(_:)` queues the adapter used by Android to provide spinner items.
+## Notes
 
-The current wrapper does not expose a separate high-level `selection(_:)` setter, so this page does not assume one.
-
-### Prompt and dropdown
-
-`prompt(_:)` sets popup/dialog prompt text and `promptId(_:)` sets it from a resource.
-
-`dropDownWidth(_:)`, `dropDownHorizontalOffset(_:)`, `dropDownVerticalOffset(_:)`, `gravity(_:)`, `popupBackgroundDrawable(_:)`, and `popupBackgroundResource(_:)` configure presentation.
-
-Corresponding getter methods read current live values where exposed.
-
-### Popup and click helpers
-
-`isPopupShowing()` reports whether the popup is visible. `performClick()` asks Android to open/activate the spinner interaction.
-
-`onItemClickListener(_:)` and `setOnItemClickListenerInt(_:)` accept JNI-compatible item-click listener objects.
-
-### Low-level lifecycle
-
-Layout/measurement, saved-state, touch, pointer-icon, dialog-click, and accessibility hooks are exposed for lower-level integration.
+Android’s `Spinner` is defined by its adapter and dropdown. None of that adapter surface is part of the current Droid API. Treat this page as placement plus shared view behavior only.
