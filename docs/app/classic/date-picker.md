@@ -1,89 +1,47 @@
 # DatePicker
 
-`DatePicker` is Droid's classic Android date-selection control. The current wrapper inherits `FrameLayout` and exposes selected date reads, minimum/maximum bounds, calendar/spinner visibility, first-day-of-week configuration, date updates, listener bridges, state restoration, and autofill helpers.
+`DatePicker` is Android’s calendar-date selection control.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; selected-date reads, min/max bounds, `updateDate`, calendar/spinner presentation, and date-change listeners are not wrapped yet.
 
 ## Use it when…
 
-Use `DatePicker` when users should choose a valid calendar date without manually typing and parsing date text.
+Use a date picker when the user should choose a valid calendar date instead of typing and parsing date text.
+
+For a compact list of dates or a custom calendar UI, build the selection surface yourself and keep the validated date in app state.
 
 ## How it behaves
 
-Date bounds, calendar/spinner visibility, first-day-of-week, enabled state, date-change listener, and validation callback are queued Droid view properties.
+`DatePicker` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Selected date getters and actions such as `updateDate(...)` operate on the live Android instance.
+The current type does **not** inherit `FrameLayout` and does **not** expose `updateDate(...)`, `minDate(_:)`, `maxDate(_:)`, `calendarViewShown(_:)`, `spinnersShown(_:)`, `year()` / `month()` / `dayOfMonth()`, or listener bridges at this pin.
 
 ## Examples
 
-### Configure the picker presentation
+### Place a date control
 
 ```swift
-DatePicker()
-    .calendarViewShown(true)
-    .spinnersShown(false)
-    .setEnabled(true)
+DatePicker(id: 6001)
+    .padding(h: 16, v: 12)
 ```
 
-### Read the selected date from a live picker
+### Hide it until the user opts in
 
 ```swift
-let picker = DatePicker()
+let picker = DatePicker(id: 6002)
+    .visibility(.gone)
 
-let year = picker.year()
-let month = picker.month()
-let day = picker.dayOfMonth()
+// later
+picker.visibility(.visible)
 ```
-
-The getter methods read Android's current live selection.
 
 ## Initializers
 
 ```swift
 DatePicker()
-DatePicker(id: 1001)
+DatePicker(id: 6001)
 ```
 
-The wrapper also exposes a `FrameLayout`-style content initializer for declarative child content.
+## Notes
 
-## Methods
-
-### Selected date
-
-`year()`, `month()`, and `dayOfMonth()` read the currently selected date.
-
-`updateDate(year:month:dayOfMonth:)` updates the live picker.
-
-The low-level `init(_:_:_:_:)` bridge initializes a live picker with a date and an optional Android date-change listener object.
-
-### Date bounds
-
-`minDate(_:)` and `maxDate(_:)` queue Android date bounds in milliseconds since January 1, 1970.
-
-`minDate()` and `maxDate()` read the current live values.
-
-### Calendar and spinner presentation
-
-`calendarViewShown(_:)` and `spinnersShown(_:)` configure which picker UI Android shows.
-
-Their getter counterparts read the current live state.
-
-`calendarView()` returns the underlying `CalendarView?` when available.
-
-### Week and mode
-
-`firstDayOfWeek(_:)` configures Android's first day of the week, while `firstDayOfWeek()` reads the live value.
-
-`mode()` reads the current picker mode.
-
-### Enabled state
-
-`setEnabled(_:)` queues the enabled state. `isEnabled()` reads the current live state.
-
-### Date-change and validation callbacks
-
-`onDateChangedListener(_:)` and `validationCallback(_:)` accept JNI-compatible Android objects and queue them for the picker.
-
-Droid exposes these bridges but does not construct the listener or validation callback objects for you.
-
-### State and autofill
-
-The wrapper exposes save/restore-state, accessibility, configuration-change, and autofill helpers for lower-level integrations.
+Android’s `DatePicker` owns the selected date, bounds, and spinner/calendar chrome. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.
