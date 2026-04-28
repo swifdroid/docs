@@ -1,66 +1,44 @@
 # TimePicker
 
-`TimePicker` is Droid's classic Android time-of-day selector. The current wrapper exposes hour/minute configuration, matching live getters, compatibility aliases for current hour/minute, 12-hour/24-hour presentation, and picker-mode inspection.
+`TimePicker` is Android’s time-of-day selection control.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; hour/minute configuration, 12/24-hour presentation, and mode inspection are not wrapped yet.
 
 ## Use it when…
 
-Use `TimePicker` when users should choose a valid time of day without manually parsing text or AM/PM input.
+Use a time picker when the user should choose a valid time of day instead of typing free-form time text.
+
+For duration input or a custom clock face, build that surface yourself and keep the validated time in app state.
 
 ## How it behaves
 
-`hour(_:)`, `minute(_:)`, the `currentHour(_:)` / `currentMinute(_:)` aliases, and `is24HourView(_:)` are queued Droid view properties.
+`TimePicker` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Hour/minute and mode getters read the live Android instance.
+The current type does **not** expose `hour(_:)`, `minute(_:)`, `currentHour(_:)` / `currentMinute(_:)`, `is24HourView(_:)`, or `mode()` at this pin.
 
 ## Examples
 
-### Configure a 24-hour time
+### Place a time control
 
 ```swift
-TimePicker()
-    .hour(9)
-    .minute(30)
-    .is24HourView(true)
+TimePicker(id: 8001)
+    .padding(h: 16, v: 12)
 ```
 
-### Configure a 12-hour picker
+### Disable it until a schedule exists
 
 ```swift
-TimePicker()
-    .hour(7)
-    .minute(45)
-    .is24HourView(false)
+TimePicker(id: 8002)
+    .enabled(false)
 ```
 
 ## Initializers
 
 ```swift
 TimePicker()
-TimePicker(id: 1001)
+TimePicker(id: 8001)
 ```
 
-## Methods
+## Notes
 
-### Hour and minute
-
-`hour(_:)` and `minute(_:)` queue the selected time.
-
-`hour()` and `minute()` read the current live selection.
-
-### Current-hour/current-minute aliases
-
-`currentHour(_:)` forwards to `hour(_:)`, and `currentMinute(_:)` forwards to `minute(_:)`.
-
-The getter aliases `currentHour()` and `currentMinute()` return the same live values as `hour()` and `minute()`.
-
-### 12-hour and 24-hour display
-
-`is24HourView(_:)` queues whether Android should display the picker in 24-hour mode or with AM/PM controls.
-
-### Picker mode
-
-`mode()` reads the current Android picker mode.
-
-## Current limitation
-
-The current Droid `TimePicker` wrapper does not expose an on-time-changed listener bridge. This page therefore does not assume a callback API that is not present in the current wrapper.
+Android’s `TimePicker` owns hour/minute and AM/PM or 24-hour presentation. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.
