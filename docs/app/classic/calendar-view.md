@@ -1,156 +1,49 @@
 # CalendarView
 
-`CalendarView` shows a full calendar for choosing and inspecting a date. It works well when the surrounding dates matter to the choice, such as booking, scheduling, or planning screens.
+`CalendarView` shows a month-style calendar for choosing or inspecting a date when surrounding days matter to the decision.
 
-The selected date and date limits use milliseconds since January 1, 1970.
+In the current Droid source pin it is a placeable view control with a single-child content initializer. Shared view interaction and layout APIs work; selection, min/max bounds, week display, and date-change listeners are not wrapped yet.
 
 ## Use it when…
 
-Use `CalendarView` when the user should see a month-style calendar directly in the screen instead of opening a separate picker.
+Use `CalendarView` when the user should see a full month grid in the screen instead of opening a separate picker, such as booking or scheduling layouts.
 
-Because it occupies substantial vertical space, it is usually better for date-focused screens than for compact forms.
+Because it takes substantial vertical space, prefer a compact picker for short forms.
 
 ## How it behaves
 
-Selection, range, week display, and appearance settings are builder-style properties. They can be configured before the Android view is realized.
+`CalendarView` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Read methods such as `date()`, `minDate()`, `maxDate()`, and `shownWeekCount()` query the live Android instance. Keep a reference to the calendar when you need to inspect those values after the view is on screen.
-
-The current date-change listener API accepts an Android/JNI-compatible listener object. There is no Swift closure convenience for date changes in the current surface.
+The current type inherits `FrameLayout` at this pin and accepts declarative child content. It does **not** expose `minDate(_:)`, `maxDate(_:)`, `date()`, `shownWeekCount(_)`, `firstDayOfWeek(_)`, or date-change listeners.
 
 ## Examples
 
-### Limit the selectable range
+### Place a calendar
 
 ```swift
-let earliest = 1_767_225_600_000
-let latest = 1_769_817_600_000
-let selected = 1_768_521_600_000
-
-CalendarView()
-    .minDate(earliest)
-    .maxDate(latest)
-    .date(selected)
+CalendarView(id: 1101)
+    .padding(h: 8, v: 8)
 ```
 
-The calendar opens with the selected date inside the configured range.
-
-### Adjust the week display
+### Add a caption under the calendar
 
 ```swift
-CalendarView()
-    .firstDayOfWeek(2)
-    .shownWeekCount(5)
-    .showWeekNumber(false)
-```
-
-This configures a five-week view, uses day value `2` as the first day of the week, and hides week numbers.
-
-### Read the live selection
-
-Once the view has been realized, read the currently selected date from the live Android instance:
-
-```swift
-func selectedDate(from calendar: CalendarView) -> Int {
-    calendar.date()
+CalendarView(id: 1101) {
+    TextView("Selected date")
 }
 ```
 
 ## Initializers
 
-Create a calendar with an optional stable id:
-
 ```swift
 CalendarView()
-CalendarView(id: 1001)
+CalendarView(id: 1101)
+
+CalendarView(id: 1101) {
+    // single child content via BodyBuilder
+}
 ```
 
-## Methods
+## Notes
 
-### Select a date
-
-`date()` reads the live selected date. `date(_:)` configures the selected date, while the animated overload also controls animation and centering.
-
-```swift
-let selected = calendar.date()
-
-calendar.date(1_768_521_600_000)
-
-calendar.date(
-    1_768_521_600_000,
-    animate: true,
-    center: true
-)
-```
-
-### Limit the available dates
-
-`minDate()` and `maxDate()` read the live bounds. Their fluent counterparts configure the allowed range.
-
-```swift
-calendar
-    .minDate(1_767_225_600_000)
-    .maxDate(1_769_817_600_000)
-
-let earliest = calendar.minDate()
-let latest = calendar.maxDate()
-```
-
-### Choose the first day of the week
-
-`firstDayOfWeek()` reads the live value. `firstDayOfWeek(_:)` configures the value used by Android.
-
-```swift
-calendar.firstDayOfWeek(2)
-
-let firstDay = calendar.firstDayOfWeek()
-```
-
-### Control the visible week count
-
-`shownWeekCount()` reads how many weeks are currently shown. `shownWeekCount(_:)` configures the count.
-
-```swift
-calendar.shownWeekCount(5)
-
-let weeks = calendar.shownWeekCount()
-```
-
-### Show or hide week numbers
-
-`showWeekNumber()` reads the live setting. `showWeekNumber(_:)` configures whether week numbers are displayed.
-
-```swift
-calendar.showWeekNumber(false)
-
-let showsNumbers = calendar.showWeekNumber()
-```
-
-### Configure date appearance
-
-The current surface exposes live appearance reads together with fluent setters for date text, weekday text, focused and unfocused month colors, selected-week color, week-number color, and separator color.
-
-For example:
-
-```swift
-let primaryDateColor = 0x7f202020
-let secondaryDateColor = 0x7f606060
-
-calendar
-    .dateTextAppearance(1001)
-    .weekDayTextAppearance(1002)
-    .focusedMonthDateColor(primaryDateColor)
-    .unfocusedMonthDateColor(secondaryDateColor)
-```
-
-Use the corresponding zero-argument methods when you need to inspect the live values.
-
-### Get bounds for a date
-
-`boundsForDate(_:_:)` asks the live calendar to write the screen bounds for a date into an Android `Rect` object.
-
-```swift
-let found = calendar.boundsForDate(date, rect)
-```
-
-This is a lower-level API for code that already owns the required Android graphics object.
+Android’s `CalendarView` owns selection and range behavior. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.
