@@ -1,79 +1,45 @@
 # VideoView
 
-`VideoView` is Droid's wrapper for Android's classic video playback widget. The current surface exposes live source selection, playback control, seeking, playback-state reads, media-controller attachment, subtitle hooks, and JNI-compatible media-player listeners.
+`VideoView` is Android’s classic built-in video playback widget.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; source assignment, playback control, seeking, and media-controller hooks are not wrapped yet.
 
 ## Use it when…
 
-Use `VideoView` when Android's classic built-in video playback behavior is sufficient for your screen.
+Use `VideoView` when Android’s classic playback widget is enough and you do not need a custom player surface yet.
 
 ## How it behaves
 
-The current `VideoView` wrapper does not expose queued playback properties.
+`VideoView` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Source assignment, controller attachment, listeners, playback actions, and state reads operate on the live Android instance.
+The current type does **not** expose `setVideoPath(_:)`, `start()`, `pause()`, `seekTo(_:)`, `isPlaying()`, `setMediaController(_:)`, or player listener bridges at this pin.
 
-## Example
+## Examples
+
+### Place a video surface
 
 ```swift
-func startVideo(_ video: VideoView) {
-    video.setVideoPath("/sdcard/Movies/demo.mp4")
-    video.start()
-}
+VideoView(id: 1201)
+    .padding(h: 0, v: 0)
 ```
 
-The `VideoView` must already have a live Android instance for these calls to take effect.
+### Keep playback UI hidden until the source is ready
+
+```swift
+let video = VideoView(id: 1202)
+    .visibility(.gone)
+
+// later
+video.visibility(.visible)
+```
 
 ## Initializers
 
 ```swift
 VideoView()
-VideoView(id: 1001)
+VideoView(id: 1201)
 ```
 
-## Video source
+## Notes
 
-`setVideoPath(_:)` sets a path on the live view.
-
-`setVideoURI(_:)` sets an optional Android `Uri`.
-
-The overload `setVideoURI(_:_:)` also accepts a JNI-compatible Android headers map.
-
-## Playback
-
-Live actions include:
-
-- `start()`
-- `pause()`
-- `resume()`
-- `suspend()`
-- `stopPlayback()`
-- `seekTo(_:)`
-
-Live reads include:
-
-- `isPlaying()`
-- `currentPosition()`
-- `duration()`
-- `bufferPercentage()`
-- `audioSessionId()`
-- `canPause()`
-- `canSeekBackward()`
-- `canSeekForward()`
-
-## Media controller
-
-`setMediaController(_:)` attaches an optional live `MediaController`.
-
-This is an immediate live call, not a queued builder property in the current wrapper.
-
-## Listener bridges
-
-`setOnCompletionListener(_:)`, `setOnErrorListener(_:)`, `setOnInfoListener(_:)`, and `setOnPreparedListener(_:)` accept JNI-compatible Android media-player listener objects.
-
-Droid exposes these listener bridges but does not construct the listener objects for you.
-
-## Subtitle and lower-level helpers
-
-`addSubtitleSource(_:_:)` and `setSubtitleWidget(_:)` expose Android subtitle hooks.
-
-The wrapper also forwards drawing, measurement, layout, attach/detach, key, touch, trackball, and adjusted-size helpers.
+Android’s `VideoView` owns path/URI assignment and playback commands. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.
