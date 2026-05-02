@@ -1,73 +1,44 @@
 # RatingBar
 
-`RatingBar` is the classic star-rating control. It exposes the current rating, number of stars, step size, indicator mode, and the shared seek-style behavior inherited from `AbsSeekBar`.
+`RatingBar` is the classic star-rating control.
 
-Use it when the value is genuinely a rating rather than a generic numeric range.
+In the current Droid source pin it inherits [`AbsSeekBar`](abs-seek-bar.md) and [`ProgressBar`](progress-bar.md). Shared view interaction and layout APIs work; rating, star count, step size, and indicator mode are not wrapped yet.
 
 ## Use it when…
 
-Use `RatingBar` for product, content, service, or experience ratings where stars communicate the scale clearly. For an arbitrary numeric value, [SeekBar](seek-bar.md) is usually a better fit.
+Use `RatingBar` when the value is genuinely a rating and stars communicate the scale better than a plain number.
+
+For an arbitrary numeric range, use [`SeekBar`](seek-bar.md).
 
 ## How it behaves
 
-`numStars(_:)`, `rating(_:)`, `stepSize(_:)`, and `isIndicator(_:)` are Droid view properties. They can be configured declaratively while the view is being built.
+`RatingBar` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Indicator mode keeps the visual rating but prevents normal user editing. The getter methods read the current Android instance.
+The current type does **not** expose `rating(_:)`, `numStars(_:)`, `stepSize(_:)`, `isIndicator(_:)`, or rating-change listeners at this pin.
 
 ## Examples
 
-### Collect a half-star rating
+### Place a rating control
 
 ```swift
-RatingBar()
-    .numStars(5)
-    .stepSize(0.5)
-    .rating(3.5)
+RatingBar(id: 1701)
+    .padding(h: 16, v: 12)
 ```
 
-### Show a read-only score
+### Show a read-only rating slot
 
 ```swift
-RatingBar()
-    .numStars(5)
-    .rating(4)
-    .isIndicator(true)
+RatingBar(id: 1702)
+    .enabled(false)
 ```
 
 ## Initializers
 
 ```swift
 RatingBar()
-RatingBar(id: 1001)
+RatingBar(id: 1701)
 ```
 
-## Methods
+## Notes
 
-### Rating value
-
-`rating(_:)` changes the current rating, while `rating()` reads it from the live view.
-
-```swift
-ratingBar.rating(4.5)
-let value = ratingBar.rating()
-```
-
-### Stars and step size
-
-`numStars(_:)` controls how many stars are displayed. `stepSize(_:)` controls the smallest rating increment.
-
-```swift
-ratingBar
-    .numStars(5)
-    .stepSize(1)
-```
-
-Use `numStars()` and `stepSize()` when you need the current values from a live instance.
-
-### Indicator mode
-
-`isIndicator(true)` makes the rating display-only. `isIndicator()` reports the current mode.
-
-```swift
-ratingBar.isIndicator(true)
-```
+Android’s `RatingBar` owns star count, step size, and indicator mode. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.

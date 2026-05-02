@@ -1,86 +1,47 @@
 # ProgressBar
 
-`ProgressBar` shows work that is either measurable or still open-ended. Use determinate progress when you know how much work is complete, and indeterminate mode when you only know that work is in progress.
+`ProgressBar` shows work that is measurable or still open-ended.
 
-The current Droid surface exposes live progress values, secondary progress, min/max bounds, indeterminate state, and incremental updates.
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; progress values, min/max bounds, and indeterminate mode are not wrapped yet.
 
 ## Use it when…
 
-Use a determinate bar for downloads, uploads, imports, or any operation where the UI can report a meaningful fraction. Use indeterminate mode for short waits where no useful percentage exists.
+Use a progress bar when a screen should show that work is happening. A determinate bar is the usual choice once the operation can report a fraction; an indeterminate bar fits open-ended waits.
 
 ## How it behaves
 
-`ProgressBar` setters such as `setProgress(_:)`, `setMax(_:)`, and `indeterminate(_:)` call the current Android view instance immediately. Apply them after the widget has been materialized rather than treating them as pre-attachment layout modifiers.
+`ProgressBar` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-`secondaryProgress(_:)` gives you a second progress channel, which is useful for states such as buffered-versus-played media.
+The current type does **not** expose `setProgress(_:)`, `max(_:)`, `min(_:)`, `secondaryProgress(_:)`, `indeterminate(_:)`, or incremental update helpers at this pin.
 
 ## Examples
 
-### Update measurable progress
+### Place a progress indicator
 
 ```swift
-func updateDownload(
-    _ progressBar: ProgressBar,
-    completed: Int,
-    total: Int
-) {
-    progressBar
-        .setMin(0)
-        .setMax(total)
-        .setProgress(completed)
-}
+ProgressBar(id: 1401)
+    .padding(h: 16, v: 12)
 ```
 
-This flow assumes `progressBar` already represents a live Android view.
-
-### Switch a live indicator into indeterminate mode
+### Hide it when the operation finishes
 
 ```swift
-func showWaitingState(_ progressBar: ProgressBar) {
-    progressBar.indeterminate(true)
-}
+let bar = ProgressBar(id: 1402)
+
+// while working
+bar.visibility(.visible)
+
+// when done
+bar.visibility(.gone)
 ```
 
 ## Initializers
 
 ```swift
 ProgressBar()
-ProgressBar(id: 1001)
+ProgressBar(id: 1401)
 ```
 
-## Methods
+## Notes
 
-### Progress and range
-
-`progress()` reads the current value. `progress(_:)` and `setProgress(_:)` update it. `getMin()`, `getMax()`, `setMin(_:)`, and `setMax(_:)` control the valid range.
-
-```swift
-let current = progressBar.progress()
-let maximum = progressBar.getMax()
-```
-
-`incrementProgressBy(_:)` is useful when work arrives in discrete chunks:
-
-```swift
-progressBar.incrementProgressBy(1)
-```
-
-### Secondary progress
-
-Use `secondaryProgress(_:)` when the UI needs a second measurable state:
-
-```swift
-progressBar.secondaryProgress(buffered)
-```
-
-`secondaryProgress()` reads the current secondary value, and `incrementSecondaryProgressBy(_:)` advances it incrementally.
-
-### Indeterminate state
-
-`indeterminate()` reports the current mode. Pass a Boolean to `indeterminate(_:)` or `setIndeterminate(_:)` to switch modes:
-
-```swift
-if !progressBar.indeterminate() {
-    progressBar.setIndeterminate(true)
-}
-```
+Android’s `ProgressBar` owns determinate/indeterminate state and numeric bounds. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.

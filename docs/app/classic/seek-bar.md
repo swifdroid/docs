@@ -1,71 +1,46 @@
 # SeekBar
 
-`SeekBar` is a draggable slider for choosing a value within a range, such as volume, brightness, playback position, or filter strength.
+`SeekBar` is a draggable slider for choosing a value in a range, such as volume, brightness, or filter strength.
 
-The current Droid type inherits working range, thumb, tick-mark, keyboard-step, and live progress APIs from the progress/seek base classes. Its own legacy `progress(...)` and listener methods are still present as unwired stubs, so avoid those overloads for now.
+In the current Droid source pin it inherits [`AbsSeekBar`](abs-seek-bar.md) and [`ProgressBar`](progress-bar.md). Shared view interaction and layout APIs work. The declared `progress(...)` overloads and `onSeekBarChangeListener(_:)` exist as method names but are not wired to Android at this pin — do not rely on them.
 
 ## Use it when…
 
-Use `SeekBar` when dragging is faster and more natural than typing an exact value. Pair it with a label when users need to see the current number while they scrub.
+Use `SeekBar` when dragging is faster than typing an exact value and a slider communicates the range clearly.
+
+For stars, use [`RatingBar`](rating-bar.md). For a non-interactive meter, use [`ProgressBar`](progress-bar.md).
 
 ## How it behaves
 
-Range and track configuration such as `min(_:)`, `max(_:)`, `keyProgressIncrement(_:)`, `splitTrack(_:)`, and thumb/tick styling can be applied while building the control.
+`SeekBar` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-To change the value on a live `SeekBar`, use the inherited `setProgress(_:)` method. Do not use `SeekBar.progress(_:)` or `progress(_:animated:)` in the current source snapshot: those two overloads are still no-op stubs.
+Range, thumb, tick, and live progress APIs from the Android seek family are **not** wrapped yet. In particular, `min(_:)` / `max(_:)` / `setProgress(_:)` are not available on this Droid type.
 
 ## Examples
 
-### Configure a bounded slider
+### Place a slider
 
 ```swift
-SeekBar()
-    .min(0)
-    .max(100)
-    .keyProgressIncrement(5)
+SeekBar(id: 1601)
+    .padding(h: 16, v: 12)
 ```
 
-### Update a live slider
+### Disable scrubbing until media is ready
 
 ```swift
-func updateVolume(_ seekBar: SeekBar, value: Int) {
-    seekBar.setProgress(value)
-}
+SeekBar(id: 1602)
+    .enabled(false)
 ```
-
-`setProgress(_:)` comes from the working progress-bar surface and updates the current Android instance.
 
 ## Initializers
 
 ```swift
 SeekBar()
-SeekBar(id: 1001)
+SeekBar(id: 1601)
 ```
 
-## Methods
+## Notes
 
-### Range and progress
+`onSeekBarChangeListener(_:)`, `progress(_:)`, and `progress(_:animated:)` are present in the Swift surface at this pin but their Android calls are not implemented. Treat them as unavailable until a later pin wires them.
 
-`min(_:)` and `max(_:)` configure the allowed range before attachment. On a live control, `getMin()`, `getMax()`, `getProgress()`, and `setProgress(_:)` read or update the current Android values.
-
-```swift
-seekBar.setProgress(50)
-let current = seekBar.getProgress()
-```
-
-### Thumb, tick marks, and keyboard steps
-
-`thumbOffset(_:)`, `thumbTintList(_:)`, `tickMarkTintList(_:)`, `splitTrack(_:)`, and `keyProgressIncrement(_:)` are available through the seek-style base behavior.
-
-```swift
-SeekBar()
-    .thumbOffset(8)
-    .splitTrack(true)
-    .keyProgressIncrement(1)
-```
-
-### Current limitations
-
-`progress(_:)`, `progress(_:animated:)`, and `onSeekBarChangeListener(_:)` are declared directly on `SeekBar` but their JNI calls are currently commented out, so they do not perform Android work.
-
-`onInitializeAccessibilityNodeInfoInternal(_:)` is wired for low-level accessibility integration, but normal application code usually does not call it directly.
+Do not document or use `SeekBarOnSeekBarChangeListener` as a working callback bridge yet.

@@ -1,77 +1,35 @@
 # AbsSeekBar
 
-`AbsSeekBar` is the shared Android base behind interactive progress controls such as [SeekBar](seek-bar.md) and [RatingBar](rating-bar.md). It adds the draggable thumb, tick marks, keyboard stepping, and track-specific configuration on top of `ProgressBar` behavior.
+`AbsSeekBar` is the shared Android base behind interactive progress controls such as [`SeekBar`](seek-bar.md) and [`RatingBar`](rating-bar.md).
 
-Android treats `AbsSeekBar` as an abstract base class, so normal app UI should create `SeekBar` or `RatingBar` rather than instantiate `AbsSeekBar` directly.
+Android treats `AbsSeekBar` as an abstract base. Prefer the concrete control for real UI. In the current Droid source pin this type only adds the inheritance chain above [`ProgressBar`](progress-bar.md); thumb, tick, and range APIs are not wrapped yet.
 
 ## Use it when…
 
-Use this page when you need to understand behavior inherited by seek-style controls. For a draggable numeric slider, start with `SeekBar`; for stars, use `RatingBar`.
+Use this page to understand what the concrete seek-style controls currently inherit. For a draggable slider, start with [`SeekBar`](seek-bar.md). For stars, use [`RatingBar`](rating-bar.md).
 
 ## How it behaves
 
-Thumb, tick-mark, split-track, range, and key-step setters are Droid view properties, so they can be applied while building the control and then forwarded when the Android view exists.
+`AbsSeekBar` participates in the view hierarchy like other controls through its `ProgressBar` parent.
 
-Getter methods such as `thumb()`, `tickMark()`, and `thumbTintList()` read the live Android instance. Before attachment they can only return `nil` or fallback values.
+The current type does **not** expose `thumb(_:)`, `thumbTintList(_:)`, `tickMark(_:)`, `splitTrack(_:)`, `keyProgressIncrement(_:)`, or related seek APIs at this pin.
 
 ## Examples
 
-### Configure a stepped SeekBar
+Prefer the concrete controls:
 
 ```swift
-SeekBar()
-    .min(0)
-    .max(10)
-    .keyProgressIncrement(1)
-    .splitTrack(true)
+SeekBar(id: 1501)
+RatingBar(id: 1502)
 ```
 
-### Tint and offset the thumb
+## Initializers
 
 ```swift
-func makeSeekBar(tint: ColorStateList) -> SeekBar {
-    SeekBar()
-        .thumbTintList(tint)
-        .thumbOffset(8)
-}
+AbsSeekBar()
+AbsSeekBar(id: 1501)
 ```
 
-## Methods
+## Notes
 
-### Thumb and track
-
-`thumb(_:)` replaces the draggable thumb. `thumbTintList(_:)` applies its tint, and `thumbOffset(_:_:)` controls how far it can extend beyond the track.
-
-```swift
-seekBar.thumbOffset(12)
-seekBar.splitTrack(true)
-```
-
-Read the current values from a live control with `thumb()`, `thumbTintList()`, `thumbOffset(_:)`, and `splitTrack()`.
-
-### Tick marks
-
-`tickMark(_:)` supplies the drawable used at progress positions, while `tickMarkTintList(_:)` tints those marks.
-
-```swift
-seekBar.tickMarkTintList(tint)
-```
-
-`tickMark()` and `tickMarkTintList()` read the currently installed drawable and tint.
-
-### Range and keyboard stepping
-
-`min(_:)` and `max(_:)` configure the seek range. `keyProgressIncrement(_:)` controls the amount changed by arrow-key input.
-
-```swift
-SeekBar()
-    .min(0)
-    .max(100)
-    .keyProgressIncrement(5)
-```
-
-`keyProgressIncrement()` reads the current increment from a live instance.
-
-### Low-level event helpers
-
-`jumpDrawablesToCurrentState()`, `drawableHotspotChanged(x:y:)`, `onTouchEvent(_:)`, and `onKeyDown(_:_:)` are exposed for lower-level custom control work. Most application code should let the normal Android event pipeline call these.
+Thumb, tick, and range configuration live on Android’s `AbsSeekBar` API. None of that is part of the current Droid surface.
