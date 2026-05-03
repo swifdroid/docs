@@ -1,55 +1,39 @@
 # ImageButton
 
-`ImageButton` is Droid's Android image-button wrapper. It inherits the full `ImageView` image surface and adds only a small amount of image-button-specific low-level behavior.
+`ImageButton` is the image-only button control.
+
+In the current Droid source pin it inherits [`ImageView`](image-view.md) and adds no extra wrapped methods. Shared view interaction and layout APIs work; image sources and button chrome are not wrapped yet.
 
 ## Use it when…
 
-Use `ImageButton` when an image is also the visual surface of an action.
+Use `ImageButton` when an image is the visual surface of an action, such as a toolbar icon button.
 
-For display-only image content, use `ImageView`.
+For display-only image content, use [`ImageView`](image-view.md).
 
 ## How it behaves
 
-Image assignment, tinting, maximum dimensions, and adjust-view-bounds behavior are inherited from `ImageView` and keep the same queued semantics.
+`ImageButton` behaves like the current [`ImageView`](image-view.md) shell: placeable in the hierarchy, with `onClick(_:)`, padding, `enabled(_:)`, and `visibility(_:)`.
 
-The two methods declared directly by the current `ImageButton` wrapper operate on the live Android instance.
+Image assignment and tinting are not part of the current Droid surface.
 
-## Example
+## Examples
+
+### Place an icon action
 
 ```swift
-ImageButton()
-    .imageResource(1001)
-    .adjustViewBounds()
-    .maxWidth(48)
-    .maxHeight(48)
+ImageButton(id: 1901)
+    .onClick {
+        // handle the action
+    }
 ```
 
 ## Initializers
 
 ```swift
 ImageButton()
-ImageButton(id: 1001)
+ImageButton(id: 1901)
 ```
 
-## Inherited image configuration
+## Notes
 
-Because `ImageButton` inherits `ImageView`, it can use:
-
-- `imageDrawable(_:)`
-- `imageResource(_:)`
-- `imageURI(_:)`
-- `imageIcon(_:)`
-- `imageTintList(_:)`
-- `adjustViewBounds(_:)`
-- `maxWidth(_:)`
-- `maxHeight(_:)`
-
-The matching live getters and drawable helpers are inherited too.
-
-## ImageButton-specific helpers
-
-`onSetAlpha(_:)` forwards Android's alpha callback and returns Android's Boolean result.
-
-`onResolvePointerIcon(_:_:)` forwards pointer-icon resolution for a live motion event and returns the Android pointer icon as `JObject?` when available.
-
-General view interaction behavior comes from the inherited Droid view hierarchy; this wrapper does not add a separate image-button click API.
+There is no image-source API on this type at the current pin. Wire content when the image wrappers grow, then document the real methods here.

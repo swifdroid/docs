@@ -1,61 +1,37 @@
 # ImageSwitcher
 
-`ImageSwitcher` specializes `ViewSwitcher` for animated image changes. The current wrapper adds queued drawable, resource, and URI image setters while inheriting the Android view-factory bridge and `ViewAnimator` transition controls.
+`ImageSwitcher` is Android’s two-view control for switching between images.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; image setters, factory bridges, and switcher animations are not wrapped yet.
 
 ## Use it when…
 
-Use `ImageSwitcher` when you want Android's two-view image-switching behavior with reusable enter/exit animations.
+Use `ImageSwitcher` when the screen needs a dedicated control that will later switch images with Android’s built-in two-view behavior.
 
-For a single non-switching image, use `ImageView`.
+For a single image slot, use [`ImageView`](image-view.md).
 
 ## How it behaves
 
-`imageDrawable(_:)`, `imageResource(_:)`, and `imageURI(_:)` are queued Droid view properties.
+`ImageSwitcher` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-The inherited `factory(_:)`, displayed-child, and animation configuration remain available.
+The current type does **not** inherit `ViewSwitcher` / `ViewAnimator` APIs. It does not expose `imageDrawable(_:)`, `imageResource(_:)`, `imageURI(_:)`, `factory(_:)`, or animation helpers at this pin.
 
 ## Examples
 
-### Configure an image resource
+### Place an image switcher
 
 ```swift
-ImageSwitcher()
-    .imageResource(1001)
-    .animateFirstView(false)
-```
-
-### Configure a drawable
-
-```swift
-let drawable: Drawable? = nil
-
-ImageSwitcher()
-    .imageDrawable(drawable)
+ImageSwitcher(id: 2001)
+    .padding(h: 8, v: 8)
 ```
 
 ## Initializers
 
 ```swift
 ImageSwitcher()
-ImageSwitcher(id: 1001)
+ImageSwitcher(id: 2001)
 ```
 
-## Methods
+## Notes
 
-### Drawable
-
-`imageDrawable(_:)` queues an optional Android `Drawable` for the switcher.
-
-### Resource ID
-
-`imageResource(_:)` queues an Android drawable resource ID.
-
-### URI
-
-`imageURI(_:)` queues an optional Android `Uri`.
-
-### Inherited factory and animator controls
-
-`ImageSwitcher` inherits `factory(_:)` from `ViewSwitcher`, plus displayed-child selection, manual next/previous switching, first-view animation control, enter/exit animations, and child-management helpers from `ViewAnimator`.
-
-The factory accepts a JNI-compatible Android object; Droid does not construct it for you.
+Android’s `ImageSwitcher` depends on factory callbacks and image sources. None of that is part of the current Droid surface. Treat this page as placement plus shared view behavior only.

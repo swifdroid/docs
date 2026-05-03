@@ -1,84 +1,42 @@
 # ImageView
 
-`ImageView` displays drawable, resource, URI, or icon content. The current Droid wrapper exposes queued image assignment, tinting, bounds constraints, and a small set of live drawable helpers.
+`ImageView` displays image content in the view hierarchy.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work. A `ScaleType` enum is declared, but drawable/resource/URI assignment, tinting, and bounds helpers are not wrapped yet.
 
 ## Use it when…
 
-Use `ImageView` for avatars, icons, thumbnails, illustrations, and other image content that belongs in the view hierarchy.
+Use `ImageView` for avatars, icons, thumbnails, and illustrations that belong inside a layout.
 
 ## How it behaves
 
-These setters are queued Droid view properties:
+`ImageView` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-- `adjustViewBounds(_:)`
-- `imageDrawable(_:)`
-- `imageResource(_:)`
-- `imageURI(_:)`
-- `imageIcon(_:)`
-- `imageTintList(_:)`
-- `maxWidth(_:)`
-- `maxHeight(_:)`
-
-Matching getters and drawable-maintenance helpers operate on the live Android instance.
+The current type does **not** expose `imageDrawable(_:)`, `imageResource(_:)`, `imageURI(_:)`, `imageIcon(_:)`, `imageTintList(_:)`, `adjustViewBounds(_:)`, `scaleType(_:)`, `maxWidth(_:)`, or `maxHeight(_:)` at this pin.
 
 ## Examples
 
-### Configure a resource image before mounting
+### Place an image slot
 
 ```swift
-ImageView()
-    .imageResource(1001)
-    .adjustViewBounds()
-    .maxWidth(320)
-    .maxHeight(320)
+ImageView(id: 1801)
+    .padding(h: 8, v: 8)
 ```
 
-### Configure a drawable
+### Hide a missing avatar slot
 
 ```swift
-let drawable: Drawable? = nil
-
-ImageView()
-    .imageDrawable(drawable)
+let avatar = ImageView(id: 1802)
+    .visibility(.gone)
 ```
 
 ## Initializers
 
 ```swift
 ImageView()
-ImageView(id: 1001)
+ImageView(id: 1801)
 ```
 
-## Image sources
+## Notes
 
-`imageDrawable(_:)` queues an optional Android `Drawable`.
-
-`imageResource(_:)` queues a drawable resource ID.
-
-`imageURI(_:)` queues an optional Android `Uri`.
-
-`imageIcon(_:)` queues a JNI-compatible Android `Icon` object.
-
-## Bounds and tint
-
-`adjustViewBounds(_:)` queues whether Android should adjust the view bounds to preserve the drawable aspect ratio.
-
-`maxWidth(_:)` and `maxHeight(_:)` queue maximum dimensions.
-
-`imageTintList(_:)` queues an optional `ColorStateList`.
-
-The corresponding getters read live Android state.
-
-## Live drawable helpers
-
-`drawable()` returns the current live `Drawable?`.
-
-`invalidateDrawable(_:)`, `jumpDrawablesToCurrentState()`, and `verifyDrawable(_:)` forward directly to the mounted Android view.
-
-`hasOverlappingRendering()` reports Android's current rendering characteristic.
-
-## Async Android helpers
-
-`setImageIconAsync(_:)`, `setImageResourceAsync(_:)`, and `setImageURIAsync(_:)` call the live Android APIs and return Android's `Runnable` object as `JObject?` when available.
-
-The wrapper defines an `ImageView.ScaleType` enum, but the current source does not expose a scale-type setter/getter through this wrapper.
+The nested `ImageView.ScaleType` cases exist in the Swift surface at this pin, but no Droid method currently applies a scale type to a live view. Image-source APIs are not available yet.
