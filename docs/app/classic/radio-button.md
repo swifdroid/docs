@@ -1,55 +1,47 @@
 # RadioButton
 
-`RadioButton` represents one option in a mutually exclusive choice. In the current Droid source it inherits the checkable state and button styling surface from `CompoundButton`.
+`RadioButton` is one option in a mutually exclusive choice.
 
-Use several radio buttons when the user must choose exactly one item from a small set. Group coordination is a separate concern from the individual `RadioButton` wrapper.
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; checked state, button tint, and group coordination are not wrapped on this type.
 
 ## Use it when…
 
-Use a radio button when the choice is one-of-many rather than an independent on/off preference.
+Use a radio button when the choice is one-of-many and the user should see the classic Android radio affordance.
+
+For independent on/off options, see [`CheckBox`](check-box.md). For group selection APIs, see [`RadioGroup`](radio-group.md).
 
 ## How it behaves
 
-The wrapper inherits live checked-state operations and queued button drawable/tint properties from `CompoundButton`.
+`RadioButton` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-`RadioButton` also exposes Android's low-level `onInitializeAccessibilityNodeInfo(_:)` hook.
+At this pin `RadioButton` inherits `View` only. It does **not** inherit [`CompoundButton`](compound-button.md) and does **not** conform to `Checkable`. Methods such as `checked(_:)`, `isChecked()`, `toggle()`, `buttonTintList(_:)`, and `buttonDrawable(_:)` are not available on `RadioButton`.
 
 ## Examples
 
-### Style a radio button
+### Place one option
 
 ```swift
-func makeRadioButton(tint: ColorStateList) -> RadioButton {
-    RadioButton()
-        .buttonTintList(tint)
+RadioButton(id: 5001)
+    .padding(h: 16, v: 12)
+```
+
+### React to a tap
+
+```swift
+let option = RadioButton(id: 5002)
+
+option.onClick {
+    // Handle activation. Checked-state reads/writes are not wrapped yet.
 }
-```
-
-### Select a live radio button
-
-```swift
-radioButton.checked(true)
-```
-
-Check the current value with:
-
-```swift
-let selected = radioButton.isChecked()
 ```
 
 ## Initializers
 
 ```swift
 RadioButton()
-RadioButton(id: 1001)
+RadioButton(id: 5001)
 ```
 
-## Inherited checkable API
+## Notes
 
-`RadioButton` inherits `isChecked()`, `checked(_:)`, `toggle()`, `performClick()`, button drawable/tint configuration, and listener support from `CompoundButton`.
-
-`checked(_:)` works on the live Android instance and is not a chainable builder modifier.
-
-## Accessibility hook
-
-`onInitializeAccessibilityNodeInfo(_:)` forwards an Android accessibility node object to the live view. Most application code should let Android invoke this as part of its normal accessibility lifecycle.
+Android’s `RadioButton` is a `CompoundButton`. The current Droid type is not. Use [`CompoundButton`](compound-button.md) when you need the verified `Checkable` methods (`checked(_:)`, `isChecked()`, `toggle()`), and [`RadioGroup`](radio-group.md) for group-level `check(_:)` / `clearCheck()` / `checkedRadioButtonId()`.

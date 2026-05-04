@@ -1,76 +1,35 @@
 # CheckedTextView
 
-`CheckedTextView` is Droid's `TextView` wrapper with Android's checkable state and check-mark drawable. The current wrapper exposes queued check-mark styling plus live checked-state actions and getters.
+`CheckedTextView` is Android’s text row that can show a checked state.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; checked state, check-mark drawables, and `Checkable` methods are not wrapped yet.
 
 ## Use it when…
 
-Use `CheckedTextView` for classic rows where text and selection state are represented by one Android view.
-
-For a form-style boolean control, `CheckBox` is usually more explicit.
+Use `CheckedTextView` when the screen needs the classic Android checked text row and those APIs can land later.
 
 ## How it behaves
 
-Check-mark drawable/tint configuration and `setVisibility(_:)` are queued Droid view properties.
+`CheckedTextView` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-`checked(_:)`, `toggle()`, `isChecked()`, and the lower-level drawing/state helpers operate on the live Android instance.
-
-Because `CheckedTextView` inherits `TextView`, normal text configuration remains available.
+The current type does **not** inherit [`TextView`](text-view.md), does **not** conform to `Checkable`, and does not expose `checked(_:)`, `isChecked()`, `toggle()`, `checkMarkDrawable(_:)`, or `checkMarkTintList(_:)` at this pin.
 
 ## Examples
 
-### Configure the check mark before mounting
+### Place a checked text row
 
 ```swift
-CheckedTextView()
-    .checkMarkDrawable(1001)
+CheckedTextView(id: 3401)
+    .padding(h: 16, v: 12)
 ```
-
-### Change checked state on a live view
-
-```swift
-let item = CheckedTextView()
-
-item.checked(true)
-item.toggle()
-
-let selected = item.isChecked()
-```
-
-The checked-state methods are live actions; `checked(_:)` is not a queued builder property in the current wrapper.
 
 ## Initializers
 
 ```swift
 CheckedTextView()
-CheckedTextView(id: 1001)
+CheckedTextView(id: 3401)
 ```
 
-## Checked state
+## Notes
 
-`checked(_:)` immediately calls Android's `setChecked`.
-
-`toggle()` flips the live checked state.
-
-`isChecked()` reads it.
-
-## Check-mark drawable
-
-`checkMarkDrawable(_: Drawable?)` queues a drawable.
-
-`checkMarkDrawable(_: Int)` queues a drawable resource ID.
-
-`checkMarkDrawable()` reads the live drawable.
-
-## Tinting
-
-Queued setters include:
-
-- `checkMarkTintList(_:)`
-- `checkMarkTintBlendMode(_:)`
-- `checkMarkTintMode(_:)`
-
-Matching getters expose the live tint values where available.
-
-## Lower-level helpers
-
-The wrapper also exposes drawable-state, hotspot, padding, RTL, accessibility, save/restore-state, drawing, and drawable-verification helpers.
+Android’s `CheckedTextView` combines text with a check mark. That surface is not part of the current Droid API. Use [`CompoundButton`](compound-button.md) when you need verified `Checkable` methods.

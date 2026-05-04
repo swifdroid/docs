@@ -1,39 +1,44 @@
 # CompoundButton
 
-`CompoundButton` is the shared Android base for controls with a checked/unchecked state, including `CheckBox`, `RadioButton`, and `Switch`.
+`CompoundButton` is the shared Android base for controls with a checked/unchecked state. In the current Droid source pin it is the type that actually exposes the `Checkable` methods.
 
-Use the concrete control that best matches the interaction. `CompoundButton` is mainly useful for understanding the state, drawable, tint, and listener behavior those controls inherit.
+Use the concrete control that best matches the interaction when one exists. Reach for `CompoundButton` itself when you need the verified checked-state API on a live instance.
 
 ## Use it when…
 
-Use this API surface when you need to read or change checked state on a live checkable control, customize its button drawable or tint, or attach an Android checked-change listener.
+Use this surface when you need to read, set, or toggle checked state on a live checkable control.
+
+Button drawable/tint configuration and checked-change listeners are not wrapped yet, so this page documents the checked-state methods only.
 
 ## How it behaves
 
-`buttonDrawable(_:)`, `buttonTintList(_:)`, `buttonIcon(_:)`, and `onCheckedChangeListener(_:)` are Droid view properties. They can be configured while the control is being built and are applied when an Android instance is available.
+`CompoundButton` inherits [`Button`](button.md) and conforms to `Checkable`. Text configuration from the `TextView` family and shared view interaction from `View` remain available through those parents.
 
-`isChecked()`, `checked(_:)`, `toggle()`, `performClick()`, and the getter methods operate on the live Android instance.
+`checked(_:)`, `isChecked()`, and `toggle()` operate on the live Android instance. `checked(_:)` is a live operation and does not return the control for chaining.
 
 ## Examples
 
-### Configure the button tint
+### Change live checked state
 
 ```swift
-func makeCheckBox(tint: ColorStateList) -> CheckBox {
-    CheckBox()
-        .buttonTintList(tint)
+func enable(_ control: CompoundButton) {
+    control.checked(true)
 }
 ```
 
-### Change a live checked state
+### Read the current state
 
 ```swift
-func enable(_ checkBox: CheckBox) {
-    checkBox.checked(true)
+if !control.isChecked() {
+    control.checked(true)
 }
 ```
 
-`checked(_:)` is a live operation and does not return the control for chaining.
+### Flip a setting
+
+```swift
+control.toggle()
+```
 
 ## Initializers
 
@@ -49,30 +54,12 @@ CompoundButton(id: 1001)
 `isChecked()` reads the live state. `checked(_:)` sets it, and `toggle()` flips it.
 
 ```swift
-if !control.isChecked() {
-    control.checked(true)
-}
+let on = control.isChecked()
+control.checked(!on)
 ```
 
-`performClick()` asks Android to perform the click behavior and returns whether it was handled.
+These three methods come from the `Checkable` protocol and are the verified checked-state surface at this pin.
 
-### Button drawable and tint
+## Notes
 
-`buttonDrawable(_:)` accepts either a `Drawable?` or a drawable resource identifier. `buttonTintList(_:)` applies a `ColorStateList` tint.
-
-```swift
-CheckBox()
-    .buttonDrawable(drawableResourceId)
-```
-
-`buttonDrawable()` and `buttonTintList()` read the current values from a live instance.
-
-### Accessibility and advanced drawable helpers
-
-`buttonStateDescription()` reads Android's current accessibility description for the checked state. `defaultStateDescription()` restores Android's default state-description behavior.
-
-`setButtonDrawableAsync(_:)`, `buttonIcon(_:)`, `setButtonIconAsync(_:)`, and `onResolveDrawables(_:)` are available for lower-level integration.
-
-### Checked-change listener
-
-`onCheckedChangeListener(_:)` accepts a JNI-compatible listener object and queues it like other Droid view properties. The wrapper does not construct that listener for you.
+At this pin [`CheckBox`](check-box.md) does **not** inherit `CompoundButton` and does **not** receive these methods. `buttonDrawable(_:)`, `buttonTintList(_:)`, `onCheckedChangeListener(_:)`, and `performClick()` are not part of the current Droid `CompoundButton` API.
