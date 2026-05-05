@@ -1,65 +1,35 @@
 # ViewSwitcher
 
-`ViewSwitcher` is Droid's two-view switching container. The current wrapper inherits `ViewAnimator`, exposes the next view, reset behavior, and a JNI-compatible Android `ViewFactory` bridge, while keeping the inherited animation and switching APIs.
+`ViewSwitcher` is Android’s two-child switching container.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; factory bridges, next/previous switching, and animations are not wrapped yet.
 
 ## Use it when…
 
-Use `ViewSwitcher` when Android should alternate between two lazily created views, such as read/edit states or two presentation modes.
+Use `ViewSwitcher` when the screen needs the classic Android two-view switcher and those APIs can land later.
 
 ## How it behaves
 
-`factory(_:)` is a queued Droid view property.
+`ViewSwitcher` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-`nextView()` and `reset()` operate on the live Android instance.
-
-Inherited `ViewAnimator` properties such as displayed child and enter/exit animations remain available.
+The current type does **not** inherit `ViewAnimator` APIs and does not expose `setFactory(_:)`, `showNext()`, `showPrevious()`, or animation setters at this pin.
 
 ## Examples
 
-### Configure inherited transition behavior
+### Place a switcher
 
 ```swift
-ViewSwitcher()
-    .animateFirstView(false)
-    .displayedChild(0)
+ViewSwitcher(id: 3201)
+    .padding(h: 0, v: 0)
 ```
-
-### Inspect and reset a mounted switcher
-
-```swift
-let switcher = ViewSwitcher()
-
-let next = switcher.nextView()
-switcher.reset()
-```
-
-These live methods require a mounted Android instance.
 
 ## Initializers
 
 ```swift
 ViewSwitcher()
-ViewSwitcher(id: 1001)
+ViewSwitcher(id: 3201)
 ```
 
-The current wrapper does not expose a declarative child-content initializer.
+## Notes
 
-## Methods
-
-### View factory
-
-`factory(_:)` accepts a JNI-compatible Android `ViewSwitcher.ViewFactory` object and queues it for the widget.
-
-Droid exposes the factory bridge but does not construct the Android factory object for you.
-
-### Next view
-
-`nextView()` returns the next live `View?` that the switcher would display.
-
-### Reset
-
-`reset()` immediately resets the live switcher, hiding its existing views and clearing first-time animation state.
-
-### Inherited animator controls
-
-`ViewSwitcher` inherits `displayedChild(_:)`, `showNext()`, `showPrevious()`, `animateFirstView(_:)`, enter/exit animation configuration, and the `ViewAnimator` child-management helpers.
+Android’s `ViewSwitcher` alternates exactly two children. That surface is not part of the current Droid API.

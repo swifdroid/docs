@@ -1,58 +1,37 @@
 # TextSwitcher
 
-`TextSwitcher` specializes `ViewSwitcher` for animated text changes. It inherits the Android view-factory bridge and `ViewAnimator` transition controls, and adds live methods for replacing the currently displayed text or switching to new text.
+`TextSwitcher` is Android’s two-view control for switching between text values.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; factory bridges, text setters, and switcher animations are not wrapped yet.
 
 ## Use it when…
 
-Use `TextSwitcher` when you specifically want Android's two-view text-switching behavior, such as animated counters, status labels, or changing headlines.
+Use `TextSwitcher` when the screen needs the classic Android text-switching control and those APIs can land later.
 
-For ordinary state-driven text without this switching container, a `TextView` is simpler.
+For a single text slot, use [`TextView`](text-view.md).
 
 ## How it behaves
 
-`currentText(_:)` and `text(_:)` are immediate live-instance actions in the current wrapper; they are not queued builder properties.
+`TextSwitcher` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-The inherited `factory(_:)`, displayed-child, and animation configuration remain available.
+The current type does **not** inherit `ViewSwitcher` / `ViewAnimator` APIs and does not expose `setText(_:)`, `factory(_:)`, or animation helpers at this pin.
 
 ## Examples
 
-### Configure transition behavior
+### Place a text switcher
 
 ```swift
-TextSwitcher()
-    .animateFirstView(false)
+TextSwitcher(id: 2901)
+    .padding(h: 16, v: 8)
 ```
-
-### Change text on a mounted switcher
-
-```swift
-let switcher = TextSwitcher()
-
-switcher.currentText("Ready")
-switcher.text("Running")
-```
-
-Both text methods require a live Android instance.
 
 ## Initializers
 
 ```swift
 TextSwitcher()
-TextSwitcher(id: 1001)
+TextSwitcher(id: 2901)
 ```
 
-## Methods
+## Notes
 
-### Current text
-
-`currentText(_:)` calls Android's `setCurrentText` on the live instance. It updates the text currently being shown without switching views.
-
-### Switch to new text
-
-`text(_:)` calls Android's `setText` on the live instance. Android sets the text on the next view and switches to it.
-
-### Inherited factory and animation controls
-
-`TextSwitcher` inherits `factory(_:)` from `ViewSwitcher`, plus `displayedChild(_:)`, `showNext()`, `showPrevious()`, `animateFirstView(_:)`, and enter/exit animation configuration from `ViewAnimator`.
-
-The factory accepts a JNI-compatible Android object; Droid does not construct it for you.
+Android’s `TextSwitcher` alternates two text views with transitions. That surface is not part of the current Droid API.

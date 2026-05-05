@@ -1,75 +1,35 @@
 # ViewAnimator
 
-`ViewAnimator` is Droid's classic one-child-at-a-time container. The current wrapper inherits `FrameLayout` and exposes displayed-child selection, enter/exit animations, first-view animation control, child management, and next/previous switching.
+`ViewAnimator` is Android’s base container for switching among child views.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; child factories, displayed-child control, and in/out animations are not wrapped yet.
 
 ## Use it when…
 
-Use `ViewAnimator` when several child views share the same space and Android should show only one at a time, optionally animating transitions.
+Use `ViewAnimator` when you need the classic Android animator container name and the switching APIs can land later.
 
 ## How it behaves
 
-`displayedChild(_:)`, `animateFirstView(_:)`, `inAnimation(_:)`, and `outAnimation(_:)` are queued Droid view properties.
+`ViewAnimator` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Getters plus `showNext()`, `showPrevious()`, and child-removal methods operate on the live Android instance.
+The current type does **not** inherit `FrameLayout` and does not expose `setFactory(_:)`, `showNext()`, `showPrevious()`, `setInAnimation(_:)`, or `setOutAnimation(_:)` at this pin.
 
 ## Examples
 
-### Declare children and choose the initial one
+### Place an animator container
 
 ```swift
-ViewAnimator {
-    TextView("First")
-}
-.displayedChild(0)
-.animateFirstView(false)
+ViewAnimator(id: 3001)
+    .padding(h: 0, v: 0)
 ```
-
-### Move through children on a mounted animator
-
-```swift
-let animator = ViewAnimator()
-
-animator.showNext()
-animator.showPrevious()
-```
-
-The switching methods require a live Android instance.
 
 ## Initializers
 
 ```swift
 ViewAnimator()
-ViewAnimator(id: 1001)
-
-ViewAnimator {
-    TextView("Content")
-}
+ViewAnimator(id: 3001)
 ```
 
-## Methods
+## Notes
 
-### Displayed child
-
-`displayedChild(_:)` queues which child index Android should show.
-
-`displayedChild()` reads the current live index, while `currentView()` returns the currently displayed `View?`.
-
-### Animations
-
-`inAnimation(_:)` and `outAnimation(_:)` queue optional Android `Animation` objects.
-
-`inAnimation()` and `outAnimation()` read the live animation objects.
-
-`animateFirstView(_:)` controls whether the first displayed child is animated; `animateFirstView()` reads the live setting.
-
-### Switching
-
-`showNext()` and `showPrevious()` immediately switch the live animator.
-
-### Child management
-
-The wrapper exposes `addView(_:_:_:)`, `removeAllViews()`, `removeView(_:)`, `removeViewAt(_:)`, and range/layout removal helpers for live child management.
-
-### Baseline
-
-`baseline()` reads the baseline of the currently displayed child.
+Android’s `ViewAnimator` switches children with enter/exit animations. None of that is part of the current Droid surface.
