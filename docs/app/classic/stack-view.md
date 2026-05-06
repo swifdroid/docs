@@ -1,36 +1,40 @@
 # StackView
 
-`StackView` is a legacy Android widget for presenting a stack-like collection of views.
+`StackView` is Android’s stacked-card browser for one item at a time.
 
-Droid currently exposes construction and inherited view behavior, not the adapter and animation controls needed for a full interactive stack.
+In the current Droid source pin it is a placeable view with a single-child content initializer. Shared view APIs work; adapter-backed stacking, advance/defer helpers, and stack animations are not wrapped yet.
 
 ## Use it when…
 
-Use `StackView` when maintaining an existing screen that already relies on the Android widget.
-
-For new collection UI, prefer a modern component such as `RecyclerView` or an explicit custom transition.
+Use `StackView` when the screen should show a deck-like control and the adapter surface can come later.
 
 ## How it behaves
 
-Use `StackView` as a view that can be created, identified, sized, and styled through inherited view APIs.
+`StackView` can take declarative single-child content and participates in the view hierarchy. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Adapter population and stack-navigation helpers are not exposed on this type.
+The current type does **not** expose `adapter(_:)`, `showNext()`, `showPrevious()`, or stack-mode APIs at this pin.
 
-## Example
+## Examples
+
+### Place a stack control
 
 ```swift
-StackView()
-    .width(.matchParent)
-    .height(220)
+StackView(id: 2501) {
+    TextView("Card")
+}
 ```
 
 ## Initializers
 
 ```swift
 StackView()
-StackView(id: 1001)
+StackView(id: 2501)
+
+StackView(id: 2501) {
+    // single child content via BodyBuilder
+}
 ```
 
 ## Notes
 
-Keep application logic independent of adapter or animation controls that are not exposed by this type yet.
+Android’s `StackView` is defined by its adapter and stack navigation. None of that is part of the current Droid surface.

@@ -1,70 +1,35 @@
 # GridView
 
-`GridView` is Droid's classic adapter-backed scrolling grid. The current wrapper exposes column count and width, horizontal/vertical spacing, gravity, stretch mode, adapter access, selection, scrolling, and lower-level layout/accessibility helpers.
+`GridView` is Android’s two-dimensional adapter-backed grid.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; column count, spacing, stretch mode, and adapter APIs are not wrapped yet.
 
 ## Use it when…
 
-Use `GridView` when you need Android's classic `ListAdapter` grid behavior.
-
-For richer modern layouts, a grid-configured `RecyclerView` is usually more flexible.
+Use `GridView` when the screen needs the classic Android grid widget and will grow into adapter-backed cells later.
 
 ## How it behaves
 
-The current `GridView` wrapper exposes its grid configuration as immediate live-instance setters.
+`GridView` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Unlike many Droid view wrappers, `setNumColumns(_:)`, `setColumnWidth(_:)`, spacing setters, gravity, stretch mode, adapter assignment, and selection are not queued builder properties.
+The current type does **not** expose `numColumns(_:)`, `horizontalSpacing(_:)`, `verticalSpacing(_:)`, `stretchMode(_:)`, `adapter(_:)`, or selection helpers at this pin.
 
-## Example
+## Examples
+
+### Place a grid container
 
 ```swift
-let grid = GridView()
-
-grid.setNumColumns(3)
-grid.setColumnWidth(120)
-grid.setHorizontalSpacing(8)
-grid.setVerticalSpacing(8)
+GridView(id: 2201)
+    .padding(h: 8, v: 8)
 ```
-
-These setters require a live Android instance to have an effect.
 
 ## Initializers
 
 ```swift
 GridView()
-GridView(id: 1001)
+GridView(id: 2201)
 ```
 
-## Grid geometry
+## Notes
 
-Live setters:
-
-- `setNumColumns(_:)`
-- `setColumnWidth(_:)`
-- `setHorizontalSpacing(_:)`
-- `setVerticalSpacing(_:)`
-- `setGravity(_:)`
-- `setStretchMode(_:)`
-
-Live getters expose the current and requested column width/spacing, number of columns, gravity, stretch mode, and vertical spacing.
-
-## Adapter and selection
-
-`setAdapter(_:)` accepts a JNI-compatible Android `ListAdapter` object.
-
-`adapter()` returns the live adapter object.
-
-`setSelection(_:)` changes the current selection immediately.
-
-The current wrapper does not provide queued adapter or selection properties.
-
-## Scrolling
-
-`smoothScrollToPosition(_:)` scrolls to an adapter position.
-
-`smoothScrollByOffset(_:)` scrolls by an item offset.
-
-The wrapper also exposes Android's vertical scroll extent, offset, and range values.
-
-## Lower-level helpers
-
-Layout-animation, measurement, keyboard, accessibility, remote-views adapter, and child-layout hooks are available for lower-level integrations.
+Android’s `GridView` is defined by columns, spacing, and its adapter. None of that is part of the current Droid surface.

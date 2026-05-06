@@ -1,50 +1,35 @@
 # TwoLineListItem
 
-`TwoLineListItem` wraps Android's legacy two-line list row. It inherits `RelativeLayout` and exposes the two internal `TextView` handles Android names `text1` and `text2`.
+`TwoLineListItem` is Android’s classic two-line list row.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; primary/secondary text accessors and row-mode APIs are not wrapped yet.
 
 ## Use it when…
 
-Use it when you are integrating with an existing Android layout or adapter that specifically uses `TwoLineListItem`.
-
-For new UI, a small custom row built from normal Droid views is usually clearer.
+Use `TwoLineListItem` when the screen needs the classic Android two-line row name and those APIs can land later.
 
 ## How it behaves
 
-The wrapper has no queued row-specific properties.
+`TwoLineListItem` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-`text1()` and `text2()` read the live Android child views.
+The current type does **not** inherit `RelativeLayout` and does not expose `getText1()` / `getText2()` or mode setters at this pin.
 
-## Example
+## Examples
+
+### Place a two-line row
 
 ```swift
-let row = TwoLineListItem()
-
-if let title = row.text1() {
-    // Use the live TextView handle.
-}
-
-if let subtitle = row.text2() {
-    // Use the second live TextView handle.
-}
+TwoLineListItem(id: 3801)
+    .padding(h: 16, v: 12)
 ```
-
-The accessors require Android's row instance to exist.
 
 ## Initializers
 
 ```swift
 TwoLineListItem()
-TwoLineListItem(id: 1001)
+TwoLineListItem(id: 3801)
 ```
 
-## Text handles
+## Notes
 
-`text1()` returns the live `TextView?` identified by Android as the first line.
-
-`text2()` returns the live `TextView?` identified as the second line.
-
-The wrapper does not expose dedicated queued setters for either line; configure the returned live `TextView` objects or use your own row layout when you need fully declarative text composition.
-
-## Lower-level helper
-
-`onFinishInflate()` forwards Android's inflation-finalization callback for low-level integrations.
+Android’s `TwoLineListItem` binds two `TextView` children for list rows. That surface is not part of the current Droid API.
