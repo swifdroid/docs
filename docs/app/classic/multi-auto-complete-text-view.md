@@ -1,67 +1,37 @@
 # MultiAutoCompleteTextView
 
-`MultiAutoCompleteTextView` wraps Android's token-oriented autocomplete field. It exposes tokenizer, filtering, validation, and replacement operations for inputs such as recipient lists or tags.
+`MultiAutoCompleteTextView` is Android’s multi-token completion field.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; tokenizers, adapters, and completion APIs are not wrapped yet.
 
 ## Use it when…
 
-Use it when the text is divided into multiple tokens and completion should operate on the token currently being edited.
+Use `MultiAutoCompleteTextView` when the field should complete multiple tokens and those APIs can land later.
 
-## Current wrapper shape
+For a single completion field, see [`AutoCompleteTextView`](auto-complete-text-view.md).
 
-In the current Droid source this type inherits directly from `View`, not from Droid's `AutoCompleteTextView` or `EditText` wrapper.
+## How it behaves
 
-That means the current Swift surface does **not** automatically inherit Droid's `hint`, adapter, dropdown-configuration, or other `AutoCompleteTextView` convenience APIs.
+`MultiAutoCompleteTextView` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Use only the methods explicitly exposed on `MultiAutoCompleteTextView` until that wrapper hierarchy expands.
+The current type does **not** inherit [`EditText`](edit-text.md) at this pin and does not expose `adapter(_:)`, `tokenizer(_:)`, `setThreshold(_:)`, or dropdown helpers.
 
 ## Examples
 
-### Install a tokenizer
+### Place a multi-token field
 
 ```swift
-func makeTokenField<T: JObjectable>(tokenizer: T) -> MultiAutoCompleteTextView {
-    MultiAutoCompleteTextView()
-        .tokenizer(tokenizer)
-}
-```
-
-`tokenizer(_:)` accepts a JNI-compatible Android tokenizer object; Droid does not construct one for you.
-
-### Trigger validation on a live field
-
-```swift
-func validate(_ field: MultiAutoCompleteTextView) {
-    field.performValidation()
-}
+MultiAutoCompleteTextView(id: 4001)
+    .padding(h: 16, v: 12)
 ```
 
 ## Initializers
 
 ```swift
 MultiAutoCompleteTextView()
-MultiAutoCompleteTextView(id: 1001)
+MultiAutoCompleteTextView(id: 4001)
 ```
 
-## Methods
+## Notes
 
-### Tokenizer
-
-`tokenizer(_:)` is a queued Droid view property and configures Android's `MultiAutoCompleteTextView.Tokenizer` bridge.
-
-### Filtering
-
-`enoughToFilter()` reports whether the current token has enough content to filter.
-
-`performFiltering(_:_:)` starts filtering for text and a key code. The four-argument overload additionally filters a specific text range.
-
-These methods operate on the live Android instance.
-
-### Validation and replacement
-
-`performValidation()` asks Android to validate tokens using its configured behavior.
-
-`replaceText(_:)` replaces the token currently being completed.
-
-## Current limitation
-
-The wrapper currently has no Droid-level adapter setter of its own and does not inherit the `AutoCompleteTextView` adapter/dropdown surface. A complete suggestion workflow therefore still requires lower-level integration outside the APIs shown on this page.
+Android’s `MultiAutoCompleteTextView` completes each token after a tokenizer boundary. That surface is not part of the current Droid API.

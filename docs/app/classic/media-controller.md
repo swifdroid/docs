@@ -1,71 +1,38 @@
 # MediaController
 
-`MediaController` wraps Android's classic playback-controls UI. The current Droid wrapper inherits `FrameLayout` and combines queued controller configuration with live visibility and input operations.
+`MediaController` is Android’s classic media playback control panel.
+
+In the current Droid source pin it is a placeable view control with an additional existing-object initializer. Shared view interaction and layout APIs work; player attachment, show/hide, and transport controls are not wrapped yet.
 
 ## Use it when…
 
-Use `MediaController` when a classic Android media player or `VideoView` needs Android's standard transport-control UI.
+Use `MediaController` when the screen needs the classic Android media controller name and player APIs can land later.
 
 ## How it behaves
 
-These controller settings are queued Droid view properties:
+`MediaController` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-- `anchorView(_:)`
-- `setEnabled(_:)`
-- `mediaPlayerControl(_:)` / `setMediaPlayer(_:)`
-- `prevNextListeners(_:_:)`
+The current type does **not** expose `setMediaPlayer(_:)`, `setAnchorView(_:)`, `show()`, `hide()`, or transport button wiring at this pin.
 
-`show()`, `show(_:)`, `hide()`, `isShowing()`, and input-event methods operate on the live Android instance.
+## Examples
 
-## Example
+### Place a media controller
 
 ```swift
-let controller = MediaController()
-    .anchorView(videoView)
-    .setEnabled(true)
+MediaController(id: 3501)
+    .padding(h: 0, v: 0)
 ```
-
-The configuration is queued until the controller has an Android instance.
 
 ## Initializers
 
 ```swift
 MediaController()
-MediaController(id: 1001)
+MediaController(id: 3501)
+MediaController(id: 3501, existingObject) { activityContext }
 ```
 
-The current wrapper also exposes a low-level initializer for an existing Android object plus an `ActivityContext` link.
+The third form wraps an already-created Android `MediaController` object and a context link.
 
-## Anchor and enabled state
+## Notes
 
-`anchorView(_:)` queues the view Android should use as the controller anchor.
-
-`setEnabled(_:)` queues whether controller widgets are enabled.
-
-## Media-player control
-
-`mediaPlayerControl(_:)` and `setMediaPlayer(_:)` are aliases that queue a JNI-compatible Android `MediaController.MediaPlayerControl` object.
-
-Droid exposes the bridge but does not construct that control object for you.
-
-## Previous/next listeners
-
-`prevNextListeners(_:_:)` queues JNI-compatible Android click-listener objects for the next and previous controls.
-
-## Live visibility
-
-`show()` shows the live controller indefinitely.
-
-`show(_:)` shows it for a timeout in milliseconds.
-
-`hide()` hides it.
-
-`isShowing()` reports the current live visibility.
-
-## Lower-level helpers
-
-`makeControllerView()` returns the live controller hierarchy as `View?` when Android provides it.
-
-The wrapper also forwards finish-inflate, key-dispatch, touch, and trackball helpers.
-
-The current `MediaController` source declares `init(id:)` and the low-level existing-object initializer; it does not declare a dedicated declarative child-content initializer.
+Android’s `MediaController` drives a `MediaPlayer` / `VideoView`. That binding surface is not part of the current Droid API.

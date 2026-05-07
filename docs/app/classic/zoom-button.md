@@ -1,53 +1,35 @@
 # ZoomButton
 
-`ZoomButton` wraps Android's legacy single zoom button. The current Droid wrapper provides queued enabled/speed configuration plus a few live input-event helpers.
+`ZoomButton` is Android’s small zoom-in / zoom-out button.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; zoom speed and pressed-state zoom behavior are not wrapped yet.
 
 ## Use it when…
 
-Use `ZoomButton` when a legacy Android screen needs a dedicated zoom control.
-
-For new interfaces, gesture-based zoom or a custom control is usually more flexible.
+Use `ZoomButton` when the screen needs the classic Android zoom button and those APIs can land later.
 
 ## How it behaves
 
-These settings are queued Droid view properties:
+`ZoomButton` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-- `setEnabled(_:)`
-- `zoomSpeed(_:)`
+The current type does **not** expose `setZoomSpeed(_:)` or inherited `ImageButton` image APIs at this pin.
 
-Input-event helpers such as `onKeyUp(_:_:)`, `onLongClick(_:)`, `onTouchEvent(_:)`, and `dispatchUnhandledMove(_:_:)` operate on the live Android instance.
+## Examples
 
-## Example
+### Place a zoom button
 
 ```swift
-ZoomButton()
-    .setEnabled(true)
-    .zoomSpeed(250)
+ZoomButton(id: 3601)
+    .padding(h: 8, v: 8)
 ```
-
-The configuration can be applied before the Android view instance exists.
 
 ## Initializers
 
 ```swift
 ZoomButton()
-ZoomButton(id: 1001)
+ZoomButton(id: 3601)
 ```
 
-## Enabled state
+## Notes
 
-`setEnabled(_:)` queues Android's enabled state. Calling it without an argument enables the button.
-
-## Repeat speed
-
-`zoomSpeed(_:)` queues the delay, in milliseconds, between repeated callbacks while the button is held.
-
-## Live event helpers
-
-`dispatchUnhandledMove(_:_:)` forwards Android focus navigation.
-
-`onKeyUp(_:_:)` forwards a live key-up event.
-
-`onLongClick(_:)` and `onTouchEvent(_:)` forward Android's live interaction callbacks.
-
-These helpers expose Android behavior directly; they do not create a higher-level zoom model for your content.
+Android’s `ZoomButton` repeatedly zooms while pressed. That behavior is not part of the current Droid surface.

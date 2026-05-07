@@ -1,83 +1,46 @@
 # ActionMenuView
 
-`ActionMenuView` is Droid's wrapper for Android's toolbar-style action menu container. It inherits `LinearLayout`, supports declarative child content, and exposes live menu, overflow, popup-theme, presenter, callback, and layout-parameter operations.
+`ActionMenuView` is Android’s action-bar menu container.
+
+In the current Droid source pin it inherits [`LinearLayout`](linear-layout.md) and has a single-child content initializer plus its own layout-param class. Menu presentation APIs are not wrapped yet.
 
 ## Use it when…
 
-Use `ActionMenuView` when you specifically need Android's action-menu/overflow behavior.
+Use `ActionMenuView` when the screen needs the classic Android action-menu container name and menu APIs can land later.
 
-For an ordinary horizontal row of controls, `LinearLayout` is simpler.
+For ordinary vertical/horizontal stacks, use [`LinearLayout`](linear-layout.md) directly.
 
 ## How it behaves
 
-The current action-menu-specific setters call the live Android instance immediately.
+`ActionMenuView` can take declarative content and keeps the current `LinearLayout` surface, including `orientation(_:)` and shared view configuration such as padding and `onClick(_:)`.
 
-They return `Self` where convenient, but they are not queued `ViewPropertyToApply` properties.
+The current type does **not** expose `setPresenter(_:)`, overflow helpers, or menu-model binding at this pin.
 
-The declarative content initializer itself is available because `ActionMenuView` explicitly overrides it.
+## Examples
 
-## Example
-
-### Declare child content
+### Place an action menu row
 
 ```swift
-ActionMenuView {
-    Button("Edit")
-    Button("Share")
+ActionMenuView(id: 4101) {
+    TextView("Action")
 }
 ```
-
-### Control a live overflow menu
-
-```swift
-let actions = ActionMenuView()
-
-actions.showOverflowMenu()
-actions.hideOverflowMenu()
-```
-
-Overflow operations require a live Android instance.
 
 ## Initializers
 
 ```swift
 ActionMenuView()
-ActionMenuView(id: 1001)
+ActionMenuView(id: 4101)
 
-ActionMenuView {
-    Button("Action")
+ActionMenuView(id: 4101) {
+    // single child content via BodyBuilder
 }
 ```
 
-## Menu access
+## Layout params
 
-`menu()` returns the live `Menu?` exposed by Android.
+`ActionMenuView` declares its own `LayoutParams` class at this pin. Use the shared layout-param surface when configuring children.
 
-`peekMenu()` returns the underlying implementation object without requiring the higher-level `Menu` wrapper.
+## Notes
 
-`invokeItem(_:)` forwards a menu-item implementation object to Android.
-
-## Overflow menu
-
-The wrapper exposes:
-
-- `showOverflowMenu()`
-- `hideOverflowMenu()`
-- `dismissPopupMenus()`
-- `isOverflowMenuShowing()`
-- `isOverflowMenuShowPending()`
-- `isOverflowReserved()`
-
-`overflowIcon()` reads the current icon, while `overflowIcon(_:)` sets it on the live instance.
-
-## Theme, presenter, and callbacks
-
-`popupTheme(_:)`, `overflowReserved(_:)`, `presenter(_:)`, `expandedActionViewsExclusive(_:)`, and `menuCallbacks(_:_:)` are live setters.
-
-`onMenuItemClickListener(_:)` accepts a JNI-compatible Android `ActionMenuView.OnMenuItemClickListener` object.
-
-Droid exposes the listener bridge but does not construct the listener object for you.
-
-## Layout helpers
-
-The wrapper exposes Android's action-menu layout-param generation/checking helpers plus measurement, layout, accessibility, and configuration-change hooks for lower-level integrations.
+Android’s `ActionMenuView` binds an action menu model and presenter. That surface is not part of the current Droid API.

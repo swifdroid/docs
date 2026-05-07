@@ -1,76 +1,35 @@
 # TextClock
 
-`TextClock` is Droid's self-updating clock label. The current wrapper inherits `TextView` and exposes 12-hour/24-hour formats, accessibility formats, time-zone selection, current-user time behavior, refresh control, and a clock-event delegate bridge.
+`TextClock` is Android’s live clock text widget.
+
+In the current Droid source pin it is a placeable view control. Shared view interaction and layout APIs work; format, time-zone, and 12/24-hour APIs are not wrapped yet.
 
 ## Use it when…
 
-Use `TextClock` when Android should keep a displayed wall-clock time updated automatically, such as dashboards, status screens, or always-visible clock UI.
+Use `TextClock` when the screen needs the classic Android clock control and format APIs can land later.
 
 ## How it behaves
 
-Format setters, accessibility-format setters, `showCurrentUserTime(_:)`, `timeZone(_:)`, and `clockEventDelegate(_:)` are queued Droid view properties.
+`TextClock` participates in the view hierarchy like other controls. You can assign an id, attach `onClick(_:)`, set padding, and control `enabled(_:)` / `visibility(_:)`.
 
-Format/time-zone getters, mode inspection, `refreshTime()`, and `disableClockTick()` operate on the live Android instance.
-
-Because `TextClock` inherits `TextView`, normal text styling remains available.
+The current type does **not** expose `format12Hour(_:)`, `format24Hour(_:)`, `timeZone(_:)`, or `is24HourMode()` at this pin.
 
 ## Examples
 
-### Provide 12-hour and 24-hour formats
+### Place a clock
 
 ```swift
-TextClock()
-    .format12Hour("h:mm a")
-    .format24Hour("HH:mm")
-```
-
-### Display a specific time zone
-
-```swift
-TextClock()
-    .format24Hour("HH:mm")
-    .timeZone("UTC")
+TextClock(id: 2801)
+    .padding(h: 16, v: 8)
 ```
 
 ## Initializers
 
 ```swift
 TextClock()
-TextClock(id: 1001)
+TextClock(id: 2801)
 ```
 
-## Methods
+## Notes
 
-### Clock formats
-
-`format12Hour(_:)` and `format24Hour(_:)` queue the patterns Android uses in the corresponding system mode.
-
-`format12Hour()`, `format24Hour()`, and `format()` read current live values.
-
-### Accessibility formats
-
-`contentDescriptionFormat12Hour(_:)` and `contentDescriptionFormat24Hour(_:)` configure the patterns Android uses for the clock's content description.
-
-### Time zone and current user
-
-`timeZone(_:)` queues the time-zone ID used by the clock. `timeZone()` reads the current live value.
-
-`showCurrentUserTime(_:)` configures whether the clock follows the current user's time.
-
-`is24HourModeEnabled()` reports Android's current 24-hour mode.
-
-### Refresh and ticking
-
-`refreshTime()` asks the live clock to refresh its displayed time.
-
-`disableClockTick()` stops automatic ticking updates on the live instance.
-
-### Clock event delegate
-
-`clockEventDelegate(_:)` accepts a JNI-compatible Android `TextClock.ClockEventDelegate` object.
-
-Droid exposes the bridge but does not construct the delegate object for you.
-
-### Lower-level helpers
-
-Attach/detach, aggregated-visibility, and view-property encoding hooks are available for lower-level integrations.
+Android’s `TextClock` follows the system time and locale. Format controls are not part of the current Droid surface.
