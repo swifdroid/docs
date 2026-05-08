@@ -150,6 +150,8 @@ nav:
         - ScrollView: app/classic/scroll-view.md
         - Space: app/classic/space.md
         - StackView: app/classic/stack-view.md
+        - TableLayout: app/classic/table-layout.md
+        - TableRow: app/classic/table-row.md
         - TwoLineListItem: app/classic/two-line-list-item.md
         - VSpace: app/classic/v-space.md
         - VStack: app/classic/v-stack.md
