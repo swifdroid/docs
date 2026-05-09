@@ -171,6 +171,7 @@ nav:
         - RatingBar: app/classic/rating-bar.md
         - SearchView: app/classic/search-view.md
         - SeekBar: app/classic/seek-bar.md
+        - ShareActionProvider: app/classic/share-action-provider.md
         - SlidingDrawer: app/classic/sliding-drawer.md
         - Spinner: app/classic/spinner.md
         - SurfaceView: app/classic/surface-view.md
