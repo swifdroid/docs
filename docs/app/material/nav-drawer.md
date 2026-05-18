@@ -118,7 +118,9 @@ nav.subheaderInsetStart(8)
 nav.subheaderInsetEnd(8)
 ```
 
-Scrim inset flags: `bottomInsetScrimEnabled(_:)`, `topInsetScrimEnabled(_:)`, `startInsetScrimEnabled(_:)`, `endInsetScrimEnabled(_:)`, plus `draw*InsetForeground(_:)` and `scrimInsetForeground(_:)`.
+Scrim inset flags: `bottomInsetScrimEnabled(_:)`, `topInsetScrimEnabled(_:)`, `startInsetScrimEnabled(_:)`. The end side has only the live getter `isEndInsetScrimEnabled()` — there is no `endInsetScrimEnabled(_:)` setter at this pin.
+
+Foreground helpers: `drawTopInsetForeground(_:)`, `drawBottomInsetForeground(_:)`, `drawLeftInsetForeground(_:)`, `drawRightInsetForeground(_:)`, and `scrimInsetForeground(_:)`.
 
 Back-progress helpers `cancelBackProgress()` / `handleBackInvoked()` are present; the intermediate back-progress setters are not wrapped yet.
 

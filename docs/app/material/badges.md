@@ -121,7 +121,7 @@ badge.verticalOffset(2)
 
 `NavigationBarView.badge(at:)`, `getOrCreateBadge(at:)`, and `removeBadge(at:)` create or remove item badges without manual `BadgeUtils` calls.
 
-`BadgeUtils.setBadgeDrawableBounds(_:for:in:)` and `updateBadgeBounds(_:_:_:)` are lower-level bounds helpers when you host the badge yourself.
+`BadgeUtils.setBadgeDrawableBounds(_:for:in:)` and `updateBadgeBounds(_:_:_:_:_:_:)` (`Rect`, `centerX`, `centerY`, `halfWidth`, `halfHeight`, optional unit) are lower-level bounds helpers when you host the badge yourself.
 
 ## Notes
 
