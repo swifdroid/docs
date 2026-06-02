@@ -184,6 +184,8 @@ nav:
         - ViewSwitcher: app/classic/view-switcher.md
         - ZoomControls: app/classic/zoom-controls.md
     - Android X:
+      - App Compat:
+        - Button: app/x/compat/button.md
       - Containers & Fragments:
         - DrawerLayout: app/x/drawer-layout.md
         - SlidingPaneLayout: app/x/sliding-pane-layout.md
