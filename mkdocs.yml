@@ -186,6 +186,7 @@ nav:
     - Android X:
       - App Compat:
         - Button: app/x/compat/button.md
+        - Toolbar: app/x/compat/toolbar.md
       - Containers & Fragments:
         - DrawerLayout: app/x/drawer-layout.md
         - SlidingPaneLayout: app/x/sliding-pane-layout.md
