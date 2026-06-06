@@ -1,30 +1,48 @@
 # SlidingPaneLayout
 
-`SlidingPaneLayout` wraps AndroidX `SlidingPaneLayout` as a Droid `ViewGroup`.
+Use `SlidingPaneLayout` when a Swift view tree needs the AndroidX `SlidingPaneLayout` container with child views supplied inside it.
 
-It is useful for two-pane screen structures where AndroidX owns the sliding-pane container and Droid builds the child hierarchy.
+Droid lets you declare those children through a `@BodyBuilder` content initializer. This page covers construction of that view tree.
 
 ## Use it when…
 
-Use it for layouts that conceptually have a primary pane and a secondary pane, such as a list and details screen.
+Use the content initializer when you want to declare the container and its child views together in Swift.
 
-## Build two panes
+## How it behaves
+
+The Swift API provides two construction forms: an optional `Int32` ID alone, or an optional ID with a required `@BodyBuilder` closure. The closure can supply one or more child views. These signatures describe construction; they do not assign pane roles or specify how Android arranges or interacts with the children.
+
+## Examples
+
+The first root view contains a text child labeled “No item selected.” The second contains two text children labeled “Choose a record” and “Record details.”
 
 ```swift
-body {
+let emptyStateContent = FrameLayout(id: 100)
+emptyStateContent.body {
     SlidingPaneLayout(id: 200) {
-        FrameLayout(id: 201)
-        FrameLayout(id: 202)
+        TextView(id: 201, "No item selected")
     }
-    .width(.matchParent)
-    .height(.matchParent)
 }
 ```
 
-The wrapper uses AndroidX `SlidingPaneLayout.LayoutParams` and exposes `weight` as an applicable layout parameter.
+```swift
+let recordContent = FrameLayout(id: 110)
+recordContent.body {
+    SlidingPaneLayout(id: 210) {
+        TextView(id: 211, "Choose a record")
+        TextView(id: 212, "Record details")
+    }
+}
+```
 
-## Current limitations
+## Initializers
 
-The current Droid type exposes construction, child content, inherited `ViewGroup` behavior, and the available layout-parameter surface.
+The ID is optional. To create the container without passing child content, use the ID-only initializer:
 
-It does not currently expose SlidingPaneLayout-specific open/close state, lock mode, pane listeners, or transition helpers.
+```swift
+let layout = SlidingPaneLayout(id: 300)
+```
+
+## Notes
+
+At the inspected source pin, the Droid type declares no `SlidingPaneLayout`-specific interaction controls.
