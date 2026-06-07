@@ -198,6 +198,7 @@ nav:
         - NavigationUI: app/x/navigation/navigation-ui.md
         - NavController: app/x/navigation/nav-controller.md
       - Component Activity: app/x/component-activity.md
+      - ConstraintLayout: app/x/constraint-layout.md
       - CoordinatorLayout: app/x/coordinator-layout.md
       - Fragments: app/x/fragments.md
       - RecyclerView: app/x/recycler-view.md
