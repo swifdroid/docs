@@ -185,7 +185,12 @@ nav:
         - ZoomControls: app/classic/zoom-controls.md
     - Android X:
       - App Compat:
+        - AutoCompleteTextField: app/x/compat/autocomplete-text-field.md
         - Button: app/x/compat/button.md
+        - EditText: app/x/compat/edit-text.md
+        - MultiAutocompleteTextView: app/x/compat/multi-autocomplete-text-view.md
+        - SearchView: app/x/compat/search-view.md
+        - TextView: app/x/compat/text-view.md
         - Toolbar: app/x/compat/toolbar.md
       - Containers & Fragments:
         - DrawerLayout: app/x/drawer-layout.md
