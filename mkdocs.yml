@@ -187,10 +187,15 @@ nav:
       - App Compat:
         - AutoCompleteTextField: app/x/compat/autocomplete-text-field.md
         - Button: app/x/compat/button.md
+        - Checkbox: app/x/compat/checkbox.md
+        - CheckedTextView: app/x/compat/checked-text-view.md
         - EditText: app/x/compat/edit-text.md
         - MultiAutocompleteTextView: app/x/compat/multi-autocomplete-text-view.md
+        - RadioButton: app/x/compat/radio-button.md
         - SearchView: app/x/compat/search-view.md
+        - Switch: app/x/compat/switch.md
         - TextView: app/x/compat/text-view.md
+        - ToggleButton: app/x/compat/toggle-button.md
         - Toolbar: app/x/compat/toolbar.md
       - Containers & Fragments:
         - DrawerLayout: app/x/drawer-layout.md
