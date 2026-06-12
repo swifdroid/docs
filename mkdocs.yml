@@ -190,6 +190,8 @@ nav:
         - Checkbox: app/x/compat/checkbox.md
         - CheckedTextView: app/x/compat/checked-text-view.md
         - EditText: app/x/compat/edit-text.md
+        - ImageButton: app/x/compat/image-button.md
+        - ImageView: app/x/compat/image-view.md
         - MultiAutocompleteTextView: app/x/compat/multi-autocomplete-text-view.md
         - RadioButton: app/x/compat/radio-button.md
         - SearchView: app/x/compat/search-view.md
