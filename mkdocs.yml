@@ -194,7 +194,9 @@ nav:
         - ImageView: app/x/compat/image-view.md
         - MultiAutocompleteTextView: app/x/compat/multi-autocomplete-text-view.md
         - RadioButton: app/x/compat/radio-button.md
+        - RatingBar: app/x/compat/rating-bar.md
         - SearchView: app/x/compat/search-view.md
+        - SeekBar: app/x/compat/seek-bar.md
         - Switch: app/x/compat/switch.md
         - TextView: app/x/compat/text-view.md
         - ToggleButton: app/x/compat/toggle-button.md
