@@ -197,6 +197,7 @@ nav:
         - RatingBar: app/x/compat/rating-bar.md
         - SearchView: app/x/compat/search-view.md
         - SeekBar: app/x/compat/seek-bar.md
+        - Spinner: app/x/compat/spinner.md
         - Switch: app/x/compat/switch.md
         - TextView: app/x/compat/text-view.md
         - ToggleButton: app/x/compat/toggle-button.md
