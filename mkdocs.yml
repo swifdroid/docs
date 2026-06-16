@@ -212,6 +212,7 @@ nav:
         - AppBarConfiguration: app/x/navigation/app-bar-configuration.md
         - NavigationUI: app/x/navigation/navigation-ui.md
         - NavController: app/x/navigation/nav-controller.md
+        - NavHostFragment: app/x/navigation/nav-host-fragment.md
       - Component Activity: app/x/component-activity.md
       - CardView: app/x/card-view.md
       - ConstraintLayout: app/x/constraint-layout.md
